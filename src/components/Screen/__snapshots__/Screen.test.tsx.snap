@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Screen test should match with snapshot 1`] = `
+<View
+  id="padding"
+  onLayout={[Function]}
+  style={
+    {
+      "paddingBottom": 0,
+    }
+  }
+  testID="keyboardAvoidingView"
+>
+  <RCTScrollView
+    keyboardShouldPersistTaps="always"
+    testID="refreshControl"
+  >
+    <View>
+      <RNCSafeAreaView
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessible={true}
+        edges={
+          [
+            "bottom",
+            "left",
+            "right",
+            "top",
+          ]
+        }
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+      >
+        <View />
+      </RNCSafeAreaView>
+    </View>
+  </RCTScrollView>
+</View>
+`;
