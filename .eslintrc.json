@@ -9,7 +9,9 @@
         "airbnb",
         "airbnb/hooks",
         "prettier",
-        "prettier/react"
+        "prettier/react",
+        "stylelint-config-standard",
+        "stylelint-config-styled-components"
     ],
     "parserOptions": {
         "ecmaFeatures": {
@@ -30,6 +32,9 @@
         "no-use-before-define": ["error", { "variables": false }],
 
         // ignore errors for the react-navigation package
-        "react/prop-types": ["error", {"ignore": ["navigation", "navigation.navigate"]}]
-    }
+        "react/prop-types": ["error", {"ignore": ["navigation", "navigation.navigate"]}],
+        "declaration-empty-line-before": null,
+        "value-keyword-case": null
+    },
+    "processors": ["stylelint-processor-styled-components"]
 }
