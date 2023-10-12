@@ -16,10 +16,6 @@ const SignUpScreen: FC = () => {
     return generateDateDropdownValues(month);
   }, [month]);
 
- 
-    const handleChangeDropDown=()=>{
-
-    }
   return (
     <SafeAreaView style={styles.allSignup}>
       <View>
