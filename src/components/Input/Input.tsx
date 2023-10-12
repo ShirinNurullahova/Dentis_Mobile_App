@@ -12,7 +12,7 @@ interface Props {
 
 const Input = ({ onChange, value, placeholder, label, iconShow = false }: Props) => {
   return (
-    <View>
+    <View style={styles.inputComponent}>
       <Text style={styles.text}>{label}</Text>
       <View style={styles.inputDiv}>
         <TextInput
@@ -33,27 +33,29 @@ const Input = ({ onChange, value, placeholder, label, iconShow = false }: Props)
 };
 
 const styles = StyleSheet.create({
+  inputComponent:{
+    marginTop:20,
+  },
   input: {
     width: 343,
     color: '#B4B6B8',
-    backgroundColor: '#F8F8F9',
+    backgroundColor: '#F8F9F9',
     paddingHorizontal: 14,
     paddingVertical: 16,
     display: 'flex',
     alignItems: 'center',
     borderRadius: 12,
-    gap: 12,
   },
   inputDiv: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'center',
-    alignItems: 'center',
-    position: 'relative',
+    alignItems: 'center'
   },
   image: {
     position: 'absolute',
     right: 5,
+    top:-7,
     width: 20,
     height: 20,
   },
@@ -62,6 +64,7 @@ const styles = StyleSheet.create({
     fontSize: 13,
     fontStyle: 'normal',
     fontWeight: '400',
+    marginBottom:10,
     lineHeight: 18 /* 138.462% */,
   },
 });
