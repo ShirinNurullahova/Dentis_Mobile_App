@@ -20,8 +20,8 @@ const screenOptions: StackNavigationOptions = {
 export function AuthNavigate() {
   return (
     <AuthNavigator.Navigator screenOptions={screenOptions}>
-      {/* <AuthNavigator.Screen name="LoginScreen" component={LoginScreen} /> */}
-      <AuthNavigator.Screen name="SignUpScreen" component={SignUpScreen} />
+      <AuthNavigator.Screen name="LoginScreen" component={LoginScreen} />
+      {/* <AuthNavigator.Screen name="SignUpScreen" component={SignUpScreen} /> */}
 
     </AuthNavigator.Navigator>
   );

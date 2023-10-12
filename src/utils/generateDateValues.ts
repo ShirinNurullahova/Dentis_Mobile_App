@@ -6,8 +6,8 @@ export function generateDateDropdownValues(initialMonth = 0, initialYear = new D
     const months:any = {};
 
     const monthNames = [
-        "January", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "December"
+        "1", "2", "3", "4", "5", "6",
+        "7", "8", "9", "10", "11", "12"
     ];
 
     monthNames.forEach((monthName, index) => {
@@ -19,7 +19,7 @@ export function generateDateDropdownValues(initialMonth = 0, initialYear = new D
     // Return the structured data
     return {
         days: months[monthNames[initialMonth]],
-        months: Object.keys(months),
+        months: Object.values(monthNames),
         years: years,
     };
 }

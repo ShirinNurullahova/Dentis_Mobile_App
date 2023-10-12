@@ -24,6 +24,8 @@ const Dropdown = ({ onPress, title, values, type, setMonth }: Props) => {
         } 
         onPress(selectedItem)
     }  
+    console.log(values);
+    
     return (
     <View style={styles.dropDownComponent}>
       <Text style={styles.text}>{title}</Text>
@@ -35,7 +37,7 @@ const Dropdown = ({ onPress, title, values, type, setMonth }: Props) => {
           return selectedItem;
         }}
         rowTextForSelection={(item, index) => {
-          return item;
+          return item
         }}
         buttonStyle={styles.dropdown1BtnStyle}
         buttonTextStyle={styles.dropdown1BtnTxtStyle}
