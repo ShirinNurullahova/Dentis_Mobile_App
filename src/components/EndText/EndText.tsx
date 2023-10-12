@@ -9,7 +9,7 @@ interface Props {
 const EndTextComponent = ({ text,diffText }: Props) => {
   return (
        <View>
-          <Text style={styles.all}>{text}<Text style={styles.difText}>{diffText}</Text></Text>
+          <Text style={styles.all}>{text}{'  '}<Text style={styles.difText}>{diffText}</Text></Text>
        </View>
   );
 };
@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
         margin:20,
     },
       difText:{
-        color:'#12CC89',
+        color:'#12CC89'
       }
 });
 

@@ -7,6 +7,8 @@ import Dropdown from '../../components/DropDown/DropDown';
 import { generateDateDropdownValues } from '../../utils/generateDateValues';
 import CustomButton from '../../components/Button/Button';
 import EndTextComponent from '../../components/EndText/EndText';
+import { Form, Formik } from 'formik';
+
 const SignUpScreen: FC = () => {
   const [month, setMonth] = useState(0);
 
@@ -14,61 +16,76 @@ const SignUpScreen: FC = () => {
     return generateDateDropdownValues(month);
   }, [month]);
 
+ 
+    const handleChangeDropDown=()=>{
+
+    }
   return (
     <SafeAreaView style={styles.allSignup}>
       <View>
-        <TextComponent text="Hesab yaradın" />
-        <Input
-          onChange={() => {
-            console.log('alert');
-          }}
-          value=""
-          placeholder="Ad və soyadınızı daxil edin"
-          label="Ad və Soyad"
-        />
-        <Input
-          onChange={() => {
-            console.log('alert');
-          }}
-          value=""
-          placeholder="+994"
-          label="Mobil nömrə"
-        />
-        <View style={styles.dropdown}>
-          <Dropdown onPress={() => {}} title="Day" values={dates.days} />
-          <Dropdown
-            type="month"
-            onPress={(index) => {
-              setMonth(index);
-            }}
-            title="Month"
-            values={dates.months}
-          />
-          <Dropdown onPress={() => {}} title="Year" values={dates.years} />
-        </View>
 
-        <Input
-          onChange={() => {
-            console.log('first');
-          }}
-          value="test"
-          placeholder="Şifrə daxil edin"
-          label="Şifrə"
-          iconShow
-        />
-      
-        <EndTextComponent text={"By singing up I accept the "} diffText='terms of use and the data privacy policy'/>
-       
-        <CustomButton
-          onPress={() => {
-            console.log('salam');
-          }}
-          text="Davam et"
-        />
+        <Formik
+          initialValues={{ adSoyad: '', mobilNomre: '', sifre: '',day:"",month:'',year:''}}
+          onSubmit={(values) => console.log(values)}
+        >
+          {({ handleChange, handleBlur, handleSubmit, values }) => (
+            <View>
+              <TextComponent text="Hesab yaradın" />
+              <Input
+                onChangeText={handleChange('adSoyad')}
+                value={values.adSoyad}
+                placeholder="Ad və soyadınızı daxil edin"
+                label="Ad və Soyad"
+                type="text"
+                onBlur={handleBlur('adSoyad')}
+              />
+              <Input
+                onChangeText={handleChange('mobilNomre')}
+                value={values.mobilNomre}
+                placeholder="+994"
+                label="Mobil nömrə"
+                type="phone-pad"
+                onBlur={handleBlur('mobilNomre')}
+              />
+
+              <View style={styles.dropdown}>
+                <Dropdown onPress={handleChange('day')} title="Day" values={dates.days}/>
+                <Dropdown
+                  type="month"
+                  setMonth={setMonth}
+                  onPress={handleChange("month")}
+                  title="Month"
+                  values={dates.months}
+                />
+                <Dropdown onPress={handleChange("year")} title="Year" values={dates.years} />
+              </View>
+
+              <Input
+                
+                onChangeText={handleChange('sifre')}
+                value={values.sifre}
+                placeholder="Şifrə daxil edin"
+                label="Şifrə"
+                onBlur={handleBlur('sifre')}
+                iconShow
+              />
+              <EndTextComponent
+                text={'By singing up I accept the '}
+                diffText="terms of use and the data privacy policy"
+              />
+
+              <CustomButton
+                onPress={handleSubmit}
+                text="Davam et"
+                title="Submit"
+                disabled={!(values.mobilNomre && values.sifre)}
+              />
+            </View>
+          )}
+        </Formik>
       </View>
-  
-        <EndTextComponent text={"Hesabınız var?"} diffText='Daxil olun'/>
-    
+
+      <EndTextComponent text={'Hesabınız var?'} diffText="Daxil olun" />
     </SafeAreaView>
   );
 };
@@ -84,7 +101,6 @@ const styles = StyleSheet.create({
   dropdown: {
     gap: 10,
     flexDirection: 'row',
-  }
-  
+  },
 });
 export default SignUpScreen;

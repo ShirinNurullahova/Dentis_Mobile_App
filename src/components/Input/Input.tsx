@@ -1,25 +1,28 @@
-import React from 'react';
+import React,{ChangeEvent} from 'react';
 import { TouchableOpacity } from 'react-native';
 import { Text, TextInput, StyleSheet, View, Image } from 'react-native';
 
 interface Props {
   value: string;
-  onChange: () => void;
+  onChangeText: (e: string | ChangeEvent<any>) => void;
   placeholder?: string;
   label?: string;
   iconShow?: boolean;
+  onBlur: (e: string | ChangeEvent<any>)=> void;
+  type?: string | any;
 }
 
-const Input = ({ onChange, value, placeholder, label, iconShow = false }: Props) => {
+const Input = ({ onChangeText, value, placeholder, label, iconShow = false,type = "default" }: Props) => {
   return (
     <View style={styles.inputComponent}>
       <Text style={styles.text}>{label}</Text>
       <View style={styles.inputDiv}>
         <TextInput
-          onChangeText={onChange}
+          onChangeText={onChangeText}
           style={styles.input}
           placeholder={placeholder}
           placeholderTextColor="#B4B6B8"
+          keyboardType={type}
         />
         {iconShow && (
           <TouchableOpacity>

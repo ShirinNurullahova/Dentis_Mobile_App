@@ -13,15 +13,16 @@ interface Props {
   title: string;
   onPress: (value:any) => void;
   values: Array<string>;
-  type?: "month"
+  type?: "month",
+  setMonth?:any
 }
-const Dropdown = ({ onPress, title, values, type }: Props) => {
+const Dropdown = ({ onPress, title, values, type, setMonth }: Props) => {
     const onSelect = (selectedItem: any, index: number) => {
         if(type == 'month') {
-            onPress(index)
-        } else {
-            onPress(selectedItem)
-        }
+            setMonth(index)
+
+        } 
+        onPress(selectedItem)
     }  
     return (
     <View style={styles.dropDownComponent}>

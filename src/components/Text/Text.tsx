@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
         fontSize: 34,
         fontStyle: 'normal',
         fontWeight: '400',
-        // marginBottom: 28,
+        marginBottom: 28,
         lineHeight: 40,
       },
 });
