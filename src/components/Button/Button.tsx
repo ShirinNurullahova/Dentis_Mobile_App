@@ -9,11 +9,13 @@ interface Props {
   type: string
 }
 
-const CustomButton = ({ text, onPress ,disabled }: Props) => {
-  console.log(disabled)
+
+
+const CustomButton = ({ text, onPress, disabled }: Props) => {
   return (
     <TouchableOpacity onPress={onPress}>
-      <View style={[ styles.button , (disabled && styles.diff)]}>
+      <View style={[styles.button, !disabled && styles.diff]}>
+
         <Text style={styles.buttonText}>{text}</Text>
       </View>
     </TouchableOpacity>
@@ -23,7 +25,7 @@ const CustomButton = ({ text, onPress ,disabled }: Props) => {
 const styles = StyleSheet.create({
   button: {
     display: 'flex',
-    width: 343,
+    width: '100%',
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 20,
@@ -31,8 +33,8 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     backgroundColor: '#B4B6B8',
   },
-  diff:{
-    backgroundColor:'#12CC89'
+  diff: {
+    backgroundColor: '#12CC89',
   },
   buttonText: {
     color: '#fff',
