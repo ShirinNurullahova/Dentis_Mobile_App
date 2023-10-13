@@ -3,11 +3,13 @@ import { createStackNavigator, StackNavigationOptions } from '@react-navigation/
 import LoginScreen from '../screens/register/LoginScreen';
 import About from '../screens/about/about';
 import AddToCard from '../screens/addToCard/addToCard';
+import Notification from '../screens/notification/notification';
 
 type RootStackParamList = {
   LoginScreen: undefined;
   AboutPage: undefined;
   AddToCard: undefined;
+  Notification: undefined;
 };
 
 const AuthNavigator = createStackNavigator<RootStackParamList>();
@@ -21,7 +23,8 @@ export function AuthNavigate() {
     <AuthNavigator.Navigator screenOptions={screenOptions}>
       {/* <AuthNavigator.Screen name="LoginScreen" component={LoginScreen} /> */}
       {/* <AuthNavigator.Screen name="AboutPage" component={About} /> */}
-      <AuthNavigator.Screen name="AddToCard" component={AddToCard} />
+      {/* <AuthNavigator.Screen name="AddToCard" component={AddToCard} /> */}
+      <AuthNavigator.Screen name="Notification" component={Notification} />
     </AuthNavigator.Navigator>
   );
 }
