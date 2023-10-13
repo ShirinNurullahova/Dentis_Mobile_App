@@ -4,13 +4,14 @@ import { StyleSheet, View, TouchableOpacity, Text } from 'react-native';
 interface Props {
   text: string;
   onPress: () => void;
-  backgroundColor?: string;
+  title: string;
+  disabled: boolean;
 }
 
-const CustomButton = ({ text, onPress, backgroundColor = '#B4B6B8' }: Props) => {
+const CustomButton = ({ text, onPress, disabled }: Props) => {
   return (
     <TouchableOpacity onPress={onPress}>
-      <View style={[styles.button, { backgroundColor }]}>
+      <View style={[styles.button, !disabled && styles.diff]}>
         <Text style={styles.buttonText}>{text}</Text>
       </View>
     </TouchableOpacity>
@@ -25,10 +26,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 20,
     paddingVertical: 13,
-    // backgroundColor: '#B4B6B8',
+    backgroundColor: '#B4B6B8',
     borderRadius: 12,
-    marginTop: 28,
-    gap: 10,
+  },
+  diff: {
+    backgroundColor: '#12CC89',
   },
   buttonText: {
     color: '#fff',

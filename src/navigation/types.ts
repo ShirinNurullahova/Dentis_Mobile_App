@@ -1,6 +1,7 @@
 export type RootStackParamList = {
   navigate(arg0: string, arg1: {refresh: number}): unknown;
   LoginScreen: undefined;
+  SignUpScreen: undefined;
   CheckInboxScreen: undefined | {notDetect: boolean};
   Print: {refresh: number} | undefined;
   SearchResultScreen: {refresh: number} | {data: any} | undefined;
