@@ -5,8 +5,10 @@ import {
   Platform,
   RefreshControl,
   ScrollView,
+  StyleSheet,
   TouchableWithoutFeedback,
   View,
+  ViewStyle,
 } from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useDispatch, useSelector} from 'react-redux';
@@ -18,11 +20,12 @@ export type ScreenProps = {
   scroll?: boolean;
   children?: JSX.Element | JSX.Element[] | string;
   notTouchable?: boolean;
+  style?:ViewStyle
 };
 
-const Content: FC<ScreenProps> = ({header, children}) => {
+const Content: FC<ScreenProps> = ({header, children,style}) => {
   return (
-    <View>
+    <View style={[style]}>
       {header}
       {children}
     </View>
@@ -34,6 +37,7 @@ const Screen: FC<ScreenProps> = ({
   children,
   onPullToRefresh,
   notTouchable,
+  style
 }) => {
   const [keyboardAvoidingEnabled, setKeyboardAvoidingEnabled] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
@@ -84,13 +88,13 @@ const Screen: FC<ScreenProps> = ({
         }
         keyboardShouldPersistTaps={'always'}>
         {notTouchable ? (
-          <SafeAreaView>
-            <Content header={header} children={children} />
+          <SafeAreaView style={{flex:1}}>
+            <Content header={header} children={children} style={style || styles.container}/>
           </SafeAreaView>
         ) : (
           <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <SafeAreaView>
-              <Content header={header} children={children} />
+              <Content header={header} children={children} style={style || styles.container}/>
             </SafeAreaView>
           </TouchableWithoutFeedback>
         )}
@@ -98,5 +102,13 @@ const Screen: FC<ScreenProps> = ({
     </KeyboardAvoidingView>
   );
 };
+
+const styles = StyleSheet.create({
+  container:{
+    flex:1,
+    paddingHorizontal: 16,
+    paddingVertical:100
+  }
+})
 
 export default React.memo(Screen);
