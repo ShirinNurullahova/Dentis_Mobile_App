@@ -14,7 +14,7 @@ interface Props {
 const CustomButton = ({ text, onPress, disabled }: Props) => {
   return (
     <TouchableOpacity onPress={onPress}>
-      <View style={[styles.button, !disabled && styles.diff]}>
+      <View style={[styles.button, disabled && styles.diff]}>
         <Text style={styles.buttonText}>{text}</Text>
       </View>
     </TouchableOpacity>
