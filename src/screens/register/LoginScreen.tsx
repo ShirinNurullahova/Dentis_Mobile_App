@@ -67,7 +67,7 @@ const LoginScreen: FC = () => {
         )}
       </Formik>
 
-      <EndTextComponent text="Hesabınız yoxdur?" diffText="Qeydiyyatdan keçin" />
+      <EndTextComponent text="Hesabınız yoxdur?" diffText="Qeydiyyatdan keçin" size={false}/>
     </SafeAreaView>
   );
 };
@@ -83,6 +83,9 @@ const styles = StyleSheet.create({
   endTextDiv: {
     margin: 20,
     alignItems: 'flex-end',
+    fontSize:14,
+    fontWeight:'400',
+    fontFamily:"Poppins-Regular"
   },
   endText: {
     color: '#5E6067',

@@ -37,6 +37,7 @@ const styles = StyleSheet.create({
   buttonText: {
     color: '#fff',
     fontSize: 17,
+    fontFamily:"Poppins-Regular",
     fontStyle: 'normal',
     fontWeight: '500',
     lineHeight: 22,

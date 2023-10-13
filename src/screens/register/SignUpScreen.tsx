@@ -67,17 +67,19 @@ const SignUpScreen: FC = () => {
               {values.mobilNomre && errors.mobilNomre && (
                 <Text style={{ fontSize: 10, color: 'red' }}>{errors.mobilNomre}</Text>
               )}
-
-              <View style={styles.dropdown}>
-                <Dropdown onPress={handleChange('day')} title="Day" values={dates.days} />
-                <Dropdown
-                  type="month"
-                  setMonth={setMonth}
-                  onPress={handleChange('month')}
-                  title="Month"
-                  values={dates.months}
-                />
-                <Dropdown onPress={handleChange('year')} title="Year" values={dates.years} />
+              <View style={styles.dropdownComponent}>
+                <Text style={styles.text}>Doğum tarixi</Text>
+                <View style={styles.dropdown}>
+                  <Dropdown onPress={handleChange('day')} title="Day" values={dates.days} />
+                  <Dropdown
+                    type="month"
+                    setMonth={setMonth}
+                    onPress={handleChange('month')}
+                    title="Month"
+                    values={dates.months}
+                  />
+                  <Dropdown onPress={handleChange('year')} title="Year" values={dates.years} />
+                </View>
               </View>
 
               <Input
@@ -88,9 +90,12 @@ const SignUpScreen: FC = () => {
                 onBlur={handleBlur('sifre')}
                 iconShow
               />
-              { values.sifre && errors.sifre && <Text style={{ fontSize: 10, color: 'red' }}>{errors.sifre}</Text>}
+              {values.sifre && errors.sifre && (
+                <Text style={{ fontSize: 10, color: 'red' }}>{errors.sifre}</Text>
+              )}
 
               <EndTextComponent
+                size={true}
                 text={'By singing up I accept the '}
                 diffText="terms of use and the data privacy policy"
               />
@@ -107,7 +112,7 @@ const SignUpScreen: FC = () => {
         </Formik>
       </View>
 
-      <EndTextComponent text={'Hesabınız var?'} diffText="Daxil olun" />
+      <EndTextComponent text={'Hesabınız var?'} diffText="Daxil olun" size={false} />
     </SafeAreaView>
   );
 };
@@ -123,6 +128,18 @@ const styles = StyleSheet.create({
   dropdown: {
     gap: 10,
     flexDirection: 'row',
+    width:343,
+  },
+  dropdownComponent:{
+     paddingTop:20,
+  },
+  text: {
+    color: '#9EA0A3',
+    fontSize: 13,
+    marginBottom: 10,
+    fontStyle: 'normal',
+    fontWeight: '400',
+    lineHeight: 18 /* 138.462% */,
   },
 });
 export default SignUpScreen;

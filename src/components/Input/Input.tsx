@@ -26,7 +26,7 @@ const Input = ({ onChangeText, value, placeholder, label, iconShow = false,type 
         />
         {iconShow && (
           <TouchableOpacity>
-            <Image source={require('../../assest/images/inputicon.png')} style={styles.image} />
+            <Image source={require('../../assets/images/inputicon.png')} style={styles.image} />
           </TouchableOpacity>
         )}
         
@@ -44,7 +44,8 @@ const styles = StyleSheet.create({
     color: '#B4B6B8',
     backgroundColor: '#F8F9F9',
     paddingHorizontal: 14,
-    paddingVertical: 16,
+    fontSize:15,
+    fontFamily:'Poppins-Regular',
     display: 'flex',
     alignItems: 'center',
     borderRadius: 12,
@@ -66,6 +67,7 @@ const styles = StyleSheet.create({
     color: '#9EA0A3',
     fontSize: 13,
     fontStyle: 'normal',
+    fontFamily:'Poppins-Regular',
     fontWeight: '400',
     marginBottom:10,
     lineHeight: 18 /* 138.462% */,

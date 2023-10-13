@@ -16,7 +16,7 @@ interface Props {
   type?: "month",
   setMonth?:any
 }
-const Dropdown = ({ onPress, title, values, type, setMonth }: Props) => {
+const Dropdown = ({ onPress,values, type, setMonth }: Props) => {
     const onSelect = (selectedItem: any, index: number) => {
         if(type == 'month') {
             setMonth(index)
@@ -27,8 +27,8 @@ const Dropdown = ({ onPress, title, values, type, setMonth }: Props) => {
     console.log(values);
     
     return (
-    <View style={styles.dropDownComponent}>
-      <Text style={styles.text}>{title}</Text>
+    <View>
+
       <SelectDropdown
         data={values}
         onSelect={onSelect}
@@ -44,7 +44,7 @@ const Dropdown = ({ onPress, title, values, type, setMonth }: Props) => {
         renderDropdownIcon={(isOpened) => {
           return (
             <Image
-              source={require('../../assest/images/dropdown.png')}
+              source={require('../../assets/images/dropdown.png')}
               width={20}
               height={20}
               style={styles.image}
@@ -60,9 +60,6 @@ const Dropdown = ({ onPress, title, values, type, setMonth }: Props) => {
   );
 };
 const styles = StyleSheet.create({
-  dropDownComponent:{
-    marginTop:20,
-  },
   shadow: {
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 6 },
@@ -91,11 +88,10 @@ const styles = StyleSheet.create({
 
   dropdown1BtnStyle: {
     alignItems: 'center',
-
     width: 108,
     backgroundColor: '#F8F9F9',
     borderRadius: 12,
-    paddingHorizontal: 14,
+    paddingHorizontal: 14
   },
   dropdown1BtnTxtStyle: {
     color: '#B4B6B8',
@@ -104,6 +100,7 @@ const styles = StyleSheet.create({
     paddingLeft: 5,
     right: 0,
     fontSize: 15,
+    fontFamily:'Poppins-Regular',
     fontStyle: 'normal',
     fontWeight: '400',
     lineHeight: 20 /* 133.333% */,
@@ -115,13 +112,6 @@ const styles = StyleSheet.create({
     width: 20,
     height: 20,
   },
-  text: {
-    color: '#9EA0A3',
-    fontSize: 13,
-    marginBottom:10,
-    fontStyle: 'normal',
-    fontWeight: '400',
-    lineHeight: 18 /* 138.462% */,
-  },
+ 
 });
 export default Dropdown;
