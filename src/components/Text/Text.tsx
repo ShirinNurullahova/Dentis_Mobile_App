@@ -18,9 +18,9 @@ const styles = StyleSheet.create({
         color: '#31353D',
         textAlign: 'center',
         fontSize: 34,
-        fontStyle: 'normal',
+        fontFamily: 'Poppins-Regular',
         fontWeight: '400',
-        marginBottom: 28,
+        // marginBottom: 28,
         lineHeight: 40,
       },
 });

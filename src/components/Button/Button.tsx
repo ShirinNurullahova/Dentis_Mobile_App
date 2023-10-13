@@ -6,12 +6,16 @@ interface Props {
   onPress: () => void;
   title: string;
   disabled: boolean;
+  type: string
 }
+
+
 
 const CustomButton = ({ text, onPress, disabled }: Props) => {
   return (
     <TouchableOpacity onPress={onPress}>
       <View style={[styles.button, !disabled && styles.diff]}>
+
         <Text style={styles.buttonText}>{text}</Text>
       </View>
     </TouchableOpacity>
@@ -26,8 +30,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 20,
     paddingVertical: 13,
-    backgroundColor: '#B4B6B8',
     borderRadius: 12,
+    backgroundColor: '#B4B6B8',
   },
   diff: {
     backgroundColor: '#12CC89',
@@ -35,6 +39,7 @@ const styles = StyleSheet.create({
   buttonText: {
     color: '#fff',
     fontSize: 17,
+    fontFamily:"Poppins-Regular",
     fontStyle: 'normal',
     fontWeight: '500',
     lineHeight: 22,
