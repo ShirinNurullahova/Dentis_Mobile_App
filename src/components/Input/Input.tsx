@@ -63,6 +63,7 @@ const styles = StyleSheet.create({
     fontStyle: 'normal',
     fontWeight: '400',
     lineHeight: 18 /* 138.462% */,
+    marginBottom:4
   },
 });
 export default Input;
