@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, View,Text } from 'react-native';
+import { globalStyles } from '../../constants/globalStyles';
 
 interface Props {
   text: string;
@@ -19,15 +20,15 @@ const styles = StyleSheet.create({
     all:{
         textAlign:'center',
         margin:20,
-        fontSize:16,
-        fontWeight:'400',
-        fontFamily:'Poppins-Regular',
+        fontSize: globalStyles.fontStyle.endTextFontSize,
+        fontWeight: globalStyles.fontStyle.textFontWeight,
+        fontFamily:  globalStyles.fontStyle.primary,
     },
     size:{
-      fontSize:13,
+      fontSize:globalStyles.fontStyle.smallTextFontSize,
     },
       difText:{
-        color:'#12CC89'
+        color: globalStyles.colors.green
       }
 });
 

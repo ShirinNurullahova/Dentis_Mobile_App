@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 const { width } = Dimensions.get('window');
 import SelectDropdown from 'react-native-select-dropdown';
+import { globalStyles } from '../../constants/globalStyles';
 
 interface Props {
   title: string;
@@ -52,32 +53,13 @@ const Dropdown = ({ onPress,values, type, setMonth }: Props) => {
           );
         }}
         dropdownIconPosition={'right'}
-        dropdownStyle={styles.dropdown1DropdownStyle}
-        rowStyle={styles.dropdown1RowStyle}
-        rowTextStyle={styles.dropdown1RowTxtStyle}
       />
     </View>
   );
 };
 const styles = StyleSheet.create({
-  shadow: {
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 6 },
-    shadowOpacity: 0.1,
-    shadowRadius: 10,
-    elevation: 10,
-  },
-  header: {
-    flexDirection: 'row',
-    width,
-    height: 50,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#F6F6F6',
-  },
-  headerTitle: { color: '#000', fontWeight: 'bold', fontSize: 16 },
-  saveAreaViewContainer: { backgroundColor: '#FFF' },
-  viewContainer: { width, backgroundColor: '#FFF' },
+  saveAreaViewContainer: { backgroundColor: globalStyles.colors.white },
+  viewContainer: { width, backgroundColor: globalStyles.colors.white },
   scrollViewContainer: {
     flexGrow: 1,
     justifyContent: 'flex-start',
@@ -85,29 +67,25 @@ const styles = StyleSheet.create({
     paddingVertical: '10%',
     paddingBottom: '20%',
   },
-
   dropdown1BtnStyle: {
     alignItems: 'center',
     width: 108,
-    backgroundColor: '#F8F9F9',
+    backgroundColor: globalStyles.colors.inputBckgColor,
     borderRadius: 12,
     paddingHorizontal: 14
   },
   dropdown1BtnTxtStyle: {
-    color: '#B4B6B8',
+    color: globalStyles.colors.disableColor,
     alignSelf: 'center',
     position: 'absolute',
     paddingLeft: 5,
     right: 0,
-    fontSize: 15,
-    fontFamily:'Poppins-Regular',
-    fontStyle: 'normal',
-    fontWeight: '400',
-    lineHeight: 20 /* 133.333% */,
+    fontSize: globalStyles.fontStyle.dropDownFontSize,
+    fontFamily:globalStyles.fontStyle.primary,
+    fontStyle:  globalStyles.fontStyle.primaryStyle,
+    fontWeight: globalStyles.fontStyle.fontWeight,
+    lineHeight: globalStyles.fontStyle.buttonLineHeight
   },
-  dropdown1DropdownStyle: { backgroundColor: '#EFEFEF' },
-  dropdown1RowStyle: { backgroundColor: '#EFEFEF', borderBottomColor: '#C5C5C5' },
-  dropdown1RowTxtStyle: { color: '#444' },
   image: {
     width: 20,
     height: 20,

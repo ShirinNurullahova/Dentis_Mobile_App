@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, View, TouchableOpacity, Text } from 'react-native';
+import { StyleSheet, View, TouchableOpacity, Text  } from 'react-native';
+import { globalStyles } from '../../constants/globalStyles';
 
 interface Props {
   text: string;
@@ -30,18 +31,18 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 13,
     borderRadius: 12,
-    backgroundColor: '#B4B6B8',
+    backgroundColor: globalStyles.colors.gray,
   },
   diff: {
-    backgroundColor: '#12CC89',
+    backgroundColor: globalStyles.colors.green,
   },
   buttonText: {
-    color: '#fff',
-    fontSize: 17,
-    fontFamily:"Poppins-Regular",
-    fontStyle: 'normal',
-    fontWeight: '500',
-    lineHeight: 22,
+    color: globalStyles.colors.white,
+    fontSize: globalStyles.fontStyle.buttonFontSize,
+    fontFamily:globalStyles.fontStyle.primary,
+    fontStyle:  globalStyles.fontStyle.primaryStyle,
+    fontWeight: globalStyles.fontStyle.fontWeight,
+    lineHeight: globalStyles.fontStyle.buttonLineHeight,
   },
 });
 

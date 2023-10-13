@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, View,Text } from 'react-native';
+import { globalStyles } from '../../constants/globalStyles';
 
 interface Props {
   text: string;
@@ -15,13 +16,12 @@ const TextComponent = ({ text }: Props) => {
 
 const styles = StyleSheet.create({
     text: {
-        color: '#31353D',
+        color: globalStyles.colors.black,
         textAlign: 'center',
-        fontSize: 34,
-        fontFamily: 'Poppins-Regular',
-        fontWeight: '400',
-        // marginBottom: 28,
-        lineHeight: 40,
+        fontSize: globalStyles.fontStyle.largeFontSize,
+        fontFamily: globalStyles.fontStyle.primary,
+        fontWeight: globalStyles.fontStyle.textFontWeight,
+        lineHeight: globalStyles.fontStyle.largeTextLineHeight,
       },
 });
 

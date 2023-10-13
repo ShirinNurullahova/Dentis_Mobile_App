@@ -1,6 +1,7 @@
 import React,{ChangeEvent} from 'react';
 import { TouchableOpacity } from 'react-native';
 import { Text, TextInput, StyleSheet, View, Image } from 'react-native';
+import { globalStyles } from '../../constants/globalStyles';
 
 interface Props {
   value: string;
@@ -41,14 +42,14 @@ const styles = StyleSheet.create({
   },
   input: {
     width: 343,
-    color: '#B4B6B8',
-    backgroundColor: '#F8F9F9',
+    color: globalStyles.colors.disableColor,
+    backgroundColor: globalStyles.colors.inputBckgColor,
     paddingHorizontal: 14,
-    fontSize:15,
-    fontFamily:'Poppins-Regular',
+    fontSize: globalStyles.fontStyle.dropDownFontSize,
+    fontFamily: globalStyles.fontStyle.primary,
     display: 'flex',
     alignItems: 'center',
-    borderRadius: 12,
+    borderRadius: globalStyles.borderRadius,
   },
   inputDiv: {
     display: 'flex',
@@ -64,13 +65,13 @@ const styles = StyleSheet.create({
     height: 20,
   },
   text: {
-    color: '#9EA0A3',
-    fontSize: 13,
-    fontStyle: 'normal',
-    fontFamily:'Poppins-Regular',
-    fontWeight: '400',
+    color: globalStyles.colors.gray,
+    fontSize:  globalStyles.fontStyle.smallTextFontSize,
+    fontStyle:  globalStyles.fontStyle.primaryStyle,
+    fontFamily:  globalStyles.fontStyle.primary,
+    fontWeight:  globalStyles.fontStyle.textFontWeight,
     marginBottom:10,
-    lineHeight: 18 /* 138.462% */,
+    lineHeight: globalStyles.fontStyle.inputLineHeight /* 138.462% */,
   },
 });
 export default Input;
