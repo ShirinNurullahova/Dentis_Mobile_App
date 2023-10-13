@@ -9,6 +9,7 @@ import TextComponent from '../../components/Text/Text';
 import EndTextComponent from '../../components/EndText/EndText';
 import {Formik } from 'formik';
 import * as Yup from 'yup';
+import { globalStyles } from '../../constants/globalStyles';
 
 const loginValidationSchema = Yup.object().shape({
   mobilNomre: Yup.number()
@@ -83,16 +84,14 @@ const styles = StyleSheet.create({
   endTextDiv: {
     margin: 20,
     alignItems: 'flex-end',
-    fontSize:14,
-    fontWeight:'400',
-    fontFamily:"Poppins-Regular"
   },
   endText: {
-    color: '#5E6067',
-    fontSize: 14,
-    fontStyle: 'normal',
-    fontWeight: '400',
-    lineHeight: 20 /* 142.857% */,
+    color: globalStyles.colors.inputEndTextColor,
+    fontStyle: globalStyles.fontStyle.primaryStyle,
+    lineHeight: globalStyles.fontStyle.endTextLineHeight /* 142.857% */,
+    fontSize: globalStyles.fontStyle.smallTextFontSize,
+    fontWeight: globalStyles.fontStyle.textFontWeight,
+    fontFamily: globalStyles.fontStyle.primary
   },
 });
 

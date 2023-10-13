@@ -9,6 +9,7 @@ import CustomButton from '../../components/Button/Button';
 import EndTextComponent from '../../components/EndText/EndText';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+import { globalStyles } from '../../constants/globalStyles';
 
 const signUpValidationSchema = Yup.object().shape({
   adSoyad: Yup.string()
@@ -134,12 +135,12 @@ const styles = StyleSheet.create({
      paddingTop:20,
   },
   text: {
-    color: '#9EA0A3',
-    fontSize: 13,
+    color: globalStyles.colors.gray,
+    fontSize: globalStyles.fontStyle.smallTextFontSize,
     marginBottom: 10,
-    fontStyle: 'normal',
-    fontWeight: '400',
-    lineHeight: 18 /* 138.462% */,
+    fontStyle: globalStyles.fontStyle.primaryStyle,
+    fontWeight: globalStyles.fontStyle.textFontWeight,
+    lineHeight: globalStyles.fontStyle.inputLineHeight
   },
 });
 export default SignUpScreen;
