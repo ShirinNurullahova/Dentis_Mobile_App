@@ -12,10 +12,11 @@ export const globalStyles = {
   },
   fontStyle:{
     primary:'Poppins-Regular',
-    primaryWeight: '500',
+    primaryWeight: ('500')  as TextStyle["fontWeight"],
     primaryStyle:'normal' as TextStyle["fontStyle"],
     buttonFontSize:17,
     largeFontSize: 34,
+    mediumFontSize: 22,
     dropDownFontSize:15,
     smallTextFontSize:13,
     endTextFontSize:16,
