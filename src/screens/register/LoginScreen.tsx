@@ -33,7 +33,7 @@ const LoginScreen: FC = () => {
       >
         {({ handleChange, handleBlur, handleSubmit, values, errors, isValid }) => (
           <View>
-            <TextComponent text="Daxil Olun" />
+            <TextComponent text="Daxil Olun" fontSize={false}/>
             <Input
               onChangeText={handleChange('mobilNomre')}
               value={values.mobilNomre}

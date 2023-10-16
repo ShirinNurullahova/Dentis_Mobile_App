@@ -1,6 +1,8 @@
 export const doctorList = [
   {
     id: 1,
+
+    image: require('../../src/assets/images/doctor1.png'),
     image: require('../assets/images/doctor1.png'),
     name: 'İlham Hüseynov',
     profession: 'Ortodontist dentist',
