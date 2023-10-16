@@ -1,22 +1,31 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, FlatList } from 'react-native';
+import { View, Text, Image, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import { doctorList } from '../../data/doctorListData';
+import { useNavigation } from '@react-navigation/native';
 
 const Doctorlist = () => {
+  const navigation = useNavigation()
+  function pressHandler(item) {
+    navigation.navigate('DoctorPersonalPage', {doctor:item});
+  }
   return (
     <View style={styles.contentDoctorList}>
       <FlatList
         data={doctorList}
         renderItem={({ item }) => (
-          <View key={item.id} style={styles.doctorLine}>
-            <View>
-              <Image source={item.image} />
+          <TouchableOpacity onPress={() => {
+            pressHandler(item)
+          }}>
+            <View key={item.id} style={styles.doctorLine}>
+              <View>
+                <Image source={item.image} />
+              </View>
+              <View>
+                <Text style={styles.doctorName}>{item.name}</Text>
+                <Text style={styles.doctorProfession}>{item.profession}</Text>
+              </View>
             </View>
-            <View>
-              <Text style={styles.doctorName}>{item.name}</Text>
-              <Text style={styles.doctorProfession}>{item.profession}</Text>
-            </View>
-          </View>
+          </TouchableOpacity>
         )}
       />
     </View>
@@ -28,7 +37,7 @@ export default Doctorlist;
 const styles = StyleSheet.create({
   contentDoctorList: {
     marginTop: 20,
-    marginBottom:10
+    marginBottom: 10,
   },
   doctorLine: {
     flexDirection: 'row',
