@@ -45,7 +45,7 @@ const SignUpScreen: FC = () => {
         >
           {({ handleChange, handleBlur, handleSubmit, values, errors, isValid }) => (
             <View>
-              <TextComponent text="Hesab yaradın" />
+              <TextComponent text="Hesab yaradın" fontSize={false}/>
               <Input
                 onChangeText={handleChange('adSoyad')}
                 value={values.adSoyad}
