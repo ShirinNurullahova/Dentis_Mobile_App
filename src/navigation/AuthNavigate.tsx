@@ -6,6 +6,7 @@ import About from '../screens/about/about';
 import AddToCard from '../screens/addToCard/addToCard';
 import Notification from '../screens/notification/notification';
 import Doctorlist from '../screens/doctorList/doctorlist';
+import UserHomePage from '../screens/userHomePage/userhomepage';
 type RootStackParamList = {
   LoginScreen: undefined;
   SignUpScreen: undefined;
@@ -13,6 +14,7 @@ type RootStackParamList = {
   AddToCard: undefined;
   Notification: undefined;
   Doctorlist: undefined;
+  UserHomePage: undefined;
 };
 
 const AuthNavigator = createStackNavigator<RootStackParamList>();
@@ -28,7 +30,8 @@ export function AuthNavigate() {
       {/* <AuthNavigator.Screen name="SignUpScreen" component={SignUpScreen} /> */}
       {/* <AuthNavigator.Screen name="AboutPage" component={About} /> */}
       {/* <AuthNavigator.Screen name="AddToCard" component={AddToCard} /> */}
-      <AuthNavigator.Screen name="Notification" component={Notification} />
+      {/* <AuthNavigator.Screen name="Notification" component={Notification} /> */}
+      <AuthNavigator.Screen name="UserHomePage" component={UserHomePage} />
       {/* <AuthNavigator.Screen name="Doctorlist" component={Doctorlist} /> */}
     </AuthNavigator.Navigator>
   );
