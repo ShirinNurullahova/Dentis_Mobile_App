@@ -7,7 +7,7 @@ import AddToCard from '../screens/addToCard/addToCard';
 import Notification from '../screens/notification/notification';
 import Doctorlist from '../screens/doctorList/doctorlist';
 import UserHomePage from '../screens/userHomePage/userhomepage';
-import OTPScreen from '../screens/register/OTPScreen'
+import OTPScreen from '../screens/register/OTPScreen';
 type RootStackParamList = {
   LoginScreen: undefined;
   SignUpScreen: undefined;
@@ -15,8 +15,8 @@ type RootStackParamList = {
   AddToCard: undefined;
   Notification: undefined;
   Doctorlist: undefined;
-
-  OTPScreen:undefined
+  UserHomePage: undefined;
+  OTPScreen: undefined;
 };
 
 const AuthNavigator = createStackNavigator<RootStackParamList>();
