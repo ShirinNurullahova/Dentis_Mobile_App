@@ -24,7 +24,8 @@ export const globalStyles = {
     buttonLineHeight:22,
     inputLineHeight:18,
     largeTextLineHeight:40,
-    endTextLineHeight:20
+    endTextLineHeight:20,
+    marginTop:20
   },
   borderRadius:12
 };

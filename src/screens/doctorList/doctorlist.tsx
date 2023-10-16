@@ -37,7 +37,6 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     borderWidth: 1,
     borderColor: '#EFEFF1',
-    // borderBottomColor:'#EFEFF1'
   },
   doctorName: {
     color: '#31353D',

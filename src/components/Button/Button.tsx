@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, TouchableOpacity, Text  } from 'react-native';
+import { StyleSheet, View, TouchableOpacity, Text } from 'react-native';
 import { globalStyles } from '../../constants/globalStyles';
 
 interface Props {
@@ -7,10 +7,8 @@ interface Props {
   onPress: () => void;
   title: string;
   disabled: boolean;
-  type: string
+  type: string;
 }
-
-
 
 const CustomButton = ({ text, onPress, disabled }: Props) => {
   return (
@@ -39,8 +37,8 @@ const styles = StyleSheet.create({
   buttonText: {
     color: globalStyles.colors.white,
     fontSize: globalStyles.fontStyle.buttonFontSize,
-    fontFamily:globalStyles.fontStyle.primary,
-    fontStyle:  globalStyles.fontStyle.primaryStyle,
+    fontFamily: globalStyles.fontStyle.primary,
+    fontStyle: globalStyles.fontStyle.primaryStyle,
     fontWeight: globalStyles.fontStyle.fontWeight,
     lineHeight: globalStyles.fontStyle.buttonLineHeight,
   },
