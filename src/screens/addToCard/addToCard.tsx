@@ -1,6 +1,24 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import CustomButton from '../../components/Button/Button';
+import { Formik } from 'formik';
+import * as Yup from 'yup';
+import { globalStyles } from '../../constants/globalStyles';
+
+const aboutData = Yup.object().shape({
+  cardNumber: Yup.number()
+    .typeError("That doesn't look like a phone number")
+    .positive("A phone number can't start with a minus")
+    .integer("A phone number can't include a decimal point")
+    .min(16)
+    .required('A card number is required'),
+  date: Yup.string()
+    .min(4, ({ min }) => `content must be at least ${min} characters`)
+    .required('Password is required'),
+  ccv: Yup.string()
+    .min(3, ({ min }) => `ccv password must be at least ${min} characters`)
+    .required('CCV is required'),
+});
 
 const AddToCard = () => {
   return (
@@ -8,36 +26,75 @@ const AddToCard = () => {
       <View style={styles.textContent}>
         <Text style={styles.titleContent}>Kartınızı əlavə edin</Text>
       </View>
-      <View style={styles.inputs}>
-        <View style={styles.firstInput}>
-          <View style={styles.iconCenter}>
-            <Image source={require('../../assest/images/cardImg.png')} style={styles.image} />
-          </View>
-          <TextInput placeholder="Kartın nömrəsi" style={styles.input} />
-        </View>
-        <View style={styles.bottomInputs}>
-          <View style={styles.flex}>
-            <View style={styles.iconCenter}>
-              <Image source={require('../../assest/images/calendar.png')} style={styles.image} />
+      <Formik
+        initialValues={{ cardNumber: '', date: '', ccv: '' }}
+        onSubmit={(values) => console.log(values)}
+        validationSchema={aboutData}
+      >
+        {({ handleChange, handleBlur, handleSubmit, values, errors, isValid }) => (
+          <View style={styles.inputs}>
+            <View style={styles.firstInput}>
+              <View style={styles.iconCenter}>
+                <Image source={require('../../assets/images/cardImg.png')} style={styles.image} />
+              </View>
+              <View>
+                <TextInput
+                  placeholder="Kartın nömrəsi"
+                  style={styles.input}
+                  onBlur={handleBlur('cardNumber')}
+                  onChangeText={handleChange('cardNumber')}
+                />
+              </View>
             </View>
-            <TextInput placeholder="MM/YY" style={styles.inputB} />
-          </View>
-          <View style={styles.flex}>
-            <View style={styles.iconCenter}>
-              <Image source={require('../../assest/images/lock.png')} style={styles.image} />
+            {values.cardNumber && errors.cardNumber && (
+              <Text style={{ fontSize: 10, color: 'red' }}>{errors.cardNumber}</Text>
+            )}
+            <View style={styles.bottomInputs}>
+              <View style={styles.flex}>
+                <View style={styles.iconCenter}>
+                  <Image
+                    source={require('../../assets/images/calendar.png')}
+                    style={styles.image}
+                  />
+                </View>
+                <TextInput
+                  placeholder="MM/YY"
+                  style={styles.inputB}
+                  onBlur={handleBlur('date')}
+                  onChangeText={handleChange('date')}
+                />
+              </View>
+
+              <View style={styles.flex}>
+                <View style={styles.iconCenter}>
+                  <Image source={require('../../assets/images/lock.png')} style={styles.image} />
+                </View>
+                <TextInput
+                  placeholder="CVV"
+                  style={styles.inputB}
+                  onBlur={handleBlur('ccv')}
+                  onChangeText={handleChange('ccv')}
+                />
+              </View>
             </View>
-            <TextInput placeholder="CVV" style={styles.inputB} />
+            {values.date && errors.date && (
+              <Text style={{ fontSize: 10, color: 'red' }}>{errors.date}</Text>
+            )}
+            {values.ccv && errors.ccv && (
+              <Text style={{ fontSize: 10, color: 'red' }}>{errors.ccv}</Text>
+            )}
+            <TouchableOpacity style={styles.button}>
+              <CustomButton
+                onPress={handleSubmit}
+                text="Yadda saxla"
+                title="Submit"
+                type="submit"
+                disabled={isValid}
+              />
+            </TouchableOpacity>
           </View>
-        </View>
-        <TouchableOpacity>
-          <CustomButton
-            onPress={() => {
-              console.log('salam');
-            }}
-            text="Yadda saxla"
-          />
-        </TouchableOpacity>
-      </View>
+        )}
+      </Formik>
     </View>
   );
 };
@@ -101,5 +158,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: '#F8F9F9',
     borderRadius: 12,
+  },
+  button: {
+    marginTop: globalStyles.fontStyle.marginTop,
   },
 });

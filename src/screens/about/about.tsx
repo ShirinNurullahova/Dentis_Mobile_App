@@ -4,6 +4,16 @@ import Input from '../../components/Input/Input';
 import CustomButton from '../../components/Button/Button';
 import { launchImageLibrary } from 'react-native-image-picker';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { Formik } from 'formik';
+import * as Yup from 'yup';
+import { globalStyles } from '../../constants/globalStyles';
+
+const loginValidationSchema = Yup.object().shape({
+  text: Yup.string().min(4).required('Text is required'),
+  textArea: Yup.string()
+    .min(8, ({ min }) => `Text content has to be contain ${min} characters`)
+    .required('Text required'),
+});
 
 const About = () => {
   const [file, setFile] = useState('');
@@ -15,6 +25,7 @@ const About = () => {
 
     result?.assets && result?.assets[0]?.uri && setFile(result?.assets[0]?.uri);
   };
+
   return (
     <View style={styles.content}>
       <TouchableOpacity onPress={onChooseImg} style={styles.imageContent}>
@@ -23,7 +34,7 @@ const About = () => {
             <ImageBackground source={{ uri: file }} style={styles.selectedImageContent} />
           ) : (
             <>
-              <Image source={require('../../assest/images/plusIcon.png')} />
+              <Image source={require('../../assets/images/plusIcon.png')} />
               <Text style={styles.centerText}>Şəkil əlavə edin</Text>
             </>
           )}
@@ -44,32 +55,52 @@ const About = () => {
         </View>
       )}
 
-      <View style={styles.inputs}>
-        <Input
-          onChange={() => {
-            console.log('alert');
-          }}
-          value=""
-          placeholder="Basliq daxil edin"
-          label="Basliq"
-        />
-      </View>
-      <View>
-        <Text style={styles.titleTextArea}>Melumat</Text>
-        <TextInput
-          multiline={true}
-          numberOfLines={10}
-          style={styles.textArea}
-          placeholder="Məlumat daxil edin"
-        />
-      </View>
-      <CustomButton
-        backgroundColor="rgba(18, 204, 137, 1)"
-        onPress={() => {
-          console.log('salam');
-        }}
-        text="Yadda saxla"
-      />
+      <Formik
+        initialValues={{ text: '', textArea: '' }}
+        onSubmit={(values) => console.log(values)}
+        validationSchema={loginValidationSchema}
+      >
+        {({ handleChange, handleBlur, handleSubmit, values, errors, isValid }) => (
+          <View>
+            <View style={styles.inputs}>
+              <Input
+                onChangeText={handleChange('text')}
+                onBlur={handleBlur('text')}
+                value={values.text}
+                placeholder="Basliq daxil edin"
+                label="Basliq"
+                type="text"
+              />
+              {values.text && errors.text && (
+                <Text style={{ fontSize: 10, color: 'red', marginTop: 10 }}>{errors.text}</Text>
+              )}
+            </View>
+            <View>
+              <Text style={styles.titleTextArea}>Melumat</Text>
+              <TextInput
+                multiline={true}
+                numberOfLines={10}
+                style={styles.textArea}
+                placeholder="Məlumat daxil edin"
+                onChangeText={handleChange('textArea')}
+                onBlur={handleBlur('textArea')}
+              />
+              {values.textArea && errors.textArea && (
+                <Text style={{ fontSize: 10, color: 'red', marginTop: 10 }}>{errors.textArea}</Text>
+              )}
+            </View>
+            <View style={styles.button}>
+              <CustomButton
+                onPress={handleSubmit}
+                text="Yadda saxla"
+                title="Submit"
+                type="submit"
+                disabled={!values.text && !values.textArea ? !isValid : isValid}
+              />
+            </View>
+          </View>
+        )}
+      </Formik>
     </View>
   );
 };
@@ -155,5 +186,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: 9,
     marginTop: 20,
+  },
+  button: {
+    marginTop: globalStyles.fontStyle.marginTop,
   },
 });

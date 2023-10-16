@@ -7,7 +7,7 @@ import { VStack } from '../../components/features/VStack/VStack';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import TextComponent from '../../components/Text/Text';
 import EndTextComponent from '../../components/EndText/EndText';
-import {Formik } from 'formik';
+import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { globalStyles } from '../../constants/globalStyles';
 
@@ -19,7 +19,7 @@ const loginValidationSchema = Yup.object().shape({
     .min(8)
     .required('A phone number is required'),
   sifre: Yup.string()
-    .min(8, ({ min }) => `Password must be at least ${min} characters`)
+    .min(8, ({ min }) => ' Password must be at least ${min} characters')
     .required('Password is required'),
 });
 
@@ -53,7 +53,9 @@ const LoginScreen: FC = () => {
               onBlur={handleBlur('mobilNomre')}
               iconShow={true}
             />
-            { values.sifre && errors.sifre && <Text style={{ fontSize: 10, color: 'red' }}>{errors.sifre}</Text>}
+            {values.sifre && errors.sifre && (
+              <Text style={{ fontSize: 10, color: 'red' }}>{errors.sifre}</Text>
+            )}
             <View style={styles.endTextDiv}>
               <Text style={styles.endText}>Şifrəni unutmusunuz ?</Text>
             </View>
@@ -61,14 +63,14 @@ const LoginScreen: FC = () => {
               onPress={handleSubmit}
               text="Davam et"
               title="Submit"
-              type='submit'
-              disabled={(!values.mobilNomre && !values.sifre) ? !isValid :  isValid}
+              type="submit"
+              disabled={!values.mobilNomre && !values.sifre ? !isValid : isValid}
             />
           </View>
         )}
       </Formik>
 
-      <EndTextComponent text="Hesabınız yoxdur?" diffText="Qeydiyyatdan keçin" size={false}/>
+      <EndTextComponent text="Hesabınız yoxdur?" diffText="Qeydiyyatdan keçin" size={false} />
     </SafeAreaView>
   );
 };
@@ -91,7 +93,7 @@ const styles = StyleSheet.create({
     lineHeight: globalStyles.fontStyle.endTextLineHeight /* 142.857% */,
     fontSize: globalStyles.fontStyle.smallTextFontSize,
     fontWeight: globalStyles.fontStyle.textFontWeight,
-    fontFamily: globalStyles.fontStyle.primary
+    fontFamily: globalStyles.fontStyle.primary,
   },
 });
 
