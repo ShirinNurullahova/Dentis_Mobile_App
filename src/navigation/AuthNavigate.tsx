@@ -9,6 +9,7 @@ import Doctorlist from '../screens/doctorList/doctorlist';
 import OTPScreen from '../screens/register/OTPScreen'
 import ResetPasswordScreen from '../screens/register/ResetPasswordScreen';
 import UserHomePage from '../screens/userHomePage/userhomepage';
+import HomePage from '../screens/homePage/homePage';
 type RootStackParamList = {
   LoginScreen: undefined;
   SignUpScreen: undefined;
@@ -19,6 +20,7 @@ type RootStackParamList = {
   OTPScreen:undefined;
   ResetPasswordScreen: undefined
   UserHomePage: undefined;
+  HomePage: undefined
 };
 
 const AuthNavigator = createStackNavigator<RootStackParamList>();
@@ -37,11 +39,9 @@ export function AuthNavigate() {
       {/* <AuthNavigator.Screen name="AboutPage" component={About} /> */}
       {/* <AuthNavigator.Screen name="AddToCard" component={AddToCard} /> */}
       {/* <AuthNavigator.Screen name="Notification" component={Notification} /> */}
-      <AuthNavigator.Screen name="UserHomePage" component={UserHomePage} />
-      {/* <AuthNavigator.Screen name="AboutPage" component={About} /> */}
-      {/* <AuthNavigator.Screen name="AddToCard" component={AddToCard} /> */}
-      {/* <AuthNavigator.Screen name="Notification" component={Notification} /> */}
-      {/* <AuthNavigator.Screen name="Doctorlist" component={Doctorlist} /> */}
+      {/* <AuthNavigator.Screen name="UserHomePage" component={UserHomePage} /> */}
+       {/* <AuthNavigator.Screen name="HomePage" component={HomePage} /> */}
+      <AuthNavigator.Screen name="Doctorlist" component={Doctorlist} />
     </AuthNavigator.Navigator>
   );
 }
