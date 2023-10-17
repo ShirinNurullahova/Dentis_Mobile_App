@@ -11,6 +11,7 @@ import ResetPasswordScreen from '../screens/register/ResetPasswordScreen';
 import UserHomePage from '../screens/userHomePage/userhomepage';
 import HomePage from '../screens/homePage/homePage';
 import DoctorPersonalPage from '../screens/doctorPersonalPage.tsx/doctorPersonalPage';
+import Tabs from '../components/Tabs/Tabs';
 import DoctorDetail from '../screens/doctorDetail/doctordetail';
 
 type RootStackParamList = {
@@ -25,6 +26,7 @@ type RootStackParamList = {
   HomePage: undefined;
   OTPScreen: undefined;
   DoctorPersonalPage: undefined;
+  Tabs:undefined
   DoctorDetail: undefined;
 };
 
@@ -40,7 +42,7 @@ export function AuthNavigate() {
       {/* <AuthNavigator.Screen name="LoginScreen" component={LoginScreen} /> */}
       {/* <AuthNavigator.Screen name="SignUpScreen" component={SignUpScreen} /> */}
       {/* <AuthNavigator.Screen name="Doctorlist" component={Doctorlist} /> */}
-      <AuthNavigator.Screen name="DoctorDetail" component={DoctorDetail} />
+      {/* <AuthNavigator.Screen name="DoctorDetail" component={DoctorDetail} /> */}
       {/* <AuthNavigator.Screen name="DoctorPersonalPage" component={DoctorPersonalPage} /> */}
       {/* <AuthNavigator.Screen name="OTPScreen" component={OTPScreen} /> */}
       {/* <AuthNavigator.Screen name="ResetPasswordScreen" component={ResetPasswordScreen} /> */}
@@ -48,7 +50,8 @@ export function AuthNavigate() {
       {/* <AuthNavigator.Screen name="AddToCard" component={AddToCard} /> */}
       {/* <AuthNavigator.Screen name="Notification" component={Notification} /> */}
       {/* <AuthNavigator.Screen name="UserHomePage" component={UserHomePage} /> */}
-      {/* <AuthNavigator.Screen name="HomePage" component={HomePage} /> */}
+      <AuthNavigator.Screen name="Tabs" component={Tabs} />
+       {/* <AuthNavigator.Screen name="HomePage" component={HomePage} /> */}
       {/* <AuthNavigator.Screen name="AboutPage" component={About} /> */}
       {/* <AuthNavigator.Screen name="AddToCard" component={AddToCard} /> */}
       {/* <AuthNavigator.Screen name="Notification" component={Notification} /> */}
