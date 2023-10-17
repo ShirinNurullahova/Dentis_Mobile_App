@@ -35,6 +35,7 @@ export const globalStyles = {
     marginTop: 20,
     userHomePageFont: 16,
     userHomePadeLineHeight: 24,
+    doctorDetailFontSize:12
 
   },
   borderRadius: 12,
