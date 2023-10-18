@@ -8,10 +8,10 @@ interface Props {
   title: string;
   disabled: boolean;
   type: string;
-  bckgColor?: boolean
+  bckgColor?: boolean;
 }
 
-const CustomButton = ({ text, onPress, disabled, bckgColor }: Props) => {
+const CustomButton = ({ text, onPress, disabled, bckgColor}: Props) => {
   return (
     <TouchableOpacity onPress={onPress}>
       <View style={[styles.button, disabled && styles.diff, bckgColor && styles.addition]}>
@@ -30,15 +30,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 13,
     borderRadius: 12,
+    marginBottom:20,
     backgroundColor: globalStyles.colors.gray,
   },
-  addition:{
+  addition: {
     backgroundColor: globalStyles.colors.inputBckgColor,
-
   },
-  additionText:{
+  additionText: {
     color: globalStyles.colors.gray,
-
   },
   diff: {
     backgroundColor: globalStyles.colors.green,
