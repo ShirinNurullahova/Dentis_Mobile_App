@@ -24,7 +24,7 @@ const CustomButton = ({ text, onPress, disabled, bckgColor }: Props) => {
 const styles = StyleSheet.create({
   button: {
     display: 'flex',
-    width: '100%',
+    width: 343,
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 20,
