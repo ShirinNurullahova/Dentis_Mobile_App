@@ -15,6 +15,7 @@ import Tabs from '../components/Tabs/Tabs';
 import DoctorDetail from '../screens/doctorDetail/doctordetail';
 import Settings from '../screens/settings/settings';
 import CardDetail from '../screens/cardDetail/cardDetail';
+import CardDetailTwo from '../screens/cardDetail2/cardDetailTwo';
 type RootStackParamList = {
   LoginScreen: undefined;
   SignUpScreen: undefined;
@@ -30,7 +31,8 @@ type RootStackParamList = {
   Tabs:undefined
   DoctorDetail: undefined;
   Settings:undefined;
-  CardDetail: undefined
+  CardDetail: undefined;
+  CardDetailTwo: undefined
 };
 
 const AuthNavigator = createStackNavigator<RootStackParamList>();
@@ -56,6 +58,7 @@ export function AuthNavigate() {
       {/* <AuthNavigator.Screen name="Tabs" component={Tabs} /> */}
       {/* <AuthNavigator.Screen name="Settings" component={Settings} /> */}
       <AuthNavigator.Screen name="CardDetail" component={CardDetail} />
+      {/* <AuthNavigator.Screen name="CardDetailTwo" component={CardDetailTwo} /> */}
 
        {/* <AuthNavigator.Screen name="HomePage" component={HomePage} /> */}
       {/* <AuthNavigator.Screen name="AboutPage" component={About} /> */}

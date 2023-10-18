@@ -4,22 +4,45 @@ import { globalStyles } from '../../constants/globalStyles';
 
 interface CardDetailButtonProps {
   text: string; // Specify the type of the 'text' prop
-  isPressed: boolean;
-  onPress: () => void;
-  endText: string
+  isPressed?: boolean;
+  onPress?: () => void;
+  endText?: string;
+  showIcon: boolean;
 }
-const CardDetailButton: React.FC<CardDetailButtonProps> = ({ text, isPressed, onPress, endText}) => {
+const CardDetailButton: React.FC<CardDetailButtonProps> = ({
+  text,
+  isPressed,
+  onPress,
+  endText="",
+  showIcon,
+}) => {
   return (
-    <TouchableOpacity onPress={onPress} >
-       <View style={[
-        styles.cardButton,
-        isPressed ? { borderColor: '#12CC89', borderWidth:1 } : null // Change border color to green if isPressed is true
-      ]}>
+    <TouchableOpacity onPress={onPress}>
+      <View
+        style={[
+          styles.cardButton,
+          isPressed ? { borderColor: '#12CC89', borderWidth: 1 } : null, // Change border color to green if isPressed is true
+        ]}
+      >
         <View style={styles.left}>
-          <Image source={require('../../assets/images/Ellipse6.png')} style={{ width: 32, height: 32 }} />
-          <Text style={styles.cardText}>{text}****{endText}</Text>
+          {showIcon ? (
+            <Image
+              source={require('../../assets/images/Ellipse6.png')}
+              style={{ width: 32, height: 32 }}
+            />
+          ) : (
+            <Image
+              source={require('../../assets/images/cardDetail.png')}
+              style={{ width: 20, height: 20 }}
+            />
+          )}
+          <Text style={styles.cardText}>
+            {`${text}${showIcon ? '****' : ''} ${endText}`}
+          </Text>
         </View>
-        <Image source={require('../../assets/images/dropdown.png')} style={styles.rotateImg} />
+        {showIcon ? (
+          <Image source={require('../../assets/images/dropdown.png')} style={styles.rotateImg} />
+        ) : null}
       </View>
     </TouchableOpacity>
   );
@@ -27,7 +50,7 @@ const CardDetailButton: React.FC<CardDetailButtonProps> = ({ text, isPressed, on
 
 const styles = StyleSheet.create({
   cardButton: {
-    paddingHorizontal:20,
+    paddingHorizontal: 20,
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
@@ -36,28 +59,26 @@ const styles = StyleSheet.create({
     borderRadius: globalStyles.borderRadius,
     width: 343,
     height: 64,
-    marginBottom:20
+    marginBottom: 20,
   },
- 
-  left:{
+
+  left: {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
   },
-  cardText:{
-     fontFamily: globalStyles.fontStyle.primary,
-     fontWeight: globalStyles.fontStyle.textFontWeight,
-     color:"#7E7F83",
-     marginLeft:10
+  cardText: {
+    fontFamily: globalStyles.fontStyle.primary,
+    fontWeight: globalStyles.fontStyle.textFontWeight,
+    color: '#7E7F83',
+    marginLeft: 10,
   },
-  rotateImg:{
-    width:20,
-    height:20,
-    transform:[
-      {rotate:'-90deg'}
-    ]
-  }
+  rotateImg: {
+    width: 20,
+    height: 20,
+    transform: [{ rotate: '-90deg' }],
+  },
 });
 
 export default CardDetailButton;

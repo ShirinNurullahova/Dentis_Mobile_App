@@ -6,6 +6,7 @@ import CustomButton from '../../components/Button/Button';
 import {cardData} from '../../data/cardData.js'
 const CardDetail = () => {
   const [pressedIndex, setPressedIndex] = useState(-1);
+  const [showIcon, setShowIcon] = useState(false)
   const handleSubmit = () => {};
   const navigation = useNavigation(); // Initialize navigation object using useNavigation hook
   function pressCard(index:any) {
@@ -18,7 +19,7 @@ const CardDetail = () => {
     <View style={styles.cardDetailPage}>
        {cardData.map((el, index)=>{
           return(
-            <CardDetailButton text={el.text} endText={el.endText}   onPress={() => pressCard(index)} // Pass the index to the pressCard function
+            <CardDetailButton text={el.text} endText={el.endText} showIcon={true} onPress={() => pressCard(index)} // Pass the index to the pressCard function
             isPressed={pressedIndex === index} />
           )
        })
