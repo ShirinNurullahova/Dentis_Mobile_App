@@ -11,9 +11,12 @@ import ResetPasswordScreen from '../screens/register/ResetPasswordScreen';
 import UserHomePage from '../screens/userHomePage/userhomepage';
 import HomePage from '../screens/homePage/homePage';
 import DoctorPersonalPage from '../screens/doctorPersonalPage.tsx/doctorPersonalPage';
+import Tabs from '../components/Tabs/Tabs';
 import DoctorDetail from '../screens/doctorDetail/doctordetail';
 import AddPatient from '../screens/addPatient/addPatient';
-
+import Settings from '../screens/settings/settings';
+import CardDetail from '../screens/cardDetail/cardDetail';
+import CardDetailTwo from '../screens/cardDetail2/cardDetailTwo';
 type RootStackParamList = {
   LoginScreen: undefined;
   SignUpScreen: undefined;
@@ -26,8 +29,12 @@ type RootStackParamList = {
   HomePage: undefined;
   OTPScreen: undefined;
   DoctorPersonalPage: undefined;
+  Tabs:undefined
   DoctorDetail: undefined;
   AddPatient: undefined;
+  Settings:undefined;
+  CardDetail: undefined;
+  CardDetailTwo: undefined
 };
 
 const AuthNavigator = createStackNavigator<RootStackParamList>();
@@ -51,7 +58,12 @@ export function AuthNavigate() {
       {/* <AuthNavigator.Screen name="AddToCard" component={AddToCard} /> */}
       {/* <AuthNavigator.Screen name="Notification" component={Notification} /> */}
       {/* <AuthNavigator.Screen name="UserHomePage" component={UserHomePage} /> */}
-      {/* <AuthNavigator.Screen name="HomePage" component={HomePage} /> */}
+      {/* <AuthNavigator.Screen name="Tabs" component={Tabs} /> */}
+      {/* <AuthNavigator.Screen name="Settings" component={Settings} /> */}
+      <AuthNavigator.Screen name="CardDetail" component={CardDetail} />
+      {/* <AuthNavigator.Screen name="CardDetailTwo" component={CardDetailTwo} /> */}
+
+       {/* <AuthNavigator.Screen name="HomePage" component={HomePage} /> */}
       {/* <AuthNavigator.Screen name="AboutPage" component={About} /> */}
       {/* <AuthNavigator.Screen name="AddToCard" component={AddToCard} /> */}
       {/* <AuthNavigator.Screen name="Notification" component={Notification} /> */}

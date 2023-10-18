@@ -8,13 +8,15 @@ interface Props {
   title: string;
   disabled: boolean;
   type: string;
+  bckgColor?: boolean;
 }
 
-const CustomButton = ({ text, onPress, disabled }: Props) => {
+const CustomButton = ({ text, onPress, disabled, bckgColor}: Props) => {
   return (
     <TouchableOpacity onPress={onPress}>
       <View style={[styles.button, (disabled && styles.diff)]}>
         <Text style={styles.buttonText}>{text}</Text>
+
       </View>
     </TouchableOpacity>
   );
@@ -23,13 +25,20 @@ const CustomButton = ({ text, onPress, disabled }: Props) => {
 const styles = StyleSheet.create({
   button: {
     display: 'flex',
-    width: '100%',
+    width: 343,
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 20,
     paddingVertical: 13,
     borderRadius: 12,
+    marginBottom:20,
     backgroundColor: globalStyles.colors.gray,
+  },
+  addition: {
+    backgroundColor: globalStyles.colors.inputBckgColor,
+  },
+  additionText: {
+    color: globalStyles.colors.gray,
   },
   diff: {
     backgroundColor: globalStyles.colors.green,

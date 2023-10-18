@@ -10,8 +10,9 @@ import EndTextComponent from '../../components/EndText/EndText';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { globalStyles } from '../../constants/globalStyles';
+import ImagePicker from '../../components/ImagePicker/ImagePicker';
 
-const signUpValidationSchema = Yup.object().shape({
+const settingValidationSchema = Yup.object().shape({
   adSoyad: Yup.string()
     .matches(/(\w.+\s).+/, 'Enter at least 2 names')
     .required('Full name is required'),
@@ -21,17 +22,9 @@ const signUpValidationSchema = Yup.object().shape({
     .integer("A phone number can't include a decimal point")
     .min(8)
     .required('A phone number is required'),
-
-  sifre: Yup.string()
-    .matches(/\w*[a-z]\w*/, 'Password must have a small letter')
-    .matches(/\w*[A-Z]\w*/, 'Password must have a capital letter')
-    .matches(/\d/, 'Password must have a number')
-    .matches(/[!@#$%^&*()\-_"=+{}; :,<.>]/, 'Password must have a special character')
-    .min(8, ({ min }) => `Password must be at least ${min} characters`)
-    .required('Password is required'),
 });
 
-const SignUpScreen: FC = () => {
+const Settings: FC = () => {
   const [month, setMonth] = useState();
 
   const dates = useMemo(() => {
@@ -40,15 +33,15 @@ const SignUpScreen: FC = () => {
 
   return (
     <SafeAreaView style={styles.allSignup}>
+        <ImagePicker />
       <View>
         <Formik
-          initialValues={{ adSoyad: '', mobilNomre: '', sifre: '', day: '', month: '', year: '' }}
+          initialValues={{adSoyad: '', mobilNomre: '', day: '', month: '', year: '' }}
           onSubmit={(values) => console.log(values)}
-          validationSchema={signUpValidationSchema}
+          validationSchema={settingValidationSchema}
         >
           {({ handleChange, handleBlur, handleSubmit, values, errors, isValid }) => (
             <View>
-              <TextComponent text="Hesab yaradın" fontSize={false}/>
               <Input
                 onChangeText={handleChange('adSoyad')}
                 value={values.adSoyad}
@@ -85,44 +78,36 @@ const SignUpScreen: FC = () => {
                   <Dropdown onPress={handleChange('year')} title="Year" values={dates.years} />
                 </View>
               </View>
-
-              <Input
-                onChangeText={handleChange('sifre')}
-                value={values.sifre}
-                placeholder="Şifrə daxil edin"
-                label="Şifrə"
-                onBlur={handleBlur('sifre')}
-                iconShow
-              />
-              {values.sifre && errors.sifre && (
-                <Text style={{ fontSize: 10, color: 'red' }}>{errors.sifre}</Text>
-              )}
-
-              <EndTextComponent
-                size={true}
-                text={'By singing up I accept the '}
-                diffText="terms of use and the data privacy policy"
-              />
-
-              <CustomButton
-                onPress={handleSubmit}
-                text="Davam et"
-                title="Submit"
-                type="submit"
-                disabled={!isValid}
-              />
+              <View style={styles.dist}>
+                <CustomButton
+                  onPress={handleSubmit}
+                  text="Şifrəni yenilə"
+                  title="Submit"
+                  type="submit"
+                  bckgColor={true}
+                  disabled={false}
+                />
+              </View>
+              <View style={styles.dist}>
+                <CustomButton
+                  onPress={handleSubmit}
+                  text="Yadda saxla"
+                  title="Submit"
+                  type="submit"
+                  disabled={!values.mobilNomre && !values.adSoyad ? !isValid : isValid}
+                  bckgColor={false}
+                />
+              </View>
             </View>
           )}
         </Formik>
       </View>
-
-      <EndTextComponent text={'Hesabınız var?'} diffText="Daxil olun" size={false} />
     </SafeAreaView>
   );
 };
 const styles = StyleSheet.create({
   allSignup: {
-    flex: 1,
+    // flex: 1,
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: 16,
@@ -132,10 +117,13 @@ const styles = StyleSheet.create({
   dropdown: {
     gap: 10,
     flexDirection: 'row',
-    width:343,
+    width: 343,
   },
-  dropdownComponent:{
-     paddingTop:20,
+  dropdownComponent: {
+    paddingTop: 20,
+  },
+  dist:{
+     marginTop: 30
   },
   text: {
     color: globalStyles.colors.gray,
@@ -143,7 +131,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     fontStyle: globalStyles.fontStyle.primaryStyle,
     fontWeight: globalStyles.fontStyle.textFontWeight,
-    lineHeight: globalStyles.fontStyle.inputLineHeight
+    lineHeight: globalStyles.fontStyle.inputLineHeight,
   },
 });
-export default SignUpScreen;
+export default Settings;
