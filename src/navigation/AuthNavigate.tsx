@@ -13,6 +13,7 @@ import HomePage from '../screens/homePage/homePage';
 import DoctorPersonalPage from '../screens/doctorPersonalPage.tsx/doctorPersonalPage';
 import Tabs from '../components/Tabs/Tabs';
 import DoctorDetail from '../screens/doctorDetail/doctordetail';
+import AddPatient from '../screens/addPatient/addPatient';
 import Settings from '../screens/settings/settings';
 import CardDetail from '../screens/cardDetail/cardDetail';
 import CardDetailTwo from '../screens/cardDetail2/cardDetailTwo';
@@ -30,6 +31,7 @@ type RootStackParamList = {
   DoctorPersonalPage: undefined;
   Tabs:undefined
   DoctorDetail: undefined;
+  AddPatient: undefined;
   Settings:undefined;
   CardDetail: undefined;
   CardDetailTwo: undefined
@@ -48,6 +50,7 @@ export function AuthNavigate() {
       {/* <AuthNavigator.Screen name="SignUpScreen" component={SignUpScreen} /> */}
       {/* <AuthNavigator.Screen name="Doctorlist" component={Doctorlist} /> */}
       {/* <AuthNavigator.Screen name="DoctorDetail" component={DoctorDetail} /> */}
+      <AuthNavigator.Screen name="AddPatient" component={AddPatient} />
       {/* <AuthNavigator.Screen name="DoctorPersonalPage" component={DoctorPersonalPage} /> */}
       {/* <AuthNavigator.Screen name="OTPScreen" component={OTPScreen} /> */}
       {/* <AuthNavigator.Screen name="ResetPasswordScreen" component={ResetPasswordScreen} /> */}
