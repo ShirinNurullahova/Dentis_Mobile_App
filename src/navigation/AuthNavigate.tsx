@@ -57,8 +57,8 @@ export function AuthNavigate() {
       {/* <AuthNavigator.Screen name="UserHomePage" component={UserHomePage} /> */}
       {/* <AuthNavigator.Screen name="Tabs" component={Tabs} /> */}
       {/* <AuthNavigator.Screen name="Settings" component={Settings} /> */}
-      {/* <AuthNavigator.Screen name="CardDetail" component={CardDetail} /> */}
-      <AuthNavigator.Screen name="CardDetailTwo" component={CardDetailTwo} />
+      <AuthNavigator.Screen name="CardDetail" component={CardDetail} />
+      {/* <AuthNavigator.Screen name="CardDetailTwo" component={CardDetailTwo} /> */}
 
        {/* <AuthNavigator.Screen name="HomePage" component={HomePage} /> */}
       {/* <AuthNavigator.Screen name="AboutPage" component={About} /> */}
