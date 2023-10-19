@@ -16,7 +16,7 @@ const CardDetailTwo = () => {
   };
   return (
     <View style={styles.cardDetailTwoPage}>
-      <CardDetailButton text="1234 5678 9876 5432" showIcon={false} />
+      <CardDetailButton text="1234 5678 9876 5432" showIcon={false} disabled={true} imgIcon={require('../../assets/images/cardDetail.png')}/>
       <View style={styles.add}>
         <CheckBox
           disabled={false}
@@ -28,10 +28,6 @@ const CardDetailTwo = () => {
         />
         <Text style={styles.checktext}>Ödənişlərin qəbulu üçün əsas kart olaraq təyin et</Text>
       </View>
-      {/* <View style={styles.info}>
-        <InfoIcon />
-        <Text style={styles.checktext}>Ödənişlərin qəbulu üçün əsas kart olaraq təyin edilmişdir.</Text>
-      </View> */}
       <CustomButton
         onPress={handleSubmit}
         text="Kartı sil"
@@ -65,13 +61,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 20,
-  },
-  info: {
-    marginBottom: 20,
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
   },
   checktext: {
     marginLeft:10,
