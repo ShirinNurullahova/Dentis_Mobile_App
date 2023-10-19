@@ -1,13 +1,19 @@
-import React from 'react';
-import { StyleSheet, View, TouchableOpacity, Text, Image } from 'react-native';
+import React, { ChangeEvent } from 'react';
+import { StyleSheet, View, TouchableOpacity, Text, Image, TextInput,ImageSourcePropType } from 'react-native';
 import { globalStyles } from '../../constants/globalStyles';
 
 interface CardDetailButtonProps {
   text: string; // Specify the type of the 'text' prop
   isPressed?: boolean;
   onPress?: () => void;
+  value: string;
+  onChangeText: (e: string | ChangeEvent<any>) => void;
   endText?: string;
-  showIcon: boolean;
+  showIcon?: boolean;
+  disabled?: boolean;
+  imgIcon:ImageSourcePropType,
+  width?: boolean;
+  type?: string | any;
 }
 const CardDetailButton: React.FC<CardDetailButtonProps> = ({
   text,
@@ -15,13 +21,18 @@ const CardDetailButton: React.FC<CardDetailButtonProps> = ({
   onPress,
   endText="",
   showIcon,
+  disabled,
+  imgIcon,
+  width,
+  type,
+  onChangeText
 }) => {
   return (
     <TouchableOpacity onPress={onPress}>
       <View
         style={[
           styles.cardButton,
-          isPressed ? { borderColor: '#12CC89', borderWidth: 1 } : null, // Change border color to green if isPressed is true
+          isPressed ? { borderColor: '#12CC89', borderWidth: 1 } : null, width && styles.smallText // Change border color to green if isPressed is true
         ]}
       >
         <View style={styles.left}>
@@ -32,13 +43,11 @@ const CardDetailButton: React.FC<CardDetailButtonProps> = ({
             />
           ) : (
             <Image
-              source={require('../../assets/images/cardDetail.png')}
+              source={imgIcon}
               style={{ width: 20, height: 20 }}
             />
           )}
-          <Text style={styles.cardText}>
-            {`${text}${showIcon ? '****' : ''} ${endText}`}
-          </Text>
+          <TextInput style={styles.cardText} placeholder= {`${text}${showIcon ? '****' : ''} ${endText}`} editable={disabled}  keyboardType={type}   onChangeText={onChangeText} />
         </View>
         {showIcon ? (
           <Image source={require('../../assets/images/dropdown.png')} style={styles.rotateImg} />
@@ -58,10 +67,12 @@ const styles = StyleSheet.create({
     backgroundColor: globalStyles.colors.inputBckgColor,
     borderRadius: globalStyles.borderRadius,
     width: 343,
-    height: 64,
+    height: 48,
     marginBottom: 20,
   },
-
+  smallText:{
+      width:167
+  },
   left: {
     display: 'flex',
     flexDirection: 'row',
@@ -73,6 +84,7 @@ const styles = StyleSheet.create({
     fontWeight: globalStyles.fontStyle.textFontWeight,
     color: '#7E7F83',
     marginLeft: 10,
+    width:"100%"
   },
   rotateImg: {
     width: 20,

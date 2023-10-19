@@ -26,8 +26,6 @@ const Input = ({
     <View style={styles.inputComponent}>
       <Text style={styles.text}>{label}</Text>
       <View style={styles.inputDiv}>
-       
-         
           <TextInput
             onChangeText={onChangeText}
             style={styles.input}
