@@ -19,7 +19,8 @@ const CardDetail = () => {
     <View style={styles.cardDetailPage}>
        {cardData.map((el, index)=>{
           return(
-            <CardDetailButton text={el.text} endText={el.endText} showIcon={true} onPress={() => pressCard(index)} // Pass the index to the pressCard function
+            <CardDetailButton disabled={false} imgIcon={el.image}
+            text={el.text} endText={el.endText} showIcon={true} onPress={() => pressCard(index)} // Pass the index to the pressCard function
             isPressed={pressedIndex === index} />
           )
        })

@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
   },
  
   input: {
-    width: 343,
+    width: "100%",
     color: globalStyles.colors.disableColor,
     backgroundColor: globalStyles.colors.inputBckgColor,
     paddingHorizontal: 14,
