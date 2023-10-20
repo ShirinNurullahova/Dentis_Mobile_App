@@ -40,7 +40,7 @@ const AddClient = () => {
       { label: 'John', value: 'John' },
     ];
   }, []);
-
+ 
   const [collapse, setCollapse] = useState(false);
   const [currentValue, setCurrentValue] = useState(doctors[0]);
 
@@ -187,7 +187,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: 85,
     paddingVertical: 14,
-    borderRadius: globalStyles.borderRadius
+    borderRadius: globalStyles.borderRadius,
   },
   dlabel: {
     fontSize: globalStyles.fontStyle.smallTextFontSize,
@@ -242,8 +242,8 @@ const styles = StyleSheet.create({
     color: globalStyles.colors.green,
     fontWeight: globalStyles.fontStyle.primaryWeight,
   },
-  buttonView:{
-    marginTop:20
-  }
+  buttonView: {
+    marginTop: 20,
+  },
 });
 export default AddClient;
