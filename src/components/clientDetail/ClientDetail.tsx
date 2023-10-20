@@ -15,16 +15,18 @@ interface CardDetailButtonProps {
   doctorName: string;
   number: string;
   date: string;
+  showDate?: boolean;
 }
 const ClientDetail: React.FC<CardDetailButtonProps> = ({
   clientName,
   doctorName,
   number,
   date,
+  showDate,
 }) => {
   return (
     <View style={styles.clientdetail}>
-      <View style={styles.clientdetailLeft}>
+      <View style={[styles.clientdetailLeft, showDate && styles.upDistance]}>
         <Image
           source={require('../../assets/images/profile.png')}
           style={{ width: 48, height: 48 }}
@@ -33,7 +35,7 @@ const ClientDetail: React.FC<CardDetailButtonProps> = ({
           <Text style={styles.cName}>{clientName}</Text>
           <Text style={styles.cNumber}>{number}</Text>
           <Text style={styles.dName}>{doctorName}</Text>
-          {/* <Text style={styles.dName}>{date}</Text> */}
+          {showDate && <Text style={styles.dName}>{date}</Text>}
         </View>
       </View>
       <View style={styles.clientdetailRight}>
@@ -77,6 +79,9 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     justifyContent: 'space-between',
   },
+  upDistance:{
+    marginTop: 0
+  },
   clientdetailRightEl: {
     marginBottom: 10,
     backgroundColor: '#F2F7FB',
@@ -97,9 +102,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginTop: 20,
-    paddingBottom:5,
-    borderBottomWidth:3,
-    borderBottomColor:globalStyles.colors.borderText
+    paddingBottom: 5,
+    borderBottomWidth: 3,
+    borderBottomColor: globalStyles.colors.borderText,
   },
   clientdetailRightElText: {
     textAlign: 'right',

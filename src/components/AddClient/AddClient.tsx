@@ -11,8 +11,7 @@ import { globalStyles } from '../../constants/globalStyles';
 
 const AddClient = () => {
   return (
-    <View>
-      
+    <View> 
       {clientData.map((client) => {
         return (
           <View style={styles.cardContainer}>
