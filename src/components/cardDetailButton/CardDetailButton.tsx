@@ -6,8 +6,8 @@ interface CardDetailButtonProps {
   text: string; // Specify the type of the 'text' prop
   isPressed?: boolean;
   onPress?: () => void;
-  value: string;
-  onChangeText: (e: string | ChangeEvent<any>) => void;
+  value?: string;
+  onChangeText?: (e: string | ChangeEvent<any>) => void;
   endText?: string;
   showIcon?: boolean;
   disabled?: boolean;
