@@ -11,7 +11,13 @@ export const globalStyles = {
     inputEndTextColor: '#5E6067',
     borderText: '#F0F0F2',
     lightGray: '#A3A6AB',
-    borderBottomColor:'#EFEFF1'
+    borderBottomColor: '#EFEFF1',
+    paymentBg: '#F3EEFF',
+    paymentLightBlue: '#F2F7FB',
+    totalPriceText: '#8A54E1',
+    onWaitPrice: '#3676CB',
+    rejected: '#FEE',
+    rejectedText: '#F83252',
   },
   fontStyle: {
     primary: 'Poppins-Regular',
@@ -19,7 +25,7 @@ export const globalStyles = {
     primaryStyle: 'normal' as TextStyle['fontStyle'],
     buttonFontSize: 17,
     largeFontSize: 34,
-    mediumFontSize:20,
+    mediumFontSize: 20,
     amountFontSize: 28,
     dropDownFontSize: 15,
     smallTextFontSize: 13,
@@ -35,8 +41,8 @@ export const globalStyles = {
     marginTop: 20,
     userHomePageFont: 16,
     userHomePadeLineHeight: 24,
-    doctorDetailFontSize:12
-
+    doctorDetailFontSize: 12,
+    paymentSmallSizeFont: 10,
   },
   borderRadius: 12,
 };
