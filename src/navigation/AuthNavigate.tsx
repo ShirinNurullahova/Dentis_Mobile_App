@@ -10,7 +10,7 @@ import OTPScreen from '../screens/register/OTPScreen';
 import ResetPasswordScreen from '../screens/register/ResetPasswordScreen';
 import UserHomePage from '../screens/userHomePage/userhomepage';
 import HomePage from '../screens/homePage/homePage';
-import DoctorPersonalPage from '../screens/doctorPersonalPage.tsx/doctorPersonalPage';
+import DoctorPersonalPage from '../screens/doctorPersonalPage/doctorPersonalPage';
 import Tabs from '../components/Tabs/Tabs';
 import DoctorDetail from '../screens/doctorDetail/doctordetail';
 import AddPatient from '../screens/addPatient/addPatient';
@@ -18,7 +18,9 @@ import Settings from '../screens/settings/settings';
 import CardDetail from '../screens/cardDetail/cardDetail';
 import CardDetailTwo from '../screens/cardDetail2/cardDetailTwo';
 import Payment from '../screens/payment/payment';
-
+import AddCard from '../screens/addCard/addCard';
+import AddClient from '../screens/addClient/addClient'
+import PatientAccount from '../screens/patientAccount/PatientAccount';
 type RootStackParamList = {
   LoginScreen: undefined;
   SignUpScreen: undefined;
@@ -38,6 +40,9 @@ type RootStackParamList = {
   CardDetail: undefined;
   CardDetailTwo: undefined;
   Payment: undefined;
+  AddCard: undefined;
+  AddClient: undefined;
+  PatientAccount: undefined
 };
 
 const AuthNavigator = createStackNavigator<RootStackParamList>();
@@ -55,6 +60,9 @@ export function AuthNavigate() {
       {/* <AuthNavigator.Screen name="DoctorDetail" component={DoctorDetail} /> */}
       {/* <AuthNavigator.Screen name="AddPatient" component={AddPatient} /> */}
       <AuthNavigator.Screen name="Payment" component={Payment} />
+      {/* <AuthNavigator.Screen name="AddCard" component={AddCard} /> */}
+      {/* <AuthNavigator.Screen name="AddClient" component={AddClient} /> */}
+      <AuthNavigator.Screen name="PatientAccount" component={PatientAccount} />
       {/* <AuthNavigator.Screen name="DoctorPersonalPage" component={DoctorPersonalPage} /> */}
       {/* <AuthNavigator.Screen name="OTPScreen" component={OTPScreen} /> */}
       {/* <AuthNavigator.Screen name="ResetPasswordScreen" component={ResetPasswordScreen} /> */}
@@ -67,6 +75,7 @@ export function AuthNavigate() {
       {/* <AuthNavigator.Screen name="CardDetail" component={CardDetail} /> */}
       {/* <AuthNavigator.Screen name="CardDetailTwo" component={CardDetailTwo} /> */}
       {/* <AuthNavigator.Screen name="HomePage" component={HomePage} /> */}
+       {/* <AuthNavigator.Screen name="HomePage" component={HomePage} /> */}
       {/* <AuthNavigator.Screen name="AboutPage" component={About} /> */}
       {/* <AuthNavigator.Screen name="AddToCard" component={AddToCard} /> */}
       {/* <AuthNavigator.Screen name="Notification" component={Notification} /> */}

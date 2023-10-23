@@ -32,7 +32,7 @@ const Settings: FC = () => {
   }, [month]);
 
   return (
-    <SafeAreaView style={styles.allSignup}>
+    <SafeAreaView style={styles.setting}>
         <ImagePicker />
       <View>
         <Formik
@@ -106,13 +106,13 @@ const Settings: FC = () => {
   );
 };
 const styles = StyleSheet.create({
-  allSignup: {
+  setting: {
     // flex: 1,
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: 16,
     paddingTop: 100,
-    paddingBottom: 40,
+    paddingBottom: 40
   },
   dropdown: {
     gap: 10,

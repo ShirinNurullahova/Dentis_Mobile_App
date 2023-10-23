@@ -20,23 +20,19 @@ const Input = ({
   placeholder,
   label,
   iconShow = false,
-  type = 'default'
+  type = 'default',
 }: Props) => {
   return (
     <View style={styles.inputComponent}>
       <Text style={styles.text}>{label}</Text>
       <View style={styles.inputDiv}>
-       
-         
-          <TextInput
-            onChangeText={onChangeText}
-            style={styles.input}
-            placeholder={placeholder}
-            placeholderTextColor="#B4B6B8"
-            keyboardType={type}
-          />
-       
-
+        <TextInput
+          onChangeText={onChangeText}
+          style={styles.input}
+          placeholder={placeholder}
+          placeholderTextColor="#B4B6B8"
+          keyboardType={type}
+        />
         {iconShow && (
           <TouchableOpacity>
             <Image source={require('../../assets/images/inputicon.png')} style={styles.image} />
@@ -51,9 +47,9 @@ const styles = StyleSheet.create({
   inputComponent: {
     marginTop: 20,
   },
- 
+
   input: {
-    width: 343,
+    width: '100%',
     color: globalStyles.colors.disableColor,
     backgroundColor: globalStyles.colors.inputBckgColor,
     paddingHorizontal: 14,

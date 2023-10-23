@@ -19,7 +19,7 @@ const loginValidationSchema = Yup.object().shape({
     .min(8)
     .required('A phone number is required'),
   sifre: Yup.string()
-    .min(8, ({ min }) => ' Password must be at least ${min} characters')
+    .min(8, ({ min }) => `Password must be at least ${min} characters`)
     .required('Password is required'),
 });
 
