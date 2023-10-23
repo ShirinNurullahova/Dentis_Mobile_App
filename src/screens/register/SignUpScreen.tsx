@@ -15,7 +15,7 @@ const signUpValidationSchema = Yup.object().shape({
   adSoyad: Yup.string()
     .matches(/(\w.+\s).+/, 'Enter at least 2 names')
     .required('Full name is required'),
-    mobilNomre: Yup.number()
+  mobilNomre: Yup.number()
     .typeError("That doesn't look like a phone number")
     .positive("A phone number can't start with a minus")
     .integer("A phone number can't include a decimal point")
@@ -48,7 +48,7 @@ const SignUpScreen: FC = () => {
         >
           {({ handleChange, handleBlur, handleSubmit, values, errors, isValid }) => (
             <View>
-              <TextComponent text="Hesab yaradın" fontSize={false}/>
+              <TextComponent text="Hesab yaradın" fontSize={false} />
               <Input
                 onChangeText={handleChange('adSoyad')}
                 value={values.adSoyad}
@@ -132,10 +132,10 @@ const styles = StyleSheet.create({
   dropdown: {
     gap: 10,
     flexDirection: 'row',
-    width:343,
+    width: 343,
   },
-  dropdownComponent:{
-     paddingTop:20,
+  dropdownComponent: {
+    paddingTop: 20,
   },
   text: {
     color: globalStyles.colors.gray,
@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     fontStyle: globalStyles.fontStyle.primaryStyle,
     fontWeight: globalStyles.fontStyle.textFontWeight,
-    lineHeight: globalStyles.fontStyle.inputLineHeight
+    lineHeight: globalStyles.fontStyle.inputLineHeight,
   },
 });
 export default SignUpScreen;

@@ -17,6 +17,7 @@ import AddPatient from '../screens/addPatient/addPatient';
 import Settings from '../screens/settings/settings';
 import CardDetail from '../screens/cardDetail/cardDetail';
 import CardDetailTwo from '../screens/cardDetail2/cardDetailTwo';
+import Payment from '../screens/payment/payment';
 import AddCard from '../screens/addCard/addCard';
 import AddClient from '../screens/addClient/addClient'
 import PatientAccount from '../screens/patientAccount/PatientAccount';
@@ -32,12 +33,13 @@ type RootStackParamList = {
   HomePage: undefined;
   OTPScreen: undefined;
   DoctorPersonalPage: undefined;
-  Tabs:undefined
+  Tabs: undefined;
   DoctorDetail: undefined;
   AddPatient: undefined;
-  Settings:undefined;
+  Settings: undefined;
   CardDetail: undefined;
   CardDetailTwo: undefined;
+  Payment: undefined;
   AddCard: undefined;
   AddClient: undefined;
   PatientAccount: undefined
@@ -57,6 +59,7 @@ export function AuthNavigate() {
       {/* <AuthNavigator.Screen name="Doctorlist" component={Doctorlist} /> */}
       {/* <AuthNavigator.Screen name="DoctorDetail" component={DoctorDetail} /> */}
       {/* <AuthNavigator.Screen name="AddPatient" component={AddPatient} /> */}
+      <AuthNavigator.Screen name="Payment" component={Payment} />
       {/* <AuthNavigator.Screen name="AddCard" component={AddCard} /> */}
       {/* <AuthNavigator.Screen name="AddClient" component={AddClient} /> */}
       <AuthNavigator.Screen name="PatientAccount" component={PatientAccount} />
@@ -71,6 +74,7 @@ export function AuthNavigate() {
       {/* <AuthNavigator.Screen name="Settings" component={Settings} /> */}
       {/* <AuthNavigator.Screen name="CardDetail" component={CardDetail} /> */}
       {/* <AuthNavigator.Screen name="CardDetailTwo" component={CardDetailTwo} /> */}
+      {/* <AuthNavigator.Screen name="HomePage" component={HomePage} /> */}
        {/* <AuthNavigator.Screen name="HomePage" component={HomePage} /> */}
       {/* <AuthNavigator.Screen name="AboutPage" component={About} /> */}
       {/* <AuthNavigator.Screen name="AddToCard" component={AddToCard} /> */}
