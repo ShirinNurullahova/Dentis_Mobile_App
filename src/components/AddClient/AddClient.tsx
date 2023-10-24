@@ -1,31 +1,27 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, FlatList } from 'react-native';
 import { clientData } from '../../data/clientData';
 import { globalStyles } from '../../constants/globalStyles';
 
-// interface Props {
-//   name: string;
-//   number: number;
-//   status: string;
-// }
+const renderİtem = ({item}: any)=>{
+  return (
+    <View style={styles.cardContainer}>
+      <View style={styles.cardContainerItem}>
+        <Text style={styles.clientName}>{item.name}</Text>
+        <Text style={styles.clientNumber}>{item.number}</Text>
+      </View>
 
-const AddClient = () => {
+      <View style={[styles[item.status], styles.additionalStyle]}>
+        <Text style={styles[item.status]}>{`\u2022 ${item.title}`}</Text>
+      </View>
+    </View>
+  );
+}
+const AddClient = ({ clientData }: { clientData: any }) => {
   return (
     <View> 
-      {clientData.map((client) => {
-        return (
-          <View style={styles.cardContainer}>
-            <View style={styles.cardContainerItem}>
-              <Text style={styles.clientName}>{client.name}</Text>
-              <Text style={styles.clientNumber}>{client.number}</Text>
-            </View>
+     <FlatList data={clientData} renderItem={renderİtem}/>
 
-            <View style={[styles[client.status], styles.additionalStyle]}>
-              <Text style={styles[client.status]}>{`\u2022 ${client.title}`}</Text>
-            </View>
-          </View>
-        );
-      })}
     </View>
   );
 };

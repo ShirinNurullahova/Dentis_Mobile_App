@@ -1,6 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Text, ScrollView, TouchableOpacity } from 'react-native';
-import { globalStyles } from '../../constants/globalStyles';
+import { View, StyleSheet, ScrollView } from 'react-native';
 import PaymentsDetails from '../../components/paymentsDetails/PaymentsDetails';
 
 const PaymentList = () => {
@@ -38,7 +37,7 @@ const PaymentList = () => {
   return (
     <ScrollView>
       <View style={styles.paymentList}>
-        <PaymentsDetails data={data} />
+        <PaymentsDetails data={data}  showButton={true}/>
         
       </View>
     </ScrollView>
