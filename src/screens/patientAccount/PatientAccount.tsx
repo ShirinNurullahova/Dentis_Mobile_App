@@ -5,7 +5,7 @@ import ClientDetail from '../../components/clientDetail/ClientDetail';
 import AddClient from '../../components/AddClient/AddClient';
 import { globalStyles } from '../../constants/globalStyles';
 import PaymentsDetails from '../../components/paymentsDetails/PaymentsDetails';
-
+import { clientData } from '../../data/clientData';
 const PatientAccount = () => {
   const data = [
     {
@@ -18,6 +18,8 @@ const PatientAccount = () => {
       ],
     }
   ];
+  const firstThreeLinesOfData = clientData.slice(0, 3); // Get the first 3 lines of data
+
   return (
     <ScrollView>
       <View style={styles.patient}>
@@ -30,13 +32,13 @@ const PatientAccount = () => {
           showDate={true}
         />
         <InvitedBy text={'24 nəfər'} name="Əlavə edilənlər:" changeColor={true} />
-        <PaymentsDetails data={data} />
+        <PaymentsDetails data={data} showButton={false}/>
         <View style={styles.addTitle}>
           <Text style={styles.add}>Əlavə Etdiniz</Text>
           <Text style={styles.more}>Daha çox</Text>
         </View>
        
-        <AddClient />
+        <AddClient clientData={firstThreeLinesOfData}/>
       </View>
     </ScrollView>
   );

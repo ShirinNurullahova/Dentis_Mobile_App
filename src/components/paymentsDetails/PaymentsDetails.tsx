@@ -2,7 +2,12 @@ import React, { useState } from 'react';
 import { View, StyleSheet, Text, ScrollView, TouchableOpacity } from 'react-native';
 import { globalStyles } from '../../constants/globalStyles';
 
-const PaymentsDetails = ({ data }: { data: any }) => {
+interface Props {
+  data: any;
+  showButton: boolean;
+}
+
+const PaymentsDetails = ({ data, showButton }: Props) => {
   const [showMoreLimit, setShowMoreLimit] = useState(3);
 
   const toggleShowMore = () => {
@@ -38,11 +43,13 @@ const PaymentsDetails = ({ data }: { data: any }) => {
           </View>
         );
       })}
-      <TouchableOpacity onPress={toggleShowMore}>
-        <View style={styles.moreButton}>
-          <Text style={styles.moreButtonText}>Daha çox göstər</Text>
-        </View>
-      </TouchableOpacity>
+      {showButton && (
+        <TouchableOpacity onPress={toggleShowMore}>
+          <View style={styles.moreButton}>
+            <Text style={styles.moreButtonText}>Daha çox göstər</Text>
+          </View>
+        </TouchableOpacity>
+      )}
     </View>
   );
 };
