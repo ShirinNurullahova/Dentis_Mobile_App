@@ -16,6 +16,11 @@ interface CardDetailButtonProps {
   number: string;
   date: string;
   showDate?: boolean;
+  price: string;
+  onWait: string;
+  totalPrice: string;
+  totalAmount: string;
+  image: any;
 }
 const ClientDetail: React.FC<CardDetailButtonProps> = ({
   clientName,
@@ -23,14 +28,16 @@ const ClientDetail: React.FC<CardDetailButtonProps> = ({
   number,
   date,
   showDate,
+  price,
+  onWait,
+  totalPrice,
+  totalAmount,
+  image,
 }) => {
   return (
     <View style={styles.clientdetail}>
       <View style={[styles.clientdetailLeft, showDate && styles.upDistance]}>
-        <Image
-          source={require('../../assets/images/profile.png')}
-          style={{ width: 48, height: 48 }}
-        />
+        <Image source={image} style={{ width: 48, height: 48 }} />
         <View style={styles.clientdetailLeftEl}>
           <Text style={styles.cName}>{clientName}</Text>
           <Text style={styles.cNumber}>{number}</Text>
@@ -40,12 +47,12 @@ const ClientDetail: React.FC<CardDetailButtonProps> = ({
       </View>
       <View style={styles.clientdetailRight}>
         <View style={styles.clientdetailRightEl}>
-          <Text style={styles.clientdetailRightElText}>32.50</Text>
-          <Text style={styles.clientdetailRightElText}>Gözlənilən</Text>
+          <Text style={styles.clientdetailRightElText}>{price}</Text>
+          <Text style={styles.clientdetailRightElText}>{onWait}</Text>
         </View>
         <View style={styles.clientdetailRightCommon}>
-          <Text style={styles.clientdetailRightElTextCommon}>60.50</Text>
-          <Text style={styles.clientdetailRightElTextCommon}>Ümumi qazanılan</Text>
+          <Text style={styles.clientdetailRightElTextCommon}>{totalPrice}</Text>
+          <Text style={styles.clientdetailRightElTextCommon}>{totalAmount}</Text>
         </View>
       </View>
     </View>
@@ -79,8 +86,8 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     justifyContent: 'space-between',
   },
-  upDistance:{
-    marginTop: 0
+  upDistance: {
+    marginTop: 0,
   },
   clientdetailRightEl: {
     marginBottom: 10,
@@ -88,7 +95,6 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     paddingHorizontal: 8,
     paddingVertical: 4,
-    width: '70%',
   },
   clientdetailLeftEl: {
     marginLeft: 15,
@@ -98,13 +104,12 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
   },
   clientdetail: {
-    display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 20,
-    paddingBottom: 5,
-    borderBottomWidth: 3,
-    borderBottomColor: globalStyles.colors.borderText,
+    paddingHorizontal: 16,
+    paddingVertical: 16,
+    borderBottomWidth: 1,
+    borderBottomColor: globalStyles.colors.borderBottomColor,
   },
   clientdetailRightElText: {
     textAlign: 'right',
