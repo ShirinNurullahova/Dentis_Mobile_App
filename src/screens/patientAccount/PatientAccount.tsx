@@ -7,7 +7,17 @@ import { globalStyles } from '../../constants/globalStyles';
 import PaymentsDetails from '../../components/paymentsDetails/PaymentsDetails';
 
 const PatientAccount = () => {
-     
+  const data = [
+    {
+      title: 'Ödənişlər',
+      buttonText:'Daha çox',
+      children: [
+        { date: '12.06.1998', amount: '8.00' },
+        { date: '12.06.1998', amount: '12.00' },
+        { date: '12.06.1998', amount: '16.00' },
+      ],
+    }
+  ];
   return (
     <ScrollView>
       <View style={styles.patient}>
@@ -20,7 +30,7 @@ const PatientAccount = () => {
           showDate={true}
         />
         <InvitedBy text={'24 nəfər'} name="Əlavə edilənlər:" changeColor={true} />
-        <PaymentsDetails/>
+        <PaymentsDetails data={data} />
         <View style={styles.addTitle}>
           <Text style={styles.add}>Əlavə Etdiniz</Text>
           <Text style={styles.more}>Daha çox</Text>
