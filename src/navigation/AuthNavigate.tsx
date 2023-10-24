@@ -19,8 +19,10 @@ import CardDetail from '../screens/cardDetail/cardDetail';
 import CardDetailTwo from '../screens/cardDetail2/cardDetailTwo';
 import Payment from '../screens/payment/payment';
 import AddCard from '../screens/addCard/addCard';
-import AddClient from '../screens/addClient/addClient'
+import AddClient from '../screens/addClient/addClient';
 import PatientAccount from '../screens/patientAccount/PatientAccount';
+import DoctorAccount from '../screens/doctorAccount/doctorAccount';
+
 type RootStackParamList = {
   LoginScreen: undefined;
   SignUpScreen: undefined;
@@ -42,7 +44,8 @@ type RootStackParamList = {
   Payment: undefined;
   AddCard: undefined;
   AddClient: undefined;
-  PatientAccount: undefined
+  PatientAccount: undefined;
+  DoctorAccount: undefined;
 };
 
 const AuthNavigator = createStackNavigator<RootStackParamList>();
@@ -59,10 +62,11 @@ export function AuthNavigate() {
       {/* <AuthNavigator.Screen name="Doctorlist" component={Doctorlist} /> */}
       {/* <AuthNavigator.Screen name="DoctorDetail" component={DoctorDetail} /> */}
       {/* <AuthNavigator.Screen name="AddPatient" component={AddPatient} /> */}
-      <AuthNavigator.Screen name="Payment" component={Payment} />
+      {/* <AuthNavigator.Screen name="Payment" component={Payment} /> */}
+      <AuthNavigator.Screen name="DoctorAccount" component={DoctorAccount} />
       {/* <AuthNavigator.Screen name="AddCard" component={AddCard} /> */}
       {/* <AuthNavigator.Screen name="AddClient" component={AddClient} /> */}
-      <AuthNavigator.Screen name="PatientAccount" component={PatientAccount} />
+      {/* <AuthNavigator.Screen name="PatientAccount" component={PatientAccount} /> */}
       {/* <AuthNavigator.Screen name="DoctorPersonalPage" component={DoctorPersonalPage} /> */}
       {/* <AuthNavigator.Screen name="OTPScreen" component={OTPScreen} /> */}
       {/* <AuthNavigator.Screen name="ResetPasswordScreen" component={ResetPasswordScreen} /> */}
@@ -75,7 +79,7 @@ export function AuthNavigate() {
       {/* <AuthNavigator.Screen name="CardDetail" component={CardDetail} /> */}
       {/* <AuthNavigator.Screen name="CardDetailTwo" component={CardDetailTwo} /> */}
       {/* <AuthNavigator.Screen name="HomePage" component={HomePage} /> */}
-       {/* <AuthNavigator.Screen name="HomePage" component={HomePage} /> */}
+      {/* <AuthNavigator.Screen name="HomePage" component={HomePage} /> */}
       {/* <AuthNavigator.Screen name="AboutPage" component={About} /> */}
       {/* <AuthNavigator.Screen name="AddToCard" component={AddToCard} /> */}
       {/* <AuthNavigator.Screen name="Notification" component={Notification} /> */}
