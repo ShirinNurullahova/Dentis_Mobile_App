@@ -22,7 +22,7 @@ import AddCard from '../screens/addCard/addCard';
 import AddClient from '../screens/addClient/addClient';
 import PatientAccount from '../screens/patientAccount/PatientAccount';
 import DoctorAccount from '../screens/doctorAccount/doctorAccount';
-
+import PaymentList from '../screens/paymentList/paymentList';
 type RootStackParamList = {
   LoginScreen: undefined;
   SignUpScreen: undefined;
@@ -46,6 +46,7 @@ type RootStackParamList = {
   AddClient: undefined;
   PatientAccount: undefined;
   DoctorAccount: undefined;
+  PaymentList: undefined
 };
 
 const AuthNavigator = createStackNavigator<RootStackParamList>();
@@ -64,6 +65,7 @@ export function AuthNavigate() {
       {/* <AuthNavigator.Screen name="AddPatient" component={AddPatient} /> */}
       {/* <AuthNavigator.Screen name="Payment" component={Payment} /> */}
       <AuthNavigator.Screen name="DoctorAccount" component={DoctorAccount} />
+            <AuthNavigator.Screen name="PaymentList" component={PaymentList} />
       {/* <AuthNavigator.Screen name="AddCard" component={AddCard} /> */}
       {/* <AuthNavigator.Screen name="AddClient" component={AddClient} /> */}
       {/* <AuthNavigator.Screen name="PatientAccount" component={PatientAccount} /> */}

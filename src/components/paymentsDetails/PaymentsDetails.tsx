@@ -1,33 +1,36 @@
-import React from 'react';
-import { View, StyleSheet, Text, ScrollView } from 'react-native';
+import React, { useState } from 'react';
+import { View, StyleSheet, Text, ScrollView, TouchableOpacity } from 'react-native';
 import { globalStyles } from '../../constants/globalStyles';
 
-const PaymentsDetails = () => {
-  const data = [
-    {
-      title: 'Ödənişlər',
-      children: [
-        { date: '12.06.1998', amount: '8.00' },
-        { date: '12.06.1998', amount: '12.00' },
-        { date: '12.06.1998', amount: '16.00' },
-      ],
-    },
-  ];
+const PaymentsDetails = ({ data }: { data: any }) => {
+  const [showMoreLimit, setShowMoreLimit] = useState(3);
+
+  const toggleShowMore = () => {
+    setShowMoreLimit((value) => value + 3);
+  };
+
   return (
     <View>
       {data.map((el: any) => {
         return (
-          <View>
+          <View key={el.title}>
             <View style={styles.addTitle}>
               <Text style={styles.add}>{el.title}</Text>
-              <Text style={styles.more}>Daha çox</Text>
+              <Text style={styles.more}>{el.buttonText}</Text>
             </View>
-            {el.children.map((e: any) => {
+            {el.children.slice(0, showMoreLimit).map((e: any, index: number) => {
               return (
-                <View style={styles.paymentEl}>
+                <View key={index} style={styles.paymentEl}>
                   <Text style={styles.dateTime}>{e.date}</Text>
-                  <View style={styles.amountButton}>
-                    <Text style={styles.amountButtonText}>{e.amount}</Text>
+                  <View style={[styles.amountButton, el?.type === 'history' && styles.addition]}>
+                    <Text
+                      style={[
+                        styles.amountButtonText,
+                        el?.type === 'history' && styles.additionText,
+                      ]}
+                    >
+                      {e.amount}
+                    </Text>
                   </View>
                 </View>
               );
@@ -35,6 +38,11 @@ const PaymentsDetails = () => {
           </View>
         );
       })}
+      <TouchableOpacity onPress={toggleShowMore}>
+        <View style={styles.moreButton}>
+          <Text style={styles.moreButtonText}>Daha çox göstər</Text>
+        </View>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -47,10 +55,16 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
-  dateTime:{
-     color: globalStyles.colors.black,
-     fontSize: globalStyles.fontStyle.mediumTextFontSize,
-     fontFamily: globalStyles.fontStyle.primary,
+  dateTime: {
+    color: globalStyles.colors.black,
+    fontSize: globalStyles.fontStyle.mediumTextFontSize,
+    fontFamily: globalStyles.fontStyle.primary,
+  },
+  addition: {
+    backgroundColor: '#F3EEFF',
+  },
+  additionText: {
+    color: '#8A54E1',
   },
   amountButton: {
     backgroundColor: '#F2F7FB',
@@ -74,9 +88,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginBottom: 10,
-    borderBottomWidth:2,
-    paddingBottom:10,
-    borderBottomColor: globalStyles.colors.borderBottomColor
+    borderBottomWidth: 2,
+    paddingBottom: 10,
+    borderBottomColor: globalStyles.colors.borderBottomColor,
   },
   add: {
     fontFamily: globalStyles.fontStyle.primary,
@@ -88,6 +102,17 @@ const styles = StyleSheet.create({
     fontFamily: globalStyles.fontStyle.primary,
     fontWeight: globalStyles.fontStyle.primaryWeight,
     color: globalStyles.colors.green,
+    fontSize: globalStyles.fontStyle.mediumTextFontSize,
+  },
+  moreButton: {
+    marginBottom: 40,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  moreButtonText: {
+    color: globalStyles.colors.black,
+    fontFamily: globalStyles.fontStyle.primary,
     fontSize: globalStyles.fontStyle.mediumTextFontSize,
   },
 });
