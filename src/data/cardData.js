@@ -12,7 +12,13 @@ export const cardData = [
       text: 'Visa',
       endText: '2345',
       commonText:'1234 5678 9876 5432'
+    },
+    {
+      id: 3,
+      image: require('../assets/images/mastercard.png'),
+      text: 'Visa',
+      endText: '1987',
+      commonText:'1234 5678 9876 5432'
     }
-    
   ];
   

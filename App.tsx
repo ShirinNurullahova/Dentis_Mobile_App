@@ -6,6 +6,8 @@ import {NavigationContainer} from '@react-navigation/native';
 import store, {persistor} from './src/store';
 import {PersistGate} from 'redux-persist/integration/react';
 import {Navigator} from './src/navigation/Navigator';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 
 function App(): JSX.Element {
   useEffect(() => {
@@ -16,6 +18,9 @@ function App(): JSX.Element {
 
   return (
     <SafeAreaProvider>
+      
+<GestureHandlerRootView style={{flex: 1}}>
+ 
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <NavigationContainer
@@ -24,6 +29,8 @@ function App(): JSX.Element {
           </NavigationContainer>
         </PersistGate>
       </Provider>
+      
+      </GestureHandlerRootView>
     </SafeAreaProvider>
   );
 }
