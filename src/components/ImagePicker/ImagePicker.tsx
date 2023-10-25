@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { StyleSheet, View, TouchableOpacity, Text, Image } from 'react-native';
 import { globalStyles } from '../../constants/globalStyles';
 import Edit from '../../assets/icons/Edit';
-import { launchImageLibrary, launchCamera } from 'react-native-image-picker';
+import { launchImageLibrary, 
+ } from 'react-native-image-picker';
 
 interface Props {}
 
