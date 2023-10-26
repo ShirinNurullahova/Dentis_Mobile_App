@@ -31,6 +31,7 @@ const CardDetail = () => {
         title="Submit"
         type="submit"
         disabled={true}
+
       />
     </View>
   );
@@ -40,7 +41,7 @@ const styles = StyleSheet.create({
   cardDetailPage: {
     flex: 1,
     display: 'flex',
-    alignItems: 'center',
+    // alignItems: 'center',
     paddingHorizontal: 16,
     paddingTop: 100,
   },
