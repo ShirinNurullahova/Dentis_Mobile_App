@@ -5,6 +5,7 @@ import ProfileCard from '../../components/ProfileCard/ProfileCard';
 import CustomButton from '../../components/Button/Button';
 import AddClient from '../../components/AddClient/AddClient';
 import { globalStyles } from '../../constants/globalStyles';
+import { clientData } from '../../data/clientData';
 
 const HomePage = () => {
   const handleSubmit = () => {};
@@ -23,7 +24,7 @@ const HomePage = () => {
         <Text style={styles.add}>Əlavə Etdiniz</Text>
         <Text style={styles.more}>Daha çox</Text>
       </View>
-      <AddClient />
+      <AddClient clientData={clientData}/>
     </View>
   );
 };
