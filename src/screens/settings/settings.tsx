@@ -16,7 +16,7 @@ const settingValidationSchema = Yup.object().shape({
   adSoyad: Yup.string()
     .matches(/(\w.+\s).+/, 'Enter at least 2 names')
     .required('Full name is required'),
-    mobilNomre: Yup.number()
+  mobilNomre: Yup.number()
     .typeError("That doesn't look like a phone number")
     .positive("A phone number can't start with a minus")
     .integer("A phone number can't include a decimal point")
@@ -33,10 +33,10 @@ const Settings: FC = () => {
 
   return (
     <SafeAreaView style={styles.setting}>
-        <ImagePicker />
+      <ImagePicker />
       <View>
         <Formik
-          initialValues={{adSoyad: '', mobilNomre: '', day: '', month: '', year: '' }}
+          initialValues={{ adSoyad: '', mobilNomre: '', day: '', month: '', year: '' }}
           onSubmit={(values) => console.log(values)}
           validationSchema={settingValidationSchema}
         >
@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 16,
     paddingTop: 100,
-    paddingBottom: 40
+    paddingBottom: 40,
   },
   dropdown: {
     gap: 10,
@@ -122,8 +122,8 @@ const styles = StyleSheet.create({
   dropdownComponent: {
     paddingTop: 20,
   },
-  dist:{
-     marginTop: 30
+  dist: {
+    marginTop: 30,
   },
   text: {
     color: globalStyles.colors.gray,
