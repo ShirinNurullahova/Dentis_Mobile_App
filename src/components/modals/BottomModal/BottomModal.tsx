@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Button, ImageSourcePropType, StatusBar, StyleSheet, Text, View } from 'react-native';
 import Modal from 'react-native-modal';
 import { globalStyles } from '../../../constants/globalStyles';
-import CardDetail from '../../../screens/cardDetail/cardDetail';
 import CardDetailButton from '../../cardDetailButton/CardDetailButton';
 import { cardData } from '../../../data/cardData';
 import CustomButton from '../../Button/Button';
@@ -29,6 +28,13 @@ function BottomModal({ setModalVisible, isModalVisible, toggleModal, showPayment
       }
     });
   }, [detail]);
+
+  const [selectedRadioButton, setSelectedRadioButton] = useState<number>(-1);
+
+  const handleRadioButtonPress = (buttonIndex: number) => {
+    setSelectedRadioButton(buttonIndex);
+  };
+
   return (
     <View style={styles.flexView}>
       <StatusBar />
@@ -57,27 +63,32 @@ function BottomModal({ setModalVisible, isModalVisible, toggleModal, showPayment
                 <>
                   {cardData.map((el, index) => {
                     return (
-                      <CardDetailButton
-                        disabled={false}
-                        imgIcon={el.image}
-                        text={el.text}
-                        endText={el.endText}
-                        showCheckBox={true}
-                        showIcon={true}
-                        index={index}
-                        showDropDown={false}
-                        setDetail={setDetail}
-                      />
+                      <View style={styles.cardButtons}>
+                        <CardDetailButton
+                          disabled={false}
+                          imgIcon={el.image}
+                          text={el.text}
+                          endText={el.endText}
+                          showCheckBox={true}
+                          showIcon={true}
+                          index={index}
+                          showDropDown={false}
+                          setDetail={setDetail}
+                          selectedRadioButton={selectedRadioButton}
+                          onPress={handleRadioButtonPress}
+                        />
+                      </View>
                     );
                   })}
-
-                  <CardDetailButton
-                    text={!open ? 'Kart əlavə et' : 'Odenis ele'}
-                    showCheckBox={false}
-                    showDropDown={true}
-                    showIcon={false}
-                    disabled={true}
-                  />
+                  <View style={styles.addCard}>
+                    <CardDetailButton
+                      text={!open ? 'Kart əlavə et' : 'Odenis ele'}
+                      showCheckBox={false}
+                      showDropDown={true}
+                      showIcon={false}
+                      disabled={true}
+                    />
+                  </View>
                 </>
               ) : (
                 <View>
@@ -141,10 +152,15 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     margin: 0,
   },
+  addCard: {
+    marginBottom: 10,
+  },
+  cardButtons: {
+    marginBottom: 10,
+  },
   modalContent: {
     backgroundColor: 'white',
     paddingTop: 12,
-
     paddingHorizontal: 20,
     paddingVertical: 20,
     borderTopRightRadius: 20,
@@ -152,8 +168,8 @@ const styles = StyleSheet.create({
     minHeight: 450,
     paddingBottom: 20,
   },
-  paymentView:{
-    marginBottom:20
+  paymentView: {
+    marginBottom: 20,
   },
   center: {
     display: 'flex',

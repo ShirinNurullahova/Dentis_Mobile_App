@@ -4,17 +4,16 @@ import { View, TouchableOpacity, Image, StyleSheet } from 'react-native';
 interface RadioButtonProps {
   index: number;
   checkedIndex: number;
-  onPress: (index: number) => void;
 }
 
-const RadioButton: React.FC<RadioButtonProps> = ({ index, checkedIndex, onPress }) => {
+const RadioButton: React.FC<RadioButtonProps> = ({ index, checkedIndex }) => {
   return (
-    <TouchableOpacity onPress={() => onPress(index)} style={styles.btn}>
+    <View style={styles.btn}>
       <Image
         style={styles.img}
         source={index === checkedIndex ? require('../../assets/images/checked.png') : require('../../assets/images/unchecked.png')}
       />
-    </TouchableOpacity>
+    </View>
   )
 };
 
