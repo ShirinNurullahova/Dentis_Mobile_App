@@ -23,7 +23,11 @@ import AddClient from '../screens/addClient/addClient';
 import PatientAccount from '../screens/patientAccount/PatientAccount';
 import DoctorAccount from '../screens/doctorAccount/doctorAccount';
 import EditDoctor from '../screens/editDoctor/EditDoctor';
-
+import PaymentList from '../screens/paymentList/paymentList';
+import AddedPatientMore from '../screens/addedPatientsMore/addedPatientMore';
+import PatientList from '../screens/patientList/patientList';
+import BottomModal from '../components/modals/BottomModal/BottomModal';
+import AdminHomePage from '../screens/adminHomePage/adminHomePage';
 type RootStackParamList = {
   LoginScreen: undefined;
   SignUpScreen: undefined;
@@ -46,8 +50,13 @@ type RootStackParamList = {
   AddCard: undefined;
   AddClient: undefined;
   PatientAccount: undefined;
+  AddedPatientMore: undefined;
   DoctorAccount: undefined;
   EditDoctor: undefined;
+  PaymentList: undefined;
+  PatientList: undefined;
+  BottomModal:undefined;
+  AdminHomePage:undefined
 };
 
 const AuthNavigator = createStackNavigator<RootStackParamList>();
@@ -67,6 +76,12 @@ export function AuthNavigate() {
       {/* <AuthNavigator.Screen name="Payment" component={Payment} /> */}
       {/* <AuthNavigator.Screen name="DoctorAccount" component={DoctorAccount} /> */}
       <AuthNavigator.Screen name="EditDoctor" component={EditDoctor} />
+      {/* <AuthNavigator.Screen name="PaymentList" component={PaymentList} /> */}
+      {/* <AuthNavigator.Screen name="PatientList" component={PatientList} /> */}
+     {/* <AuthNavigator.Screen name="BottomModal" component={BottomModal} /> */}
+     <AuthNavigator.Screen name="AdminHomePage" component={AdminHomePage} />
+      {/* <AuthNavigator.Screen name="DoctorAccount" component={DoctorAccount} /> */}
+      {/* <AuthNavigator.Screen name="PaymentList" component={PaymentList} /> */}
       {/* <AuthNavigator.Screen name="AddCard" component={AddCard} /> */}
       {/* <AuthNavigator.Screen name="AddClient" component={AddClient} /> */}
       {/* <AuthNavigator.Screen name="PatientAccount" component={PatientAccount} /> */}

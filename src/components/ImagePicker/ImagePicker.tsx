@@ -4,6 +4,8 @@ import { globalStyles } from '../../constants/globalStyles';
 import Edit from '../../assets/icons/Edit';
 import { launchImageLibrary, launchCamera } from 'react-native-image-picker';
 import CameraNew from '../Camera/Camera';
+, 
+ } from 'react-native-image-picker';
 
 interface Props {}
 
