@@ -14,7 +14,7 @@ import RadioButton from '../RadioButton/RadioButton';
 interface CardDetailButtonProps {
   text?: string; // Specify the type of the 'text' prop
   isPressed?: boolean;
-  onPress?: () => void;
+  onPress?: (index?:number) => void;
   value?: string;
   onChangeText?: (e: string | ChangeEvent<any>) => void;
   endText?: string;
@@ -27,6 +27,7 @@ interface CardDetailButtonProps {
   index?: number;
   showDropDown?: boolean;
   setDetail?: any;
+  selectedRadioButton?: any;
 }
 const CardDetailButton: React.FC<CardDetailButtonProps> = ({
   text,
@@ -42,20 +43,16 @@ const CardDetailButton: React.FC<CardDetailButtonProps> = ({
   showCheckBox,
   showDropDown,
   index,
-  setDetail
+  setDetail,
+  selectedRadioButton,
 }) => {
-  const [selectedRadioButton, setSelectedRadioButton] = useState<number>(-1);
-  const handleRadioButtonPress = (buttonIndex: number) => {
-    setDetail(buttonIndex)
-    setSelectedRadioButton(buttonIndex);
-  };
   return (
     <TouchableOpacity onPress={onPress}>
       <View
         style={[
           styles.cardButton,
           isPressed ? { borderColor: '#12CC89', borderWidth: 1 } : null,
-          width && styles.smallText
+          width && styles.smallText,
         ]}
       >
         <View style={styles.left}>
@@ -81,11 +78,11 @@ const CardDetailButton: React.FC<CardDetailButtonProps> = ({
             <Image source={require('../../assets/images/dropdown.png')} style={styles.rotateImg} />
           ) : null}
           {showCheckBox ? (
-            <RadioButton
-              index={index}
-              checkedIndex={selectedRadioButton}
-              onPress={handleRadioButtonPress}
-            />
+            <TouchableOpacity onPress={() =>{ setDetail(index),onPress(index)}}>
+              {showCheckBox ? (
+                <RadioButton index={index} checkedIndex={selectedRadioButton}/>
+              ) : null}
+            </TouchableOpacity>
           ) : null}
         </View>
       </View>
