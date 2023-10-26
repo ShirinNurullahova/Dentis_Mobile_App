@@ -1,29 +1,37 @@
-import React, { useState } from 'react';
-import { Button, StatusBar, StyleSheet, Text, View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Button, ImageSourcePropType, StatusBar, StyleSheet, Text, View } from 'react-native';
 import Modal from 'react-native-modal';
 import { globalStyles } from '../../../constants/globalStyles';
 import CardDetail from '../../../screens/cardDetail/cardDetail';
 import CardDetailButton from '../../cardDetailButton/CardDetailButton';
 import { cardData } from '../../../data/cardData';
 import CustomButton from '../../Button/Button';
+import Input from '../../Input/Input';
 
 interface Props {
   text?: string;
 }
+interface IData {
+  image?: ImageSourcePropType;
+  text?: string;
+  endText?: string;
+}
 
-function BottomModal({ text }: Props) {
-  const [isModalVisible, setModalVisible] = useState(false);
+function BottomModal({ setModalVisible, isModalVisible, toggleModal, showPaymentDetails }: any) {
+  const [open, setOpen] = useState(false);
+  const [detail, setDetail] = useState();
+  const [data, setData] = useState<IData | null>(null);
 
-  const toggleModal = () => {
-    setModalVisible(!isModalVisible);
-  };
-
+  useEffect(() => {
+    cardData.filter((datas: any, index) => {
+      if (index === detail) {
+        setData(datas);
+      }
+    });
+  }, [detail]);
   return (
     <View style={styles.flexView}>
       <StatusBar />
-      <View style={styles.btnContainer}>
-        <Button title="Show Bottom Sheet" onPress={toggleModal} />
-      </View>
 
       <Modal
         onBackdropPress={() => setModalVisible(false)}
@@ -42,34 +50,69 @@ function BottomModal({ text }: Props) {
         <View style={styles.modalContent}>
           <View style={styles.center}>
             <View style={styles.barIcon} />
-            <Text style={styles.infoText}>Kartı seçin</Text>
+            <Text style={styles.infoText}>{!open ? 'Kartı seçin' : 'Ödəniş məlumatları'}</Text>
 
-            <View>
-              {cardData.map((el, index) => {
-                return (
+            <View style={{ width: '100%' }}>
+              {!open ? (
+                <>
+                  {cardData.map((el, index) => {
+                    return (
+                      <CardDetailButton
+                        disabled={false}
+                        imgIcon={el.image}
+                        text={el.text}
+                        endText={el.endText}
+                        showCheckBox={true}
+                        showIcon={true}
+                        index={index}
+                        showDropDown={false}
+                        setDetail={setDetail}
+                      />
+                    );
+                  })}
+
                   <CardDetailButton
-                    disabled={false}
-                    imgIcon={el.image}
-                    text={el.text}
-                    endText={el.endText}
-                    showCheckBox={true}
-                    showIcon={true}
-                    index={index}
-                    showDropDown={false}
+                    text={!open ? 'Kart əlavə et' : 'Odenis ele'}
+                    showCheckBox={false}
+                    showDropDown={true}
+                    showIcon={false}
+                    disabled={true}
                   />
-                );
-              })}
+                </>
+              ) : (
+                <View>
+                  <View>
+                    <Text style={styles.cardLabel}>Kartı seç</Text>
+                    <CardDetailButton
+                      disabled={false}
+                      imgIcon={data?.image}
+                      text={data?.text}
+                      endText={data?.endText}
+                      showCheckBox={false}
+                      showIcon={true}
+                      showDropDown={false}
+                      setDetail={setDetail}
+                    />
+                  </View>
+                  <View style={styles.paymentView}>
+                    <Input
+                      onChangeText={() => {}}
+                      onBlur={() => {}}
+                      value={''}
+                      placeholder="8.00"
+                      label="Məbləğ"
+                      type="text"
+                      disabled={true}
+                    />
+                  </View>
+                </View>
+              )}
 
-              <CardDetailButton
-                text="Kart əlavə et"
-                showCheckBox={false}
-                showDropDown={true}
-                showIcon={false}
-                disabled={true}
-              />
               <CustomButton
-                onPress={() => {}}
-                text="Davam et"
+                onPress={() => {
+                  data && setOpen(true);
+                }}
+                text={!open ? 'Davam et' : 'Ödəniş et'}
                 title="Submit"
                 type="submit"
                 disabled={true}
@@ -101,17 +144,27 @@ const styles = StyleSheet.create({
   modalContent: {
     backgroundColor: 'white',
     paddingTop: 12,
-    paddingHorizontal: 60,
+
+    paddingHorizontal: 20,
     paddingVertical: 20,
     borderTopRightRadius: 20,
     borderTopLeftRadius: 20,
     minHeight: 450,
     paddingBottom: 20,
   },
+  paymentView:{
+    marginBottom:20
+  },
   center: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  cardLabel: {
+    fontSize: globalStyles.fontStyle.smallTextFontSize,
+    fontFamily: globalStyles.fontStyle.primary,
+    color: globalStyles.colors.gray,
+    marginBottom: 5,
   },
   barIcon: {
     width: 60,

@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import {
   StyleSheet,
   View,
@@ -12,7 +12,7 @@ import { globalStyles } from '../../constants/globalStyles';
 import RadioButton from '../RadioButton/RadioButton';
 
 interface CardDetailButtonProps {
-  text: string; // Specify the type of the 'text' prop
+  text?: string; // Specify the type of the 'text' prop
   isPressed?: boolean;
   onPress?: () => void;
   value?: string;
@@ -20,12 +20,13 @@ interface CardDetailButtonProps {
   endText?: string;
   showIcon?: boolean;
   disabled?: boolean;
-  imgIcon?: ImageSourcePropType;
+  imgIcon?: ImageSourcePropType | undefined;
   width?: boolean;
   type?: string | any;
   showCheckBox?: boolean;
   index?: number;
   showDropDown?: boolean;
+  setDetail?: any;
 }
 const CardDetailButton: React.FC<CardDetailButtonProps> = ({
   text,
@@ -41,14 +42,20 @@ const CardDetailButton: React.FC<CardDetailButtonProps> = ({
   showCheckBox,
   showDropDown,
   index,
+  setDetail
 }) => {
+  const [selectedRadioButton, setSelectedRadioButton] = useState<number>(-1);
+  const handleRadioButtonPress = (buttonIndex: number) => {
+    setDetail(buttonIndex)
+    setSelectedRadioButton(buttonIndex);
+  };
   return (
-    <TouchableOpacity  onPress={onPress}>
+    <TouchableOpacity onPress={onPress}>
       <View
         style={[
           styles.cardButton,
           isPressed ? { borderColor: '#12CC89', borderWidth: 1 } : null,
-          width && styles.smallText, // Change border color to green if isPressed is true
+          width && styles.smallText
         ]}
       >
         <View style={styles.left}>
@@ -68,12 +75,18 @@ const CardDetailButton: React.FC<CardDetailButtonProps> = ({
             onChangeText={onChangeText}
           />
         </View>
-        
+
         <View>
           {showDropDown ? (
             <Image source={require('../../assets/images/dropdown.png')} style={styles.rotateImg} />
           ) : null}
-          {showCheckBox ? <RadioButton index={index} /> : null}
+          {showCheckBox ? (
+            <RadioButton
+              index={index}
+              checkedIndex={selectedRadioButton}
+              onPress={handleRadioButtonPress}
+            />
+          ) : null}
         </View>
       </View>
     </TouchableOpacity>
@@ -89,10 +102,10 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     backgroundColor: globalStyles.colors.inputBckgColor,
     borderRadius: globalStyles.borderRadius,
-  
+
     width: '100%',
     height: 48,
-    marginBottom: 20,
+    // marginBottom: 20,
   },
   smallText: {
     width: 167,
@@ -108,7 +121,7 @@ const styles = StyleSheet.create({
     fontWeight: globalStyles.fontStyle.textFontWeight,
     color: '#7E7F83',
     marginLeft: 10,
-// width:110
+    width: 120,
   },
   rotateImg: {
     width: 20,

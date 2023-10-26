@@ -1,51 +1,31 @@
-import React, {useState} from 'react';
-import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
+import React, { useState } from 'react';
+import { View, TouchableOpacity, Image, StyleSheet } from 'react-native';
 
-const RadioButton = ({index}:{index:number}) => {
-    const [checked, setChecked] = useState(0);
-  
+interface RadioButtonProps {
+  index: number;
+  checkedIndex: number;
+  onPress: (index: number) => void;
+}
+
+const RadioButton: React.FC<RadioButtonProps> = ({ index, checkedIndex, onPress }) => {
   return (
-    <View>
-      <View style={styles.btn}>
-            <View >
-              {checked == index ? (
-                <TouchableOpacity style={styles.btn}>
-                  <Image
-                    style={styles.img}
-                    source={require('../../assets/images/checked.png')}
-                  />
-                </TouchableOpacity>
-              ) : (
-                <TouchableOpacity
-                  onPress={() => {
-                    setChecked(index);
-                  }}
-                  style={styles.btn}>
-                  <Image
-                    style={styles.img}
-                    source={require('../../assets/images/unchecked.png')}
-                  />
-                </TouchableOpacity>
-              )}
-            </View>
-         
-      </View>
-    </View>
-  );
+    <TouchableOpacity onPress={() => onPress(index)} style={styles.btn}>
+      <Image
+        style={styles.img}
+        source={index === checkedIndex ? require('../../assets/images/checked.png') : require('../../assets/images/unchecked.png')}
+      />
+    </TouchableOpacity>
+  )
 };
 
 const styles = StyleSheet.create({
-  radio: {
-    flexDirection: 'row',
-  },
   img: {
     height: 20,
     width: 20,
-    marginHorizontal: 5,
   },
   btn: {
-    flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'center',
   },
 });
 
