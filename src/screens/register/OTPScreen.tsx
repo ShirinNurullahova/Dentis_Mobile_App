@@ -6,13 +6,10 @@ import TextComponent from '../../components/Text/Text';
 const OTPScreen = () => {
   const [otp, setOtp] = useState('');
   const handleTextChange = (e: any) => {
-    console.log(e);
+   
     setOtp(e);
   };
   const handleSubmit = () => {};
-    
-  
- 
  
   return (
     <SafeAreaView style={styles.otpScreen}>

@@ -19,7 +19,8 @@ const EndTextComponent = ({ text,diffText,size }: Props) => {
 const styles = StyleSheet.create({
     all:{
         textAlign:'center',
-        margin:20,
+        marginTop:20,
+        marginBottom:28,
         fontSize: globalStyles.fontStyle.endTextFontSize,
         fontWeight: globalStyles.fontStyle.textFontWeight,
         fontFamily:  globalStyles.fontStyle.primary,
