@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import OTPTextInput from 'react-native-otp-textinput';
 import { View, Text, StyleSheet } from 'react-native';
 import { globalStyles } from '../../constants/globalStyles';
@@ -7,6 +7,7 @@ interface Props {
   handleTextChange: ((text: string) => void) | undefined;
   inputCount: number;
   autoFocus: boolean;
+
 }
 
 const OTPInput = ({ autoFocus, handleTextChange, inputCount }: Props) => {
@@ -26,19 +27,23 @@ const OTPInput = ({ autoFocus, handleTextChange, inputCount }: Props) => {
   // Format minutes and seconds as 2-digit strings
   const formattedMinutes = String(minutes).padStart(2, '0');
   const formattedSeconds = String(seconds).padStart(2, '0');
+ 
 
+  
+  
   return (
     <View>
-      <Text style={styles.label}>Şifrə göndərildi: +994 51 987 65 43</Text>
+      <Text style={styles.labelMain}>Şifrə göndərildi: +994 51 987 65 43</Text>
       <View style={styles.size}>
         <OTPTextInput
           autoFocus={autoFocus}
+          tintColor={globalStyles.colors.green}
           textInputStyle={{
             borderWidth: 1,
-            height: 50,
+            height: 50,       
             width: 45,
             backgroundColor: '#F8F9F9',
-            borderColor: 'transparent',
+            borderBlockColor:'transparent',
             borderRadius: 12,
             borderBottomWidth: 1,
           }}
@@ -61,17 +66,26 @@ const styles = StyleSheet.create({
         width: "50%"
     },
   label: {
-    marginBottom: 20,
+    marginTop: 12,
     color: globalStyles.colors.inputEndTextColor,
     fontStyle: globalStyles.fontStyle.primaryStyle,
-    lineHeight: globalStyles.fontStyle.endTextLineHeight /* 142.857% */,
+    lineHeight: globalStyles.fontStyle.endTextLineHeight,
     fontSize: globalStyles.fontStyle.smallTextFontSize,
     fontWeight: globalStyles.fontStyle.textFontWeight,
     fontFamily: globalStyles.fontStyle.primary,
   },
+  labelMain:{
+    color: globalStyles.colors.inputEndTextColor,
+    fontStyle: globalStyles.fontStyle.primaryStyle,
+    lineHeight: globalStyles.fontStyle.endTextLineHeight,
+    fontSize: globalStyles.fontStyle.smallTextFontSize,
+    fontWeight: globalStyles.fontStyle.textFontWeight,
+    fontFamily: globalStyles.fontStyle.primary,
+    marginBottom:20
+  },
   send: {
     color: globalStyles.colors.green,
-    lineHeight: globalStyles.fontStyle.inputLineHeight /* 142.857% */,
+    lineHeight: globalStyles.fontStyle.inputLineHeight,
     fontSize: globalStyles.fontStyle.smallTextFontSize,
     fontWeight: globalStyles.fontStyle.primaryWeight,
     fontFamily: globalStyles.fontStyle.primary,

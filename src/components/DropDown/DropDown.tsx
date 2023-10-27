@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, Dimensions, StyleSheet, Image } from 'react-native';
 const { width } = Dimensions.get('window');
 import SelectDropdown from 'react-native-select-dropdown';
@@ -19,7 +19,15 @@ const Dropdown = ({ onPress, values, type, setMonth }: Props) => {
     onPress(selectedItem);
   };
   console.log(values);
+  const [border, setBorder] = useState(false);
 
+  const handleFocus = () => {
+    setBorder(true);
+  };
+
+  const handleBlur = () => {
+    setBorder(false);
+  };
   return (
     <View>
       <SelectDropdown
@@ -32,7 +40,9 @@ const Dropdown = ({ onPress, values, type, setMonth }: Props) => {
         rowTextForSelection={(item, index) => {
           return item;
         }}
-        buttonStyle={styles.dropdown1BtnStyle}
+        onFocus={handleFocus}
+          onBlur={handleBlur}
+        buttonStyle={[styles.dropdown1BtnStyle, border && styles.borderColor]}
         buttonTextStyle={styles.dropdown1BtnTxtStyle}
         renderDropdownIcon={(isOpened) => {
           return (
@@ -64,7 +74,11 @@ const styles = StyleSheet.create({
     width: 108,
     backgroundColor: globalStyles.colors.inputBckgColor,
     borderRadius: 12,
-    paddingHorizontal: 14,
+    paddingHorizontal: 14
+  },
+  borderColor:{
+    borderColor: globalStyles.colors.green,
+    borderWidth: 1,
   },
   dropdown1BtnTxtStyle: {
     color: globalStyles.colors.disableColor,

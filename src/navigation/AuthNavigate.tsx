@@ -78,7 +78,7 @@ export function AuthNavigate() {
       {/* <AuthNavigator.Screen name="Payment" component={Payment} /> */}
       {/* <AuthNavigator.Screen name="DoctorAccount" component={DoctorAccount} /> */}
       {/* <AuthNavigator.Screen name="EditDoctor" component={EditDoctor} /> */}
-      <AuthNavigator.Screen name="AddDoctor" component={AddDoctor} />
+      {/* <AuthNavigator.Screen name="AddDoctor" component={AddDoctor} /> */}
       {/* <AuthNavigator.Screen name="PaymentList" component={PaymentList} /> */}
       {/* <AuthNavigator.Screen name="PatientList" component={PatientList} /> */}
       {/* <AuthNavigator.Screen name="BottomModal" component={BottomModal} /> */}
@@ -89,7 +89,7 @@ export function AuthNavigate() {
       {/* <AuthNavigator.Screen name="AddClient" component={AddClient} /> */}
       {/* <AuthNavigator.Screen name="PatientAccount" component={PatientAccount} /> */}
       {/* <AuthNavigator.Screen name="DoctorPersonalPage" component={DoctorPersonalPage} /> */}
-      {/* <AuthNavigator.Screen name="OTPScreen" component={OTPScreen} /> */}
+      <AuthNavigator.Screen name="OTPScreen" component={OTPScreen} />
       {/* <AuthNavigator.Screen name="ResetPasswordScreen" component={ResetPasswordScreen} /> */}
       {/* <AuthNavigator.Screen name="AboutPage" component={About} /> */}
       {/* <AuthNavigator.Screen name="AddToCard" component={AddToCard} /> */}

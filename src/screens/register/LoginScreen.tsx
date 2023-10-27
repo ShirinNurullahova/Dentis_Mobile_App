@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import Screen from '../../components/Screen/Screen';
 import { StyleSheet, Text, View, Dimensions } from 'react-native';
 import Input from '../../components/Input/Input';
@@ -10,6 +10,7 @@ import EndTextComponent from '../../components/EndText/EndText';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { globalStyles } from '../../constants/globalStyles';
+import { usePasswordToggle } from '../../utils/showPassword';
 
 const loginValidationSchema = Yup.object().shape({
   mobilNomre: Yup.number()
@@ -23,12 +24,17 @@ const loginValidationSchema = Yup.object().shape({
     .required('Password is required'),
 });
 
+  
+    // State variable to track password visibility 
+  
 const LoginScreen: FC = () => {
+  const [showPassword, togglePassword] = usePasswordToggle();
+
   return (
     <SafeAreaView style={styles.all}>
       <Formik
         initialValues={{ mobilNomre: '', sifre: '' }}
-        onSubmit={(values) => console.log(values)}
+        onSubmit={() => {}}
         validationSchema={loginValidationSchema}
       >
         {({ handleChange, handleBlur, handleSubmit, values, errors, isValid }) => (
@@ -46,12 +52,14 @@ const LoginScreen: FC = () => {
               <Text style={{ fontSize: 10, color: 'red' }}>{errors.mobilNomre}</Text>
             )}
             <Input
-              onChangeText={handleChange('sifre')}
+              onChangeText={handleChange('sifre') }
               value={values.sifre}
               placeholder="Şifrə daxil edin"
               label="Şifrə"
               onBlur={handleBlur('mobilNomre')}
               iconShow={true}
+              secureTextEntry={!showPassword} 
+              handleShowPassword={togglePassword}
             />
             {values.sifre && errors.sifre && (
               <Text style={{ fontSize: 10, color: 'red' }}>{errors.sifre}</Text>
