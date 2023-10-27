@@ -46,7 +46,15 @@ const AddClient = () => {
 
   const [processSelect, setprocessSelect] = useState(false);
   const [currentProcessValue, setCurrentProcessValue] = useState(process[0]);
+  const [border, setBorder] = useState(false);
 
+  const handleFocus = () => {
+    setBorder(true);
+  };
+
+  const handleBlur = () => {
+    setBorder(false);
+  };
   return (
     <ScrollView>
       <View style={styles.addClient}>
@@ -57,11 +65,17 @@ const AddClient = () => {
           doctorName={'ilham Huseynov'}
           number={'+994707034368'}
           date={'12.06.1995'}
+          price={'32.50'}
+          onWait={'Gözlənilən'}
+          totalPrice={'60.50'}
+          totalAmount={'Ümumi məbləğ'}
+          image={require('../../assets/images/profile.png')}
         />
         <View style={styles.dropDownContainer}>
           <Text style={styles.dlabel}>Həkim</Text>
           <DropDownPicker
-            style={styles.dropDownn}
+
+            style={[styles.dropDownn,border && styles.borderColor]}
             items={doctors}
             open={collapse}
             setOpen={(isOpen) => setCollapse(isOpen)}
@@ -78,6 +92,9 @@ const AddClient = () => {
             listParenxtContainerStyle={{
               backgroundColor: '#F8F9F9',
             }}
+            //  onPress={handleFocus}
+             
+             closeOnBackPressed={handleBlur}
             listItemLabelStyle={{ color: '#B4B6B8' }}
           />
         </View>
@@ -188,6 +205,10 @@ const styles = StyleSheet.create({
     width: 85,
     paddingVertical: 14,
     borderRadius: globalStyles.borderRadius,
+  },
+  borderColor:{
+    borderColor: globalStyles.colors.green,
+    borderWidth: 1,
   },
   dlabel: {
     fontSize: globalStyles.fontStyle.smallTextFontSize,

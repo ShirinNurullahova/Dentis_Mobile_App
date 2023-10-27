@@ -16,7 +16,10 @@ const CardDetailTwo = () => {
   };
   return (
     <View style={styles.cardDetailTwoPage}>
-      <CardDetailButton text="1234 5678 9876 5432" showIcon={false} disabled={true} imgIcon={require('../../assets/images/cardDetail.png')}/>
+      <View style={styles.cardB}>
+      <CardDetailButton text="1234 5678 9876 5432" showIcon={false} disabled={false} imgIcon={require('../../assets/images/cardDetail.png')}/>
+
+      </View>
       <View style={styles.add}>
         <CheckBox
           disabled={false}
@@ -28,6 +31,7 @@ const CardDetailTwo = () => {
         />
         <Text style={styles.checktext}>Ödənişlərin qəbulu üçün əsas kart olaraq təyin et</Text>
       </View>
+      <View style={styles.bottomB}>
       <CustomButton
         onPress={handleSubmit}
         text="Kartı sil"
@@ -43,6 +47,8 @@ const CardDetailTwo = () => {
         type="submit"
         disabled={true}
       />
+      </View>
+      
     </View>
   );
 };
@@ -54,17 +60,25 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 16,
     paddingTop: 100,
+  
+  },
+  bottomB:{
+    width:'100%'
+  },
+  cardB:{
+    width:'100%'
   },
   add: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'center',
+    // justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 20,
+    marginBottom: 42,
+     marginTop:16,
+    width:"100%",
   },
   checktext: {
     marginLeft:10,
-    width:317,
     fontSize: globalStyles.fontStyle.doctorDetailFontSize,
     fontFamily: globalStyles.fontStyle.primary,
     color: globalStyles.colors.black,

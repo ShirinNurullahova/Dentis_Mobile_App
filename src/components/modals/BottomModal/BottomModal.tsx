@@ -87,6 +87,7 @@ function BottomModal({ setModalVisible, isModalVisible, toggleModal, showPayment
                       showDropDown={true}
                       showIcon={false}
                       disabled={true}
+                      imgIcon={require('../../../assets/images/plusIcon.png')}
                     />
                   </View>
                 </>

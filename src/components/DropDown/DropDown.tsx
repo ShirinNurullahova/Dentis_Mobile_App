@@ -41,7 +41,7 @@ const Dropdown = ({ onPress, values, type, setMonth }: Props) => {
           return item;
         }}
         onFocus={handleFocus}
-          onBlur={handleBlur}
+        onBlur={handleBlur}
         buttonStyle={[styles.dropdown1BtnStyle, border && styles.borderColor]}
         buttonTextStyle={styles.dropdown1BtnTxtStyle}
         renderDropdownIcon={(isOpened) => {
