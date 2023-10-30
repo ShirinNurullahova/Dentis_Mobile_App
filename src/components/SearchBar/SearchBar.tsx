@@ -17,6 +17,7 @@ const SearchBarComponent = () => {
         </View>
         <TextInput
           placeholder="Axtar"
+          placeholderTextColor='#B4B6B8'
           clearButtonMode="always"
           autoCapitalize="none"
           autoCorrect={false}

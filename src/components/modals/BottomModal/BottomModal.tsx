@@ -1,5 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { Button, ImageSourcePropType, StatusBar, StyleSheet, Text, View } from 'react-native';
+import {
+  Button,
+  ImageSourcePropType,
+  StatusBar,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import Modal from 'react-native-modal';
 import { globalStyles } from '../../../constants/globalStyles';
 import CardDetailButton from '../../cardDetailButton/CardDetailButton';
@@ -14,9 +23,16 @@ interface IData {
   image?: ImageSourcePropType;
   text?: string;
   endText?: string;
+  bonus?: boolean;
 }
 
-function BottomModal({ setModalVisible, isModalVisible, toggleModal, showPaymentDetails }: any) {
+function BottomModal({
+  setModalVisible,
+  isModalVisible,
+  toggleModal,
+  showPaymentDetails,
+  bonus,
+}: any) {
   const [open, setOpen] = useState(false);
   const [detail, setDetail] = useState();
   const [data, setData] = useState<IData | null>(null);
@@ -30,13 +46,16 @@ function BottomModal({ setModalVisible, isModalVisible, toggleModal, showPayment
   }, [detail]);
 
   const [selectedRadioButton, setSelectedRadioButton] = useState<number>(-1);
-
+  const [selectedButtonIndex, setSelectedButtonIndex] = useState(-1);
+  const handlePress = (index: number) => {
+    setSelectedButtonIndex(index);
+  };
   const handleRadioButtonPress = (buttonIndex: number) => {
     setSelectedRadioButton(buttonIndex);
   };
-
+  const bonusData = ['AZN', '%'];
   return (
-    <View style={styles.flexView}>
+    <View style={[styles.flexView]}>
       <StatusBar />
 
       <Modal
@@ -53,13 +72,25 @@ function BottomModal({ setModalVisible, isModalVisible, toggleModal, showPayment
         backdropTransitionOutTiming={500}
         style={styles.modal}
       >
-        <View style={styles.modalContent}>
+        <View style={[styles.modalContent, bonus && styles.heightDec]}>
           <View style={styles.center}>
             <View style={styles.barIcon} />
-            <Text style={styles.infoText}>{!open ? 'Kartı seçin' : 'Ödəniş məlumatları'}</Text>
+            {/* <Text style={styles.infoText}>{!open ? 'Kartı seçin' : 'Ödəniş məlumatları'}</Text> */}
+            <Text style={styles.infoText}>
+              {bonus ? 'Bonus miqdarını təyin et' : !open ? 'Kartı seçin' : 'Ödəniş məlumatları'}
+            </Text>
 
             <View style={{ width: '100%' }}>
-              {!open ? (
+              {bonus ? (
+                <TextInput
+                  placeholder="Miqdar"
+                  placeholderTextColor="#B4B6B8"
+                  style={styles.bonusIn}
+                  // value={''}
+                  keyboardType='phone-pad'
+                  onChangeText={() => {}}
+                />
+              ) : !open ? (
                 <>
                   {cardData.map((el, index) => {
                     return (
@@ -119,7 +150,30 @@ function BottomModal({ setModalVisible, isModalVisible, toggleModal, showPayment
                   </View>
                 </View>
               )}
-
+              {bonus && (
+                <View style={styles.buttonsView}>
+                  {bonusData.map((e, index) => {
+                    return (
+                      <TouchableOpacity key={index} onPress={() => handlePress(index)}>
+                        <View
+                          style={[
+                            styles.percentButton,
+                            {
+                              borderColor:
+                                selectedButtonIndex === index
+                                  ? globalStyles.colors.green
+                                  : 'transparent',
+                              borderWidth: selectedButtonIndex === index ? 1 : 0,
+                            },
+                          ]}
+                        >
+                          <Text style={styles.percentText}>{e}</Text>
+                        </View>
+                      </TouchableOpacity>
+                    );
+                  })}
+                </View>
+              )}
               <CustomButton
                 onPress={() => {
                   data && setOpen(true);
@@ -153,6 +207,11 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     margin: 0,
   },
+  bonusIn: {
+    paddingHorizontal: 16,
+    paddingVertical: 14,
+    marginBottom: 24,
+  },
   addCard: {
     marginBottom: 10,
   },
@@ -171,6 +230,25 @@ const styles = StyleSheet.create({
   },
   paymentView: {
     marginBottom: 20,
+  },
+  buttonsView: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginBottom:24
+  },
+  percentText: {
+    color: globalStyles.colors.green,
+    fontSize: globalStyles.fontStyle.dropDownFontSize,
+  },
+  percentButton: {
+    paddingHorizontal: 16,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 85,
+    paddingVertical: 14,
+    borderRadius: globalStyles.borderRadius,
   },
   center: {
     display: 'flex',
@@ -200,4 +278,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     height: 500,
   },
+  heightDec:{
+    minHeight: 250,
+  }
 });

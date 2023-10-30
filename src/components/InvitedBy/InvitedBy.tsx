@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     textAlign: 'center',
-    marginTop: 40,
+    // marginTop: 40,
   },
   smallImg: {
     width: 24,

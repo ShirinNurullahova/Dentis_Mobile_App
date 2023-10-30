@@ -11,7 +11,7 @@ interface Props {
   label?: string;
   iconShow?: boolean;
   cardIconShow?: boolean;
-  onBlur: (e: string | ChangeEvent<any>) => void;
+  onBlur?: (e: string | ChangeEvent<any>) => void;
   type?: string | any;
   handleShowPassword?: () => void;
   secureTextEntry?: boolean;
