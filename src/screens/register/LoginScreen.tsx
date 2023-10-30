@@ -11,21 +11,11 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { globalStyles } from '../../constants/globalStyles';
 import { usePasswordToggle } from '../../utils/showPassword';
+import { loginValidationSchema } from '../../utils/validation';
 
-const loginValidationSchema = Yup.object().shape({
-  mobilNomre: Yup.number()
-    .typeError("That doesn't look like a phone number")
-    .positive("A phone number can't start with a minus")
-    .integer("A phone number can't include a decimal point")
-    .min(8)
-    .required('A phone number is required'),
-  sifre: Yup.string()
-    .min(8, ({ min }) => `Password must be at least ${min} characters`)
-    .required('Password is required'),
-});
 
   
-    // State variable to track password visibility 
+ 
   
 const LoginScreen: FC = () => {
   const [showPassword, togglePassword] = usePasswordToggle();

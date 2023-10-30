@@ -11,18 +11,8 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { globalStyles } from '../../constants/globalStyles';
 import ImagePicker from '../../components/ImagePicker/ImagePicker';
+import { settingValidationSchema } from '../../utils/validation';
 
-const settingValidationSchema = Yup.object().shape({
-  adSoyad: Yup.string()
-    .matches(/(\w.+\s).+/, 'Enter at least 2 names')
-    .required('Full name is required'),
-  mobilNomre: Yup.number()
-    .typeError("That doesn't look like a phone number")
-    .positive("A phone number can't start with a minus")
-    .integer("A phone number can't include a decimal point")
-    .min(8)
-    .required('A phone number is required'),
-});
 
 const Settings: FC = () => {
   const [month, setMonth] = useState();
