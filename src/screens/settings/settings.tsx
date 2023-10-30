@@ -87,8 +87,7 @@ const Settings: FC = () => {
                   bckgColor={true}
                   disabled={false}
                 />
-              </View>
-              <View style={styles.dist}>
+
                 <CustomButton
                   onPress={handleSubmit}
                   text="Yadda saxla"

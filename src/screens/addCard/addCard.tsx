@@ -101,18 +101,21 @@ const styles = StyleSheet.create({
   all: {
     flex: 1,
     justifyContent: 'space-between',
-    alignItems: 'center',
+    // alignItems: 'center',
     paddingHorizontal: 16,
     paddingTop: 100,
     paddingBottom: 40,
   },
   bottomPart: {
-    marginTop: 50,
+    marginTop: 60,
+   
   },
   bottomPartEl: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
+     marginTop:20,
+     marginBottom:20
   },
   endTextDiv: {
     margin: 20,

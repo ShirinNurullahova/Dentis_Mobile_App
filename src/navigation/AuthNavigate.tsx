@@ -79,17 +79,17 @@ export function AuthNavigate() {
       {/* <AuthNavigator.Screen name="DoctorAccount" component={DoctorAccount} /> */}
       {/* <AuthNavigator.Screen name="EditDoctor" component={EditDoctor} /> */}
       {/* <AuthNavigator.Screen name="AddDoctor" component={AddDoctor} /> */}
-      {/* <AuthNavigator.Screen name="PaymentList" component={PaymentList} /> */}
       {/* <AuthNavigator.Screen name="PatientList" component={PatientList} /> */}
       {/* <AuthNavigator.Screen name="BottomModal" component={BottomModal} /> */}
       {/* <AuthNavigator.Screen name="AdminHomePage" component={AdminHomePage} /> */}
       {/* <AuthNavigator.Screen name="DoctorAccount" component={DoctorAccount} /> */}
       {/* <AuthNavigator.Screen name="PaymentList" component={PaymentList} /> */}
+      {/* <AuthNavigator.Screen name="AddedPatientMore" component={AddedPatientMore} /> */}
       {/* <AuthNavigator.Screen name="AddCard" component={AddCard} /> */}
-      {/* <AuthNavigator.Screen name="AddClient" component={AddClient} /> */}
+      <AuthNavigator.Screen name="AddClient" component={AddClient} />
       {/* <AuthNavigator.Screen name="PatientAccount" component={PatientAccount} /> */}
       {/* <AuthNavigator.Screen name="DoctorPersonalPage" component={DoctorPersonalPage} /> */}
-      <AuthNavigator.Screen name="OTPScreen" component={OTPScreen} />
+      {/* <AuthNavigator.Screen name="OTPScreen" component={OTPScreen} /> */}
       {/* <AuthNavigator.Screen name="ResetPasswordScreen" component={ResetPasswordScreen} /> */}
       {/* <AuthNavigator.Screen name="AboutPage" component={About} /> */}
       {/* <AuthNavigator.Screen name="AddToCard" component={AddToCard} /> */}
@@ -99,7 +99,6 @@ export function AuthNavigate() {
       {/* <AuthNavigator.Screen name="Settings" component={Settings} /> */}
       {/* <AuthNavigator.Screen name="CardDetail" component={CardDetail} /> */}
       {/* <AuthNavigator.Screen name="CardDetailTwo" component={CardDetailTwo} /> */}
-      {/* <AuthNavigator.Screen name="HomePage" component={HomePage} /> */}
       {/* <AuthNavigator.Screen name="HomePage" component={HomePage} /> */}
       {/* <AuthNavigator.Screen name="AboutPage" component={About} /> */}
       {/* <AuthNavigator.Screen name="AddToCard" component={AddToCard} /> */}

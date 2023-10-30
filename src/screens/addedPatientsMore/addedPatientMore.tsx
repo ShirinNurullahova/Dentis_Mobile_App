@@ -33,6 +33,7 @@ const AddedPatientMore = () => {
             flexDirection: 'row',
             flexWrap: 'wrap',
             marginTop: 40,
+            marginBottom:32,
             backgroundColor: 'transparent',
           }}
         >
@@ -64,7 +65,7 @@ const AddedPatientMore = () => {
 
 const styles = StyleSheet.create({
   addedPatientMore: {
-    paddingHorizontal: 16,
+    paddingHorizontal: 16
   },
   additionColor: {
     color: '#8A54E1',

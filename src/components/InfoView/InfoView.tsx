@@ -21,7 +21,7 @@ const InfoView = ({background}: Props) => {
 
 const styles = StyleSheet.create({
   info: {
-    marginBottom: 20,
+    marginBottom: 40,
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',

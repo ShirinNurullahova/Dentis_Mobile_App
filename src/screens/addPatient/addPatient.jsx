@@ -6,6 +6,7 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import CustomButton from '../../components/Button/Button';
 import DropDownPicker from 'react-native-dropdown-picker';
+import TextComponent from '../../components/Text/Text';
 
 const addPatient = Yup.object().shape({
   name: Yup.string().min(
@@ -37,9 +38,11 @@ const AddPatient = () => {
 
   return (
     <View>
-      <View style={styles.textOfPatient}>
-        <Text style={styles.titleOfPatient}>Müştəri daxil et</Text>
-      </View>
+        <View style={styles.textOfPatient}>
+        <TextComponent text="Müştəri daxil et" fontSize={false}/>
+
+          </View>
+
       <View style={styles.paddingHorizontal}>
         <Formik
           initialValues={{ name: '', number: '', doctorName: '' }}
@@ -135,7 +138,8 @@ export default AddPatient;
 
 const styles = StyleSheet.create({
   textOfPatient: {
-    paddingTop: 32,
+    marginTop: 80,
+    marginBottom:40
   },
   titleOfPatient: {
     textAlign: 'center',
