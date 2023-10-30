@@ -7,17 +7,10 @@ import { VStack } from '../../components/features/VStack/VStack';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import TextComponent from '../../components/Text/Text';
 import { Formik } from 'formik';
-import * as Yup from 'yup';
+import { resetValidationSchema } from '../../utils/validation';
 import { usePasswordToggle } from '../../utils/showPassword';
 
-const resetValidationSchema = Yup.object().shape({
-  sifre: Yup.string()
-    .min(8, ({ min }) => `Password must be at least ${min} characters`)
-    .required('Password is required'),
-  yenisifre: Yup.string()
-    .min(8, ({ min }) => `Password must be at least ${min} characters`)
-    .required('Password is required'),
-});
+
 
 const ResetPasswordScreen: FC = () => {
   const [showPassword, togglePassword] = usePasswordToggle();

@@ -4,21 +4,8 @@ import CustomButton from '../../components/Button/Button';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { globalStyles } from '../../constants/globalStyles';
+import { aboutData } from '../../utils/validation';
 
-const aboutData = Yup.object().shape({
-  cardNumber: Yup.number()
-    .typeError("That doesn't look like a phone number")
-    .positive("A phone number can't start with a minus")
-    .integer("A phone number can't include a decimal point")
-    .min(16)
-    .required('A card number is required'),
-  date: Yup.string()
-    .min(4, ({ min }) => `content must be at least ${min} characters`)
-    .required('Password is required'),
-  ccv: Yup.string()
-    .min(3, ({ min }) => `ccv password must be at least ${min} characters`)
-    .required('CCV is required'),
-});
 
 const AddToCard = () => {
   return (

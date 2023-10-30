@@ -12,21 +12,8 @@ import * as Yup from 'yup';
 import { globalStyles } from '../../constants/globalStyles';
 import CardDetailButton from '../../components/cardDetailButton/CardDetailButton';
 import InfoView from '../../components/InfoView/InfoView';
+import { cardAddValidationSchema } from '../../utils/validation';
 
-const cardAddValidationSchema = Yup.object().shape({
-  kartNomresi: Yup.number()
-    .typeError("That doesn't look like a card number")
-    .positive("A card number can't start with a minus")
-    .integer("A card number can't include a decimal point")
-    .min(16)
-    .required('A card number is required'),
-  tarix: Yup.string()
-    .typeError('Not a valid expiration date. Example: MM/YY')
-    .max(5, 'Not a valid expiration date. Example: MM/YY')
-    .matches(/([0-9]{2})\/([0-9]{2})/, 'Not a valid expiration date. Example: MM/YY')
-    .required('Expiration date is required'),
-  cvv: Yup.string().label('CVC').min(3).max(4).required(),
-});
 
 const AddCard: FC = () => {
   return (
