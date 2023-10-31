@@ -24,15 +24,17 @@ const editDoctor = Yup.object().shape({
 
 const AddDoctor = ({}) => {
   const [showCamera, setShowCamera] = useState(false);
+  const [file, setFile] = useState('');
+
 
   return (
     <View style={{ position: 'relative', flex: 1 }}>
       {showCamera ? (
-        <CameraNew setShowCamera={setShowCamera} />
+        <CameraNew setShowCamera={setShowCamera} file={file} setFile={setFile} />
       ) : (
         <>
           <View style={styles.editImage}>
-            <ImagePicker setShowCamera={setShowCamera} />
+            <ImagePicker setShowCamera={setShowCamera} file={file}  setFile={setFile}/>
           </View>
           <View>
             <Formik

@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Svg, { Rect, G, Path, Defs, ClipPath } from 'react-native-svg';
+import Svg, { Rect, Path } from 'react-native-svg';
 
-function SvgComponent(props) {
+function SvgComponent(props: any) {
   return (
     <Svg
       width={36}
@@ -12,15 +12,13 @@ function SvgComponent(props) {
       {...props}
     >
       <Rect x={0.25} y={0.25} width={35.5} height={35.5} rx={17.75} fill="#fff" />
-      <G
-        clipPath="url(#clip0_675_287)"
+      <Path
+        d="M21.273 10.636L13.09 18.41l8.182 7.773"
         stroke="#5E6067"
-        strokeWidth={1.2}
+        strokeWidth={1.7}
         strokeLinecap="round"
         strokeLinejoin="round"
-      >
-        <Path d="M23.625 12.375l-11.25 11.25M23.625 23.625l-11.25-11.25" />
-      </G>
+      />
       <Rect
         x={0.25}
         y={0.25}
@@ -30,11 +28,6 @@ function SvgComponent(props) {
         stroke="#EFEFF1"
         strokeWidth={0.5}
       />
-      <Defs>
-        <ClipPath id="clip0_675_287">
-          <Path fill="#fff" transform="translate(8 8)" d="M0 0H20V20H0z" />
-        </ClipPath>
-      </Defs>
     </Svg>
   );
 }

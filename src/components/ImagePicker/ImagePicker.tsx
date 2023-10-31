@@ -3,13 +3,16 @@ import { StyleSheet, View, TouchableOpacity, Text, Image } from 'react-native';
 import { globalStyles } from '../../constants/globalStyles';
 import Edit from '../../assets/icons/Edit';
 import { launchImageLibrary, launchCamera } from 'react-native-image-picker';
-import CameraNew from '../Camera/Camera';
 
-interface Props {}
+interface Props {
+  setShowCamera: any;
+  file: string;
+  setFile: any;
+}
 
-const ImagePicker = ({ setShowCamera }: Props) => {
+const ImagePicker = ({ setShowCamera, file, setFile }: Props) => {
   const [modal, setModal] = useState(false);
-  const [file, setFile] = useState('');
+  // const [file, setFile] = useState('');
   // console.log(file);
   const onChooseImg = async () => {
     const result = await launchImageLibrary({
@@ -80,7 +83,7 @@ const styles = StyleSheet.create({
     paddingVertical: 24,
     position: 'absolute',
     top: 100,
-    left: -90,
+    right: -90,
     width: 250,
     borderWidth: 1,
     backgroundColor: '#FFF',

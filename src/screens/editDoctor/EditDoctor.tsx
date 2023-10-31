@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { View, Text, StyleSheet, TextInput } from 'react-native';
 import ImagePicker from '../../components/ImagePicker/ImagePicker';
 import { globalStyles } from '../../constants/globalStyles';
@@ -32,7 +32,7 @@ const EditDoctor = ({}) => {
       ) : (
         <>
           <View style={styles.editImage}>
-            <ImagePicker setShowCamera={setShowCamera} />
+            <ImagePicker setShowCamera={setShowCamera} imageSource="" />
           </View>
           <View>
             <Formik
