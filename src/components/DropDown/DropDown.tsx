@@ -18,7 +18,7 @@ const Dropdown = ({ onPress, values, type, setMonth }: Props) => {
     }
     onPress(selectedItem);
   };
-  console.log(values);
+
   const [border, setBorder] = useState(false);
 
   const handleFocus = () => {

@@ -71,7 +71,7 @@ export function AuthNavigate() {
   return (
     <AuthNavigator.Navigator screenOptions={screenOptions}>
       {/* <AuthNavigator.Screen name="LoginScreen" component={LoginScreen} /> */}
-      {/* <AuthNavigator.Screen name="SignUpScreen" component={SignUpScreen} /> */}
+      <AuthNavigator.Screen name="SignUpScreen" component={SignUpScreen} />
       {/* <AuthNavigator.Screen name="Doctorlist" component={Doctorlist} /> */}
       {/* <AuthNavigator.Screen name="DoctorDetail" component={DoctorDetail} /> */}
       {/* <AuthNavigator.Screen name="AddPatient" component={AddPatient} /> */}
@@ -79,7 +79,7 @@ export function AuthNavigate() {
       {/* <AuthNavigator.Screen name="DoctorAccount" component={DoctorAccount} /> */}
       {/* <AuthNavigator.Screen name="EditDoctor" component={EditDoctor} /> */}
       {/* <AuthNavigator.Screen name="AddDoctor" component={AddDoctor} /> */}
-      <AuthNavigator.Screen name="PatientList" component={PatientList} />
+      {/* <AuthNavigator.Screen name="PatientList" component={PatientList} /> */}
       {/* <AuthNavigator.Screen name="BottomModal" component={BottomModal} /> */}
       {/* <AuthNavigator.Screen name="AdminHomePage" component={AdminHomePage} /> */}
       {/* <AuthNavigator.Screen name="DoctorAccount" component={DoctorAccount} /> */}

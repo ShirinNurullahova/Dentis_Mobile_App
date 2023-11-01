@@ -6,12 +6,12 @@ interface Props {
   text: string;
   onPress: () => void;
   title: string;
-  disabled: boolean;
+  disabled?: boolean;
   type: string;
   bckgColor?: boolean;
 }
 
-const CustomButton = ({ text, onPress, disabled, bckgColor}: Props) => {
+const CustomButton = ({ text, onPress, disabled}: Props) => {
   return (
     <TouchableOpacity onPress={onPress}>
       <View style={[styles.button, (disabled && styles.diff)]}>

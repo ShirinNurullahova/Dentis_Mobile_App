@@ -181,7 +181,7 @@ const AddClient = () => {
             disabled={true}
           />
         </View>
-        <BottomModal bonus={true}  toggleModal={handlePress} setModalVisible={setModalVisible} isModalVisible={isModalVisible}/>
+        <BottomModal termOfUse={false} bonus={true}  toggleModal={handlePress} setModalVisible={setModalVisible} isModalVisible={isModalVisible}/>
 
       </View>
     </ScrollView>

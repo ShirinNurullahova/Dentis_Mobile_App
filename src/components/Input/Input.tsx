@@ -36,7 +36,7 @@ const Input = ({
   const handleBlur = () => {
     setBorder(false);
   };
-console.log({secureTextEntry})
+
   return (
     <View style={styles.inputComponent}>
       <Text style={styles.text}>{label}</Text>

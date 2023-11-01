@@ -24,23 +24,27 @@ export const loginValidationSchema = Yup.object().shape({
 
 
   export const signUpValidationSchema = Yup.object().shape({
-    adSoyad: Yup.string()
+    fullName: Yup.string()
       .matches(/(\w.+\s).+/, 'Enter at least 2 names')
       .required('Full name is required'),
-    mobilNomre: Yup.number()
+    phone: Yup.number()
       .typeError("That doesn't look like a phone number")
       .positive("A phone number can't start with a minus")
       .integer("A phone number can't include a decimal point")
       .min(8)
       .required('A phone number is required'),
   
-    sifre: Yup.string()
+    password: Yup.string()
       .matches(/\w*[a-z]\w*/, 'Password must have a small letter')
       .matches(/\w*[A-Z]\w*/, 'Password must have a capital letter')
       .matches(/\d/, 'Password must have a number')
       .matches(/[!@#$%^&*()\-_"=+{}; :,<.>]/, 'Password must have a special character')
       .min(8, ({ min }) => `Password must be at least ${min} characters`)
       .required('Password is required'),
+    
+      dataPrivacy: Yup.bool().oneOf([true], 'Accept Terms & Conditions is required')
+       
+      
   });
   
   export const aboutValidationSchema = Yup.object().shape({
