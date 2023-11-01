@@ -28,7 +28,7 @@ const CameraNew = ({ setShowCamera, file, setFile }: any) => {
     if (camera.current !== null) {
       const photo = await camera.current.takePhoto();
       console.log(photo);
-      setFile('file://' +photo.path);
+      setFile('file://' + photo.path);
       setShowCameraNew(false);
     }
   };

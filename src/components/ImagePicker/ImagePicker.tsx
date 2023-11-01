@@ -12,8 +12,7 @@ interface Props {
 
 const ImagePicker = ({ setShowCamera, file, setFile }: Props) => {
   const [modal, setModal] = useState(false);
-  // const [file, setFile] = useState('');
-  // console.log(file);
+  
   const onChooseImg = async () => {
     const result = await launchImageLibrary({
       mediaType: 'photo',
