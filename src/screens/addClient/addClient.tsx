@@ -9,6 +9,7 @@ import THEMES from '../../..';
 import { G } from 'react-native-svg';
 import Input from '../../components/Input/Input';
 import CustomButton from '../../components/Button/Button';
+import BottomModal from '../../components/modals/BottomModal/BottomModal';
 
 const AddClient = () => {
   const doctors = useMemo(() => {
@@ -40,28 +41,53 @@ const AddClient = () => {
       { label: 'John', value: 'John' },
     ];
   }, []);
- 
+
   const [collapse, setCollapse] = useState(false);
   const [currentValue, setCurrentValue] = useState(doctors[0]);
 
   const [processSelect, setprocessSelect] = useState(false);
   const [currentProcessValue, setCurrentProcessValue] = useState(process[0]);
+  const [border, setBorder] = useState(false);
+  const [selectedButtonIndex, setSelectedButtonIndex] = useState(-1);
+  const [isModalVisible, setModalVisible] = useState(false);
 
+  const handlePress = (index: number) => {
+    setSelectedButtonIndex(index);
+    if(index ===3){
+      setModalVisible(!isModalVisible);
+    }
+  };
+  const handleFocus = () => {
+    setBorder(true);
+  };
+
+  const handleBlur = () => {
+    setBorder(false);
+  };
+ 
+  const data = ['5%', '10%', '20%', 'Manual'];
   return (
     <ScrollView>
       <View style={styles.addClient}>
         <TextComponent text="Müştəri daxil et" />
-        <InvitedBy text={'tərəfindən daxil olunub'} name="Sənan Rzayev" />
+        <View style={styles.inviteByText}>
+          <InvitedBy text={'tərəfindən daxil olunub'} name="Sənan Rzayev" />
+        </View>
         <ClientDetail
           clientName={'Nermin Memmedov'}
           doctorName={'ilham Huseynov'}
           number={'+994707034368'}
           date={'12.06.1995'}
+          price={'32.50'}
+          onWait={'Gözlənilən'}
+          totalPrice={'60.50'}
+          totalAmount={'Ümumi məbləğ'}
+          image={require('../../assets/images/profile.png')}
         />
         <View style={styles.dropDownContainer}>
           <Text style={styles.dlabel}>Həkim</Text>
           <DropDownPicker
-            style={styles.dropDownn}
+            style={[styles.dropDownn, border && styles.borderColor]}
             items={doctors}
             open={collapse}
             setOpen={(isOpen) => setCollapse(isOpen)}
@@ -78,6 +104,9 @@ const AddClient = () => {
             listParenxtContainerStyle={{
               backgroundColor: '#F8F9F9',
             }}
+            //  onPress={handleFocus}
+
+            closeOnBackPressed={handleBlur}
             listItemLabelStyle={{ color: '#B4B6B8' }}
           />
         </View>
@@ -118,26 +147,24 @@ const AddClient = () => {
         <View style={styles.bottomsView}>
           <Text style={styles.dlabel}>Bonus miqdarı</Text>
           <View style={styles.buttonsView}>
-            <TouchableOpacity>
-              <View style={styles.percentButton}>
-                <Text style={styles.percentText}>5%</Text>
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity>
-              <View style={styles.percentButton}>
-                <Text style={styles.percentText}>5%</Text>
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity>
-              <View style={styles.percentButton}>
-                <Text style={styles.percentText}>5%</Text>
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity>
-              <View style={styles.percentButton}>
-                <Text style={styles.percentText}>Manual</Text>
-              </View>
-            </TouchableOpacity>
+            {data.map((e, index) => {
+              return (
+                <TouchableOpacity key={index} onPress={() => handlePress(index)}>
+                  <View
+                    style={[
+                      styles.percentButton,
+                      {
+                        borderColor:
+                          selectedButtonIndex === index ? globalStyles.colors.green : 'transparent',
+                          borderWidth:  selectedButtonIndex === index ? 1 : 0
+                      },
+                    ]}
+                  >
+                    <Text style={styles.percentText}>{e}</Text>
+                  </View>
+                </TouchableOpacity>
+              );
+            })}
           </View>
         </View>
 
@@ -154,6 +181,8 @@ const AddClient = () => {
             disabled={true}
           />
         </View>
+        <BottomModal termOfUse={false} bonus={true}  toggleModal={handlePress} setModalVisible={setModalVisible} isModalVisible={isModalVisible}/>
+
       </View>
     </ScrollView>
   );
@@ -170,6 +199,9 @@ const styles = StyleSheet.create({
   },
   bottomsView: {
     marginTop: 20,
+  },
+  inviteByText: {
+    margin: 16,
   },
   buttonsView: {
     display: 'flex',
@@ -188,6 +220,11 @@ const styles = StyleSheet.create({
     width: 85,
     paddingVertical: 14,
     borderRadius: globalStyles.borderRadius,
+    
+  },
+  borderColor: {
+    borderColor: globalStyles.colors.green,
+    borderWidth: 1,
   },
   dlabel: {
     fontSize: globalStyles.fontStyle.smallTextFontSize,

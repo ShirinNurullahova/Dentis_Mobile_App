@@ -7,9 +7,12 @@ import store, {persistor} from './src/store';
 import {PersistGate} from 'redux-persist/integration/react';
 import {Navigator} from './src/navigation/Navigator';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
+
+  
+
 
 function App(): JSX.Element {
+
   useEffect(() => {
     if (Platform.OS === 'android') {
       // NativeModules.SplashScreenModule.hide();

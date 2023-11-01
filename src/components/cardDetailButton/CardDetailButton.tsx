@@ -13,8 +13,8 @@ import RadioButton from '../RadioButton/RadioButton';
 
 interface CardDetailButtonProps {
   text?: string; // Specify the type of the 'text' prop
-  isPressed?: boolean;
-  onPress?: () => void;
+  isPressedButton?: boolean;
+  onPress?: (index?: number) => void;
   value?: string;
   onChangeText?: (e: string | ChangeEvent<any>) => void;
   endText?: string;
@@ -27,10 +27,10 @@ interface CardDetailButtonProps {
   index?: number;
   showDropDown?: boolean;
   setDetail?: any;
+  selectedRadioButton?: any;
 }
 const CardDetailButton: React.FC<CardDetailButtonProps> = ({
   text,
-  isPressed,
   onPress,
   endText = '',
   showIcon,
@@ -42,30 +42,25 @@ const CardDetailButton: React.FC<CardDetailButtonProps> = ({
   showCheckBox,
   showDropDown,
   index,
-  setDetail
+  setDetail,
+  selectedRadioButton,
+  isPressedButton
 }) => {
-  const [selectedRadioButton, setSelectedRadioButton] = useState<number>(-1);
-  const handleRadioButtonPress = (buttonIndex: number) => {
-    setDetail(buttonIndex)
-    setSelectedRadioButton(buttonIndex);
-  };
+  // const isPressedButton = index === selectedRadioButton;
   return (
     <TouchableOpacity onPress={onPress}>
       <View
         style={[
           styles.cardButton,
-          isPressed ? { borderColor: '#12CC89', borderWidth: 1 } : null,
-          width && styles.smallText
+          isPressedButton ? { borderColor: '#12CC89', borderWidth: 1 } : null,
+          width && styles.smallText,
         ]}
       >
         <View style={styles.left}>
           {showIcon ? (
             <Image source={imgIcon} style={{ width: 32, height: 32 }} />
           ) : (
-            <Image
-              source={require('../../assets/images/cardDetail.png')}
-              style={{ width: 32, height: 32 }}
-            />
+            <Image source={imgIcon} style={{ width: 20, height: 20 }} />
           )}
           <TextInput
             style={styles.cardText}
@@ -81,11 +76,15 @@ const CardDetailButton: React.FC<CardDetailButtonProps> = ({
             <Image source={require('../../assets/images/dropdown.png')} style={styles.rotateImg} />
           ) : null}
           {showCheckBox ? (
-            <RadioButton
-              index={index}
-              checkedIndex={selectedRadioButton}
-              onPress={handleRadioButtonPress}
-            />
+            <TouchableOpacity
+              onPress={() => {
+                setDetail(index), onPress(index);
+              }}
+            >
+              {showCheckBox ? (
+                <RadioButton index={index} checkedIndex={selectedRadioButton} />
+              ) : null}
+            </TouchableOpacity>
           ) : null}
         </View>
       </View>
@@ -102,9 +101,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     backgroundColor: globalStyles.colors.inputBckgColor,
     borderRadius: globalStyles.borderRadius,
-
     width: '100%',
-    height: 48,
+    height: 64,
     // marginBottom: 20,
   },
   smallText: {
@@ -121,7 +119,8 @@ const styles = StyleSheet.create({
     fontWeight: globalStyles.fontStyle.textFontWeight,
     color: '#7E7F83',
     marginLeft: 10,
-    width: 120,
+    zIndex:999999,
+    // width: "100%"
   },
   rotateImg: {
     width: 20,

@@ -7,13 +7,8 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { globalStyles } from '../../constants/globalStyles';
+import { aboutValidationSchema } from '../../utils/validation';
 
-const loginValidationSchema = Yup.object().shape({
-  text: Yup.string().min(4).required('Text is required'),
-  textArea: Yup.string()
-    .min(8, ({ min }) => `Text content has to be contain ${min} characters`)
-    .required('Text required'),
-});
 
 const About = () => {
   const [file, setFile] = useState('');
@@ -58,7 +53,7 @@ const About = () => {
       <Formik
         initialValues={{ text: '', textArea: '' }}
         onSubmit={(values) => console.log(values)}
-        validationSchema={loginValidationSchema}
+        validationSchema={aboutValidationSchema}
       >
         {({ handleChange, handleBlur, handleSubmit, values, errors, isValid }) => (
           <View>

@@ -7,20 +7,8 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import CustomButton from '../../components/Button/Button';
 import CameraNew from '../../components/Camera/Camera';
+import { editDoctorSchema } from '../../utils/validation';
 
-const editDoctor = Yup.object().shape({
-  name: Yup.string().min(
-    4,
-    ({ min }) => `Name content has to be contain at least ${min} characters`
-  ),
-  ixtisas: Yup.string().min(
-    4,
-    ({ min }) => `Profession content has to be contain at least ${min} characters`
-  ),
-  textArea: Yup.string()
-    .min(8, ({ min }) => `Text content has to be contain ${min} characters`)
-    .required('Text required'),
-});
 
 const EditDoctor = ({}) => {
   const [showCamera, setShowCamera] = useState(false);
@@ -38,7 +26,7 @@ const EditDoctor = ({}) => {
             <Formik
               initialValues={{ name: '', ixtisas: '', textArea: '' }}
               onSubmit={(values) => console.log(values)}
-              validationSchema={editDoctor}
+              validationSchema={editDoctorSchema}
             >
               {({
                 handleChange,

@@ -23,13 +23,21 @@ const PatientAccount = () => {
   return (
     <ScrollView>
       <View style={styles.patient}>
+        <View style={styles.invite}>
         <InvitedBy text={'tərəfindən daxil olunub'} name="Sənan Rzayev" />
+
+        </View>
         <ClientDetail
           clientName={'Nermin Memmedov'}
           doctorName={'ilham Huseynov'}
           number={'+994707034368'}
           date={'12.06.1995'}
           showDate={true}
+          price={'32.50'}
+          onWait={'Gözlənilən'}
+          totalPrice={'60.50'}
+          totalAmount={'Ümumi məbləğ'}
+          image={require('../../assets/images/profile.png')}
         />
         <InvitedBy text={'24 nəfər'} name="Əlavə edilənlər:" changeColor={true} />
         <PaymentsDetails data={data} showButton={false}/>
@@ -56,6 +64,9 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     flexDirection: 'row',
     justifyContent: 'space-between',
+  },
+  invite:{
+     margin:16
   },
   add: {
     fontFamily: globalStyles.fontStyle.primary,

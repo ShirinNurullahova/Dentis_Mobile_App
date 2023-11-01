@@ -6,12 +6,12 @@ interface Props {
   text: string;
   onPress: () => void;
   title: string;
-  disabled: boolean;
+  disabled?: boolean;
   type: string;
   bckgColor?: boolean;
 }
 
-const CustomButton = ({ text, onPress, disabled, bckgColor}: Props) => {
+const CustomButton = ({ text, onPress, disabled}: Props) => {
   return (
     <TouchableOpacity onPress={onPress}>
       <View style={[styles.button, (disabled && styles.diff)]}>
@@ -29,7 +29,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 20,
-    paddingVertical: 13,
+    // paddingVertical: 13,
+    height:48,
     borderRadius: 12,
     marginBottom:20,
     backgroundColor: globalStyles.colors.gray,

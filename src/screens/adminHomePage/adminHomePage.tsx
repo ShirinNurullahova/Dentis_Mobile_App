@@ -55,7 +55,7 @@ const AdminHomePage = () => {
           ))}
         </View>
       </View>
-      <BottomModal   toggleModal={toggleModal} setModalVisible={setModalVisible} isModalVisible={isModalVisible}/>
+      <BottomModal termOfUse={false}  toggleModal={toggleModal} setModalVisible={setModalVisible} isModalVisible={isModalVisible}/>
     </ScrollView>
   );
 };

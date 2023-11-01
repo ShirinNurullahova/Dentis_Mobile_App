@@ -7,18 +7,14 @@ import { VStack } from '../../components/features/VStack/VStack';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import TextComponent from '../../components/Text/Text';
 import { Formik } from 'formik';
-import * as Yup from 'yup';
+import { resetValidationSchema } from '../../utils/validation';
+import { usePasswordToggle } from '../../utils/showPassword';
 
-const resetValidationSchema = Yup.object().shape({
-  sifre: Yup.string()
-    .min(8, ({ min }) => `Password must be at least ${min} characters`)
-    .required('Password is required'),
-  yenisifre: Yup.string()
-    .min(8, ({ min }) => `Password must be at least ${min} characters`)
-    .required('Password is required'),
-});
+
 
 const ResetPasswordScreen: FC = () => {
+  const [showPassword, togglePassword] = usePasswordToggle();
+
   return (
     <SafeAreaView style={styles.all}>
       <Formik
@@ -37,6 +33,8 @@ const ResetPasswordScreen: FC = () => {
               type="text"
               onBlur={handleBlur('sifre')}
               iconShow={true}
+              secureTextEntry={!showPassword} 
+              handleShowPassword={togglePassword}
             />
             {values.sifre && errors.sifre && (
               <Text style={{ fontSize: 10, color: 'red' }}>{errors.sifre}</Text>
@@ -48,6 +46,8 @@ const ResetPasswordScreen: FC = () => {
               label="Yeni şifrəni təkrar et"
               onBlur={handleBlur('yenisifre')}
               iconShow={true}
+              secureTextEntry={!showPassword} 
+              handleShowPassword={togglePassword}
             />
             {values.yenisifre && errors.yenisifre && (
               <Text style={{ fontSize: 10, color: 'red' }}>{errors.yenisifre}</Text>
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
     paddingBottom: 40,
   },
   bottom:{
-    marginTop:60
+    marginTop:40
   }
 });
 

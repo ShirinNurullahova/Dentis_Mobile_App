@@ -6,17 +6,9 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import CustomButton from '../../components/Button/Button';
 import DropDownPicker from 'react-native-dropdown-picker';
+import TextComponent from '../../components/Text/Text';
+import { addPatient } from '../../utils/validation';
 
-const addPatient = Yup.object().shape({
-  name: Yup.string().min(
-    4,
-    ({ min }) => `Name content has to be contain at least ${min} characters`
-  ),
-  number: Yup.string()
-    .min(7, ({ min }) => `Number content has to be contain at least ${min} characters`)
-    .required('Number required'),
-  doctorName: Yup.string().required('Choose a doctor'),
-});
 
 const AddPatient = () => {
   const [collapse, setCollapse] = useState(false);
@@ -37,9 +29,11 @@ const AddPatient = () => {
 
   return (
     <View>
-      <View style={styles.textOfPatient}>
-        <Text style={styles.titleOfPatient}>Müştəri daxil et</Text>
-      </View>
+        <View style={styles.textOfPatient}>
+        <TextComponent text="Müştəri daxil et" fontSize={false}/>
+
+          </View>
+
       <View style={styles.paddingHorizontal}>
         <Formik
           initialValues={{ name: '', number: '', doctorName: '' }}
@@ -135,7 +129,8 @@ export default AddPatient;
 
 const styles = StyleSheet.create({
   textOfPatient: {
-    paddingTop: 32,
+    marginTop: 80,
+    marginBottom:40
   },
   titleOfPatient: {
     textAlign: 'center',
