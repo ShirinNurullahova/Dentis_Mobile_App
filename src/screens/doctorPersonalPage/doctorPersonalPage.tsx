@@ -8,7 +8,7 @@ const DoctorPersonalPage = () => {
   const route = useRoute();
   const [data, setData] = useState(route?.params?.doctor);
   // console.log( route?.params?.doctor)
-  console.log(data);
+
   function handleSubmit() {
     console.log('salam');
   }

@@ -1,11 +1,13 @@
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ENV_VAR } from '@env';
+import Instance from '../utils/AxiosInterceptor'
 
 export const getData = async (endpoint:any) => {
     const url = `${ENV_VAR}/${endpoint}`;
     try {
-      const { data } = await (await axios.get(url)).data;
+      const { data } = await (
+        await Instance.get(url))?.data;
       return data;
     } catch (error) {
       console.log(error);
@@ -13,22 +15,22 @@ export const getData = async (endpoint:any) => {
   };
 
 export const postData = async(endpoint: any, data?: any) => {
-  const token = AsyncStorage.getItem('accessToken');
+  const token = await AsyncStorage.getItem('accessToken');
+
   const url = `${ENV_VAR}/${endpoint}`;
   let response;
   try {
-    console.log('tes1');
     response = ( 
-      await axios.post(url, data, {
+      await Instance.post(url, data, {
       })
     )?.data
-    console.log(response);
   } catch (error: any) {
 
-    console.log(error);
+    console.log("error", error.response.data.message);
     
     response = error.response.data;
   }
+  
   return response;
 };
 
