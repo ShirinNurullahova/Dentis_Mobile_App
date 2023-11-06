@@ -1,58 +1,86 @@
-import React, { FC, useEffect, useState } from 'react';
-import Screen from '../../components/Screen/Screen';
-import { StyleSheet, Text, View, Dimensions } from 'react-native';
-import Input from '../../components/Input/Input';
-import CustomButton from '../../components/Button/Button';
-import { VStack } from '../../components/features/VStack/VStack';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import TextComponent from '../../components/Text/Text';
-import EndTextComponent from '../../components/EndText/EndText';
 import { Formik } from 'formik';
-import * as Yup from 'yup';
+import React, { FC } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import { postData } from '../../hooks/CustomHooks';
+import CustomButton from '../../components/Button/Button';
+import Input from '../../components/Input/Input';
+import TextComponent from '../../components/Text/Text';
 import { globalStyles } from '../../constants/globalStyles';
 import { usePasswordToggle } from '../../utils/showPassword';
 import { loginValidationSchema } from '../../utils/validation';
+import { useNavigation } from '@react-navigation/native';
+import { useDispatch } from 'react-redux';
+import { setLoginBody } from '../../store/reducers/authSlice';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-
-  
- 
-  
+interface FormData {
+  phone: number | string;
+  password: string;
+}
+const initialDataForm: FormData = {
+  phone: '',
+  password: '',
+};
 const LoginScreen: FC = () => {
-  const [showPassword, togglePassword] = usePasswordToggle();
+  const navigation = useNavigation()
 
+  const [showPassword, togglePassword] = usePasswordToggle();
+  const dispatch = useDispatch()
+
+  const onSubmitHandler = async (values: FormData, resetForm:any) => {
+    let dataForm: FormData = { ...initialDataForm }; // Use spread operator to clone initialDataForm
+    dataForm.phone = values.phone;
+    dataForm.password = values.password;
+    try {
+      dispatch(setLoginBody(values))
+      const response = await postData('auth/login', dataForm);
+      if (response.statusCode === 'success') { 
+        await AsyncStorage.setItem('accessToken', response.accessToken);
+        await AsyncStorage.setItem('refreshToken', response.refreshToken);
+        navigation.navigate("OTPScreen");
+      
+        resetForm()
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  };
+  
   return (
-    <SafeAreaView style={styles.all}>
+    <View style={styles.all}>
       <Formik
-        initialValues={{ mobilNomre: '', sifre: '' }}
-        onSubmit={() => {}}
+        initialValues={{ phone: '', password: '' }}
+        onSubmit={(values, {resetForm}) => {
+          onSubmitHandler(values, resetForm);
+        }}
         validationSchema={loginValidationSchema}
       >
-        {({ handleChange, handleBlur, handleSubmit, values, errors, isValid }) => (
+        {({ handleChange, handleBlur, handleSubmit, values, errors, isValid, dirty }) => (
           <View>
             <TextComponent text="Daxil Olun" fontSize={false}/>
             <Input
-              onChangeText={handleChange('mobilNomre')}
-              value={values.mobilNomre}
+              onChangeText={handleChange('phone')}
+              value={values.phone}
               placeholder="+994"
               label="Mobil nömrə"
               type="phone-pad"
-              onBlur={handleBlur('mobilNomre')}
+              onBlur={handleBlur('phone')}
             />
-            {values.mobilNomre && errors.mobilNomre && (
-              <Text style={{ fontSize: 10, color: 'red' }}>{errors.mobilNomre}</Text>
+            {values.phone && errors.phone && (
+              <Text style={{ fontSize: 10, color: 'red' }}>{errors.phone}</Text>
             )}
             <Input
-              onChangeText={handleChange('sifre') }
-              value={values.sifre}
+              onChangeText={handleChange('password') }
+              value={values.password}
               placeholder="Şifrə daxil edin"
               label="Şifrə"
-              onBlur={handleBlur('mobilNomre')}
+              onBlur={handleBlur('password')}
               iconShow={true}
               secureTextEntry={!showPassword} 
               handleShowPassword={togglePassword}
             />
-            {values.sifre && errors.sifre && (
-              <Text style={{ fontSize: 10, color: 'red' }}>{errors.sifre}</Text>
+            {values.password && errors.password && (
+              <Text style={{ fontSize: 10, color: 'red' }}>{errors.password}</Text>
             )}
             <View style={styles.endTextDiv}>
               <Text style={styles.endText}>Şifrəni unutmusunuz ?</Text>
@@ -62,14 +90,15 @@ const LoginScreen: FC = () => {
               text="Davam et"
               title="Submit"
               type="submit"
-              disabled={!values.mobilNomre && !values.sifre ? !isValid : isValid}
+              disabled={isValid && dirty}
             />
           </View>
         )}
       </Formik>
-
-      <EndTextComponent text="Hesabınız yoxdur?" diffText="Qeydiyyatdan keçin" size={false} />
-    </SafeAreaView>
+      <Text style={styles.bottomView}>
+          Hesabınız yoxdur? <Text style={[styles.difText]}>Qeydiyyatdan keçin</Text>
+      </Text>
+    </View>
   );
 };
 const styles = StyleSheet.create({
@@ -92,6 +121,19 @@ const styles = StyleSheet.create({
     fontSize: globalStyles.fontStyle.smallTextFontSize,
     fontWeight: globalStyles.fontStyle.textFontWeight,
     fontFamily: globalStyles.fontStyle.primary,
+  },
+  bottomView: {
+    textAlign: 'center',
+    flexDirection: 'row',
+    marginTop: 20,
+    marginBottom: 20,
+    fontSize: globalStyles.fontStyle.endTextFontSize,
+    fontWeight: globalStyles.fontStyle.textFontWeight,
+    fontFamily: globalStyles.fontStyle.primary,
+  },
+
+  difText: {
+    color: globalStyles.colors.green,
   },
 });
 

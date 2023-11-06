@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useDispatch, useSelector} from 'react-redux';
-import {changeScroll} from '../../store/reducers/smoothScrollReducer';
+import {changeScroll} from '../../store/reducers/smoothScrollSlice';
 
 export type ScreenProps = {
   header?: React.ReactNode;
@@ -61,7 +61,7 @@ const Screen: FC<ScreenProps> = ({
   const scrollViewRef = useRef(null);
   const dispatch = useDispatch();
   useEffect(() => {
-    console.log({scrollY});
+  
     if (scrollY) {
       scrollViewRef?.current?.scrollTo({y: scrollY, animated: true});
       dispatch(changeScroll(null));

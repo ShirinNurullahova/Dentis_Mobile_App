@@ -1,8 +1,8 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {configureStore, combineReducers} from '@reduxjs/toolkit';
 import {persistStore, persistReducer} from 'redux-persist';
-import userReducer from './reducers/userReducer';
-import smoothScrollReducer from './reducers/smoothScrollReducer';
+import userReducer from './reducers/authSlice';
+import smoothScrollReducer from './reducers/smoothScrollSlice';
 
 const persistConfig = {
   key: 'token',

@@ -1,13 +1,13 @@
 import * as Yup from 'yup';
 
 export const loginValidationSchema = Yup.object().shape({
-    mobilNomre: Yup.number()
+    phone: Yup.number()
       .typeError("That doesn't look like a phone number")
       .positive("A phone number can't start with a minus")
       .integer("A phone number can't include a decimal point")
       .min(8)
       .required('A phone number is required'),
-    sifre: Yup.string()
+      password: Yup.string()
       .min(8, ({ min }) => `Password must be at least ${min} characters`)
       .required('Password is required'),
   });
