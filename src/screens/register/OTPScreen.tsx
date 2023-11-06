@@ -29,13 +29,13 @@ const OTPScreen = () => {
     try {
       const response = await postData('auth/twoFactor', dataForm);
       if (response.statusCode === 'success') {
+        console.log('first')
         await AsyncStorage.setItem('accessToken', response.accessToken);
         await AsyncStorage.setItem('refreshToken', response.refreshToken);
         navigation.navigate("UserHomePage");
       }
     } catch (error) {
-      //i want to show the error message
-      console.log(error);
+      console.log('salam',error);
     }
   };
   return (

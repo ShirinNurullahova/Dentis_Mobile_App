@@ -29,6 +29,7 @@ export const postData = async(endpoint: any, data?: any) => {
     console.log("error", error.response.data.message);
     
     response = error.response.data;
+    throw new error
   }
   
   return response;
