@@ -9,7 +9,6 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import TextComponent from '../../components/Text/Text';
 import { addPatient } from '../../utils/validation';
 
-
 const AddPatient = () => {
   const [collapse, setCollapse] = useState(false);
   const [currentValue, setCurrentValue] = useState('');
@@ -29,10 +28,9 @@ const AddPatient = () => {
 
   return (
     <View>
-        <View style={styles.textOfPatient}>
-        <TextComponent text="Müştəri daxil et" fontSize={false}/>
-
-          </View>
+      <View style={styles.textOfPatient}>
+        <TextComponent text="Müştəri daxil et" fontSize={false} />
+      </View>
 
       <View style={styles.paddingHorizontal}>
         <Formik
@@ -130,7 +128,7 @@ export default AddPatient;
 const styles = StyleSheet.create({
   textOfPatient: {
     marginTop: 80,
-    marginBottom:40
+    marginBottom: 40,
   },
   titleOfPatient: {
     textAlign: 'center',

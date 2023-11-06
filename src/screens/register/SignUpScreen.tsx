@@ -37,7 +37,7 @@ const SignUpScreen: FC = () => {
 
   const [showPassword, togglePassword] = usePasswordToggle();
 
-  const onSubmitHandler = async (values: FormData, resetForm:any) => {
+  const onSubmitHandler = async (values: FormData, resetForm: any) => {
     let dataForm: FormData = { ...initialDataForm }; // Use spread operator to clone initialDataForm
     dataForm.fullName = values.fullName;
     dataForm.phone = values.phone;
@@ -49,8 +49,6 @@ const SignUpScreen: FC = () => {
     
     try {
       const response = await postData('auth/signup', dataForm);
-
-      
       if (response.statusCode === 'success') {
         navigation.navigate("LoginScreen");
       }
@@ -80,7 +78,7 @@ const SignUpScreen: FC = () => {
               dateOfBirth: '01-01-2023',
               dataPrivacy: false,
             }}
-            onSubmit={(values, {resetForm}) => {
+            onSubmit={(values, { resetForm }) => {
               onSubmitHandler(values, resetForm);
             }}
             validationSchema={signUpValidationSchema}
