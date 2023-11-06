@@ -12,6 +12,7 @@ import { globalStyles } from '../../constants/globalStyles';
 import { usePasswordToggle } from '../../utils/showPassword';
 import { signUpValidationSchema } from '../../utils/validation';
 import { postData } from '../../hooks/CustomHooks';
+import { useNavigation } from '@react-navigation/native';
 
 interface FormData {
   fullName: string;
@@ -28,6 +29,7 @@ const initialDataForm: FormData = {
   dataPrivacy: false,
 };
 const SignUpScreen: FC = () => {
+  const navigation = useNavigation()
   const [month, setMonth] = useState();
   const dates = useMemo(() => {
     return generateDateDropdownValues(month);
@@ -42,12 +44,18 @@ const SignUpScreen: FC = () => {
     dataForm.dateOfBirth = values.dateOfBirth;
     dataForm.password = values.password;
     dataForm.dataPrivacy = values.dataPrivacy;
+
+  
+    
     try {
       const response = await postData('auth/signup', dataForm);
-      if (response.status === 'success') {
-        resetForm();
+      if (response.statusCode === 'success') {
+        navigation.navigate("LoginScreen");
       }
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+      
+    }
   };
 
   const handleDateAndTime = (index: any, values: any, event: string, setFieldValue: any) => {
