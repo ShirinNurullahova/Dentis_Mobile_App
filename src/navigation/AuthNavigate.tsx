@@ -71,9 +71,9 @@ export function AuthNavigate() {
   return (
     <AuthNavigator.Navigator screenOptions={screenOptions}>
       {/* <AuthNavigator.Screen name="LoginScreen" component={LoginScreen} /> */}
-      <AuthNavigator.Screen name="SignUpScreen" component={SignUpScreen} />
+      {/* <AuthNavigator.Screen name="SignUpScreen" component={SignUpScreen} /> */}
       {/* <AuthNavigator.Screen name="Doctorlist" component={Doctorlist} /> */}
-      {/* <AuthNavigator.Screen name="DoctorDetail" component={DoctorDetail} /> */}
+      <AuthNavigator.Screen name="DoctorDetail" component={DoctorDetail} />
       {/* <AuthNavigator.Screen name="AddPatient" component={AddPatient} /> */}
       {/* <AuthNavigator.Screen name="Payment" component={Payment} /> */}
       {/* <AuthNavigator.Screen name="DoctorAccount" component={DoctorAccount} /> */}
@@ -91,7 +91,7 @@ export function AuthNavigate() {
       {/* <AuthNavigator.Screen name="DoctorPersonalPage" component={DoctorPersonalPage} /> */}
       {/* <AuthNavigator.Screen name="OTPScreen" component={OTPScreen} /> */}
       {/* <AuthNavigator.Screen name="ResetPasswordScreen" component={ResetPasswordScreen} /> */}
-      {/* <AuthNavigator.Screen name="AboutPage" component={About} /> */}
+      <AuthNavigator.Screen name="AboutPage" component={About} />
       {/* <AuthNavigator.Screen name="AddToCard" component={AddToCard} /> */}
       {/* <AuthNavigator.Screen name="Notification" component={Notification} /> */}
       {/* <AuthNavigator.Screen name="UserHomePage" component={UserHomePage} /> */}
@@ -100,7 +100,6 @@ export function AuthNavigate() {
       {/* <AuthNavigator.Screen name="CardDetail" component={CardDetail} /> */}
       {/* <AuthNavigator.Screen name="CardDetailTwo" component={CardDetailTwo} /> */}
       {/* <AuthNavigator.Screen name="HomePage" component={HomePage} /> */}
-      {/* <AuthNavigator.Screen name="AboutPage" component={About} /> */}
       {/* <AuthNavigator.Screen name="AddToCard" component={AddToCard} /> */}
       {/* <AuthNavigator.Screen name="Notification" component={Notification} /> */}
     </AuthNavigator.Navigator>

@@ -48,8 +48,8 @@ export const loginValidationSchema = Yup.object().shape({
   });
   
   export const aboutValidationSchema = Yup.object().shape({
-    text: Yup.string().min(4).required('Text is required'),
-    textArea: Yup.string()
+    title: Yup.string().min(4).required('Text is required'),
+    description: Yup.string()
       .min(8, ({ min }) => `Text content has to be contain ${min} characters`)
       .required('Text required'),
   });
