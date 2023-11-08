@@ -3,6 +3,7 @@ import axios from 'axios';
 import { postData } from '../hooks/CustomHooks';
 import { ENV_VAR } from '@env';
 import { navigateTo } from './navigateTo';
+import ToastMessage from './ToastyMessage';
 
 const instance = axios.create({
   baseURL: `${ENV_VAR}`,
@@ -11,6 +12,8 @@ const instance = axios.create({
 
 instance.interceptors.response.use(
   (response) => {
+    console.log('salammmmmmm',response)
+    ToastMessage({type:'success',message:response?.data?.message})
     return response;
   },
   async (error) => {
@@ -34,6 +37,12 @@ instance.interceptors.response.use(
         navigateTo('SignupScreen')
       }
     }
+   
+      ToastMessage({
+        type: 'error',
+        message: error?.response?.data?.message,
+      });
+    
     return Promise.reject(error);
   }
 );

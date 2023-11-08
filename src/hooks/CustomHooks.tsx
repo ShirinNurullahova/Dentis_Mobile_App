@@ -1,19 +1,9 @@
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ENV_VAR } from '@env';
-import Instance from '../utils/AxiosInterceptor'
+import Instance from '../utils/AxiosInterceptor';
+import ToastMessage from '../utils/ToastyMessage';
 
-
-export const getData = async (endpoint:any) => {
-    const url = `${ENV_VAR}/${endpoint}`;
-    try {
-      const { data } = await (
-        await Instance.get(url))?.data;
-      return data;
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
 
 export const getData = async (endpoint: any) => {
@@ -39,17 +29,18 @@ export const postData = async (endpoint: any, data?: any) => {
   let response;
   try {
 
+    response = (await Instance.post(url, data, {}))?.data;
+
+
     response = ( 
       await Instance.post(url, data, {
       })
     )?.data
   } catch (error: any) {
-   
-
     response = error.response.data;
-    throw new error
+    throw new error();
   }
-  
+
   return response;
 };
 
@@ -87,4 +78,3 @@ export const patchData = async (endpoint: any, data?: any) => {
 //   }
 //   return response;
 // };
-
