@@ -6542,10 +6542,10 @@ react-native-text-highlighter@^1.0.5:
   dependencies:
     highlight-words-core "^1.2.2"
 
-react-native-toast-message@^2.1.6:
-  version "2.1.6"
-  resolved "https://registry.npmjs.org/react-native-toast-message/-/react-native-toast-message-2.1.6.tgz"
-  integrity sha512-VctXuq20vmRa9AE13acaNZhrLcS3FaBS2zEevS3+vhBsnVZYG0FIlWIis9tVnpnNxUb3ART+BWtwQjzSttXTng==
+react-native-toast-message@^2.1.7:
+  version "2.1.7"
+  resolved "https://registry.npmjs.org/react-native-toast-message/-/react-native-toast-message-2.1.7.tgz"
+  integrity sha512-5zX3T5buVpg4bn9KZYVZ2VUQiLQZ1FHSM2AFQHVpgeKMYb+Gq+jt7wjhfPqhuMkJElQr7XNrnRw/rBCdD+7Q9w==
 
 react-native-vector-icons@*, react-native-vector-icons@^10.0.0:
   version "10.0.0"
