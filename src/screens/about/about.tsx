@@ -1,5 +1,13 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Image, ImageBackground, TextInput } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  ImageBackground,
+  TextInput,
+  ScrollView,
+} from 'react-native';
 import Input from '../../components/Input/Input';
 import CustomButton from '../../components/Button/Button';
 import { launchImageLibrary } from 'react-native-image-picker';
@@ -8,95 +16,152 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { globalStyles } from '../../constants/globalStyles';
 import { aboutValidationSchema } from '../../utils/validation';
+import { postData } from '../../hooks/CustomHooks';
+interface FormData {
+  title: string;
+  description: string;
+  aboutImage: string;
+}
+const initialDataForm: FormData = {
+  title: '',
+  description: '',
+  aboutImage: '',
+};
+const onSubmitHandler = async (values: FormData, resetForm: any) => {
+  let dataForm: FormData = { ...initialDataForm };
+  dataForm.title = values.title;
+  dataForm.description = values.description;
+  dataForm.aboutImage = values.aboutImage;
+  console.log(values);
 
-
+  try {
+    const response = await postData('api/v1/about', dataForm);
+    console.log(response);
+    
+    if (response.status === 'success') {
+      resetForm();
+    }
+  } catch (error) {}
+};
 const About = () => {
   const [file, setFile] = useState('');
-  const onChooseImg = async () => {
+
+  const onChooseImg = async (setFieldValue: any) => {
     const result = await launchImageLibrary({
       mediaType: 'photo',
       presentationStyle: 'fullScreen',
     });
 
-    result?.assets && result?.assets[0]?.uri && setFile(result?.assets[0]?.uri);
+    if (result?.assets && result?.assets[0]?.uri) {
+      setFile(result?.assets[0]?.uri);
+      setFieldValue('aboutImage', result?.assets[0]?.uri);
+    }
   };
 
   return (
-    <View style={styles.content}>
-      <TouchableOpacity onPress={onChooseImg} style={styles.imageContent}>
-        <View style={styles.centerContent}>
-          {file?.length ? (
-            <ImageBackground source={{ uri: file }} style={styles.selectedImageContent} />
-          ) : (
+    <ScrollView>
+      <View style={styles.content}>
+        <Formik
+          initialValues={{ title: '', description: '', aboutImage: '' }}
+          onSubmit={(values, { resetForm }) => {
+            onSubmitHandler(values, resetForm);
+          }}
+          validationSchema={aboutValidationSchema}
+        >
+          {({
+            handleChange,
+            handleBlur,
+            handleSubmit,
+            values,
+            errors,
+            isValid,
+            dirty,
+            setFieldValue,
+          }) => (
             <>
-              <Image source={require('../../assets/images/plusIcon.png')} />
-              <Text style={styles.centerText}>Şəkil əlavə edin</Text>
+              <TouchableOpacity
+                onPress={() => {
+                  onChooseImg(setFieldValue);
+                }}
+                style={styles.imageContent}
+              >
+                <View style={styles.centerContent}>
+                  {file?.length ? (
+                    <ImageBackground source={{ uri: file }} style={styles.selectedImageContent} />
+                  ) : (
+                    <>
+                      <Image source={require('../../assets/images/plusIcon.png')} />
+                      <Text style={styles.centerText}>Şəkil əlavə edin</Text>
+                    </>
+                  )}
+                </View>
+              </TouchableOpacity>
+              {file?.length > 0 && (
+                <View style={styles.rowButton}>
+                  <TouchableOpacity>
+                    <View style={styles.buttonNew}>
+                      <Text style={styles.textNewButton}>Şəkil əlavə et</Text>
+                    </View>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    onPress={() => {
+                      onChooseImg(setFieldValue);
+                    }}
+                  >
+                    <View style={styles.buttonNew}>
+                      <Text style={styles.textNewButton}>Şəkli dəyişdir</Text>
+                    </View>
+                  </TouchableOpacity>
+                </View>
+              )}
+              <View>
+                <View style={styles.inputs}>
+                  <Input
+                    onChangeText={handleChange('title')}
+                    onBlur={handleBlur('title')}
+                    value={values.title}
+                    placeholder="Basliq daxil edin"
+                    label="Basliq"
+                    type="text"
+                  />
+                  {values.title && errors.title && (
+                    <Text style={{ fontSize: 10, color: 'red', marginTop: 10 }}>
+                      {errors.title}
+                    </Text>
+                  )}
+                </View>
+                <View>
+                  <Text style={styles.titleTextArea}>Melumat</Text>
+                  <TextInput
+                    multiline={true}
+                    numberOfLines={10}
+                    style={styles.textArea}
+                    placeholder="Məlumat daxil edin"
+                    onChangeText={handleChange('description')}
+                    onBlur={handleBlur('description')}
+                  />
+                  {values.description && errors.description && (
+                    <Text style={{ fontSize: 10, color: 'red', marginTop: 10 }}>
+                      {errors.description}
+                    </Text>
+                  )}
+                </View>
+                {/* {console.log(errors)} */}
+                <View style={styles.button}>
+                  <CustomButton
+                    onPress={handleSubmit}
+                    text="Yadda saxla"
+                    title="Submit"
+                    type="submit"
+                    disabled={isValid && dirty}
+                  />
+                </View>
+              </View>
             </>
           )}
-        </View>
-      </TouchableOpacity>
-      {file?.length > 0 && (
-        <View style={styles.rowButton}>
-          <TouchableOpacity>
-            <View style={styles.buttonNew}>
-              <Text style={styles.textNewButton}>Şəkil əlavə et</Text>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={onChooseImg}>
-            <View style={styles.buttonNew}>
-              <Text style={styles.textNewButton}>Şəkli dəyişdir</Text>
-            </View>
-          </TouchableOpacity>
-        </View>
-      )}
-
-      <Formik
-        initialValues={{ text: '', textArea: '' }}
-        onSubmit={(values) => console.log(values)}
-        validationSchema={aboutValidationSchema}
-      >
-        {({ handleChange, handleBlur, handleSubmit, values, errors, isValid }) => (
-          <View>
-            <View style={styles.inputs}>
-              <Input
-                onChangeText={handleChange('text')}
-                onBlur={handleBlur('text')}
-                value={values.text}
-                placeholder="Basliq daxil edin"
-                label="Basliq"
-                type="text"
-              />
-              {values.text && errors.text && (
-                <Text style={{ fontSize: 10, color: 'red', marginTop: 10 }}>{errors.text}</Text>
-              )}
-            </View>
-            <View>
-              <Text style={styles.titleTextArea}>Melumat</Text>
-              <TextInput
-                multiline={true}
-                numberOfLines={10}
-                style={styles.textArea}
-                placeholder="Məlumat daxil edin"
-                onChangeText={handleChange('textArea')}
-                onBlur={handleBlur('textArea')}
-              />
-              {values.textArea && errors.textArea && (
-                <Text style={{ fontSize: 10, color: 'red', marginTop: 10 }}>{errors.textArea}</Text>
-              )}
-            </View>
-            <View style={styles.button}>
-              <CustomButton
-                onPress={handleSubmit}
-                text="Yadda saxla"
-                title="Submit"
-                type="submit"
-                disabled={!values.text && !values.textArea ? !isValid : isValid}
-              />
-            </View>
-          </View>
-        )}
-      </Formik>
-    </View>
+        </Formik>
+      </View>
+    </ScrollView>
   );
 };
 
