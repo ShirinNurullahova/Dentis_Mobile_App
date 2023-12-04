@@ -2,11 +2,12 @@ import React, { useEffect } from 'react';
 import { Platform, NativeModules, ActivityIndicator } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Provider } from 'react-redux';
-import { NavigationContainer, createNavigationContainerRef } from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 import store, { persistor } from './src/store';
 import { PersistGate } from 'redux-persist/integration/react';
 import { Navigator } from './src/navigation/Navigator';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { createNavigationContainerRef } from '@react-navigation/native';
 
 export const navigationRef = createNavigationContainerRef();
 function App(): JSX.Element {
@@ -21,7 +22,7 @@ function App(): JSX.Element {
       <GestureHandlerRootView style={{ flex: 1 }}>
         <Provider store={store}>
           <PersistGate loading={null} persistor={persistor}>
-            <NavigationContainer fallback={<ActivityIndicator color="blue" size="large" />}>
+            <NavigationContainer fallback={<ActivityIndicator color="blue" size="large" />} ref={navigationRef}>
               <Navigator />
             </NavigationContainer>
           </PersistGate>

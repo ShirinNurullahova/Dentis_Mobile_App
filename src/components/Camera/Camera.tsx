@@ -18,7 +18,7 @@ const CameraNew = ({ setShowCamera, file, setFile }: any) => {
   useEffect(() => {
     async function getPermission() {
       const permission = await Camera.requestCameraPermission();
-      console.log(`camera permission status: ${permission}`);
+   
       if (permission === 'denied') await Linking.openSettings();
     }
     getPermission();
@@ -27,7 +27,7 @@ const CameraNew = ({ setShowCamera, file, setFile }: any) => {
   const capturePhoto = async () => {
     if (camera.current !== null) {
       const photo = await camera.current.takePhoto();
-      console.log(photo);
+
       setFile('file://' + photo.path);
       setShowCameraNew(false);
     }
@@ -110,7 +110,7 @@ const CameraNew = ({ setShowCamera, file, setFile }: any) => {
                   <View>
                     <CustomButton
                       onPress={() => {
-                        console.log('salam');
+                   
                         setFile('');
                         setShowCameraNew(true);
                       }}
@@ -125,7 +125,7 @@ const CameraNew = ({ setShowCamera, file, setFile }: any) => {
                   <View>
                     <CustomButton
                       onPress={() => {
-                        console.log('salam');
+                
                         setShowCamera(false);
                       }}
                       text="Davam et"

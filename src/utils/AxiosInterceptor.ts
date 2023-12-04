@@ -20,7 +20,7 @@ instance.interceptors.response.use(
       const refreshToken = await AsyncStorage.getItem('refreshToken');
       if (refreshToken) {
         try {
-          const refreshResponse = await postData('/auth/refreshToken', {});
+          const refreshResponse = await postData('/auth/refreshToken', { });
           const newAccessToken = refreshResponse.data.accessToken;
           const newRefreshToken = refreshResponse.data.refreshToken;
           await AsyncStorage.setItem('accessToken', newAccessToken);

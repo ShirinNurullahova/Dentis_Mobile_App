@@ -12,7 +12,6 @@ import { globalStyles } from '../../constants/globalStyles';
 import { usePasswordToggle } from '../../utils/showPassword';
 import { signUpValidationSchema } from '../../utils/validation';
 import { postData } from '../../hooks/CustomHooks';
-import { navigateTo } from '../../utils/NavigateTo';
 import { useNavigation } from '@react-navigation/native';
 
 interface FormData {
@@ -45,20 +44,22 @@ const SignUpScreen: FC = () => {
     dataForm.dateOfBirth = values.dateOfBirth;
     dataForm.password = values.password;
     dataForm.dataPrivacy = values.dataPrivacy;
+
+  
+    
     try {
       console.log('dkjfds');
 
       const response = await postData('auth/signup', dataForm);
-      console.log(response.status);
-      console.log('askjfnasjk');
 
-      if (response.status === 'success') {
-        // resetForm();
-        console.log("ooef");
-        // navigateTo('OTPScreen');
-        navigation.navigate("LoginScreen")
+      
+      if (response.statusCode === 'success') {
+        navigation.navigate("LoginScreen");
       }
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+      
+    }
   };
 
   const handleDateAndTime = (index: any, values: any, event: string, setFieldValue: any) => {
