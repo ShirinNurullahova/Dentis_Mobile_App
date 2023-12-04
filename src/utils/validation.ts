@@ -14,10 +14,10 @@ export const loginValidationSchema = Yup.object().shape({
   
 
  export const resetValidationSchema = Yup.object().shape({
-    sifre: Yup.string()
+  oldPassword: Yup.string()
       .min(8, ({ min }) => `Password must be at least ${min} characters`)
       .required('Password is required'),
-    yenisifre: Yup.string()
+      newPassword: Yup.string()
       .min(8, ({ min }) => `Password must be at least ${min} characters`)
       .required('Password is required'),
   });

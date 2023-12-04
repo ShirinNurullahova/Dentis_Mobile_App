@@ -12,7 +12,6 @@ const instance = axios.create({
 
 instance.interceptors.response.use(
   (response) => {
-    console.log('salammmmmmm',response)
     ToastMessage({type:'success',message:response?.data?.message})
     return response;
   },
@@ -50,8 +49,9 @@ instance.interceptors.response.use(
 instance.interceptors.request.use(
   async (config) => {
     const accessToken = await AsyncStorage.getItem('accessToken');
+    console.log(accessToken, 'ELGIZ')
     if (accessToken) {
-      config.headers.Authorization = `Bearer ${accessToken}`;
+      config.headers.Authorization = `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NjE5Mzg3LWUyNTQtNGFkZC05ZDUzLTBkYzIzNGMxN2ViMSIsImlhdCI6MTY5OTUxMzQzMiwiZXhwIjoxNjk5NTE2NDMyfQ.P4EybXEr7N0zPsR4sz21Hd2tb1EmwrpCDvhUA5lcsRU`;
     }
 
     return config;

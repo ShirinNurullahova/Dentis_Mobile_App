@@ -1,56 +1,77 @@
-import React, { FC, useEffect } from 'react';
-import Screen from '../../components/Screen/Screen';
+import React, { FC} from 'react';
 import { StyleSheet, Text, View, Dimensions } from 'react-native';
 import Input from '../../components/Input/Input';
 import CustomButton from '../../components/Button/Button';
-import { VStack } from '../../components/features/VStack/VStack';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import TextComponent from '../../components/Text/Text';
 import { Formik } from 'formik';
 import { resetValidationSchema } from '../../utils/validation';
 import { usePasswordToggle } from '../../utils/showPassword';
+import { patchData } from '../../hooks/CustomHooks';
 
+interface FormData {
+  oldPassword: string;
+  newPassword: string;
+}
+const initialDataForm: FormData = {
+  oldPassword: '',
+  newPassword: '',
+};
 
 
 const ResetPasswordScreen: FC = () => {
   const [showPassword, togglePassword] = usePasswordToggle();
-
+  const onSubmitHandler = async (values: FormData, resetForm:any) => {
+    let dataForm: FormData = { ...initialDataForm };
+    dataForm.oldPassword = values.oldPassword;
+    dataForm.newPassword = values.newPassword;
+    try {
+      const response = await patchData('auth/login', dataForm);
+      if (response.statusCode === 'success') { 
+        resetForm()
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  };
   return (
     <SafeAreaView style={styles.all}>
       <Formik
-        initialValues={{ sifre: '', yenisifre: '' }}
-        onSubmit={(values) => console.log(values)}
+        initialValues={{ oldPassword: '', newPassword: '' }}
+        onSubmit={(values, {resetForm}) => {
+          onSubmitHandler(values, resetForm);
+        }}
         validationSchema={resetValidationSchema}
       >
-        {({ handleChange, handleBlur, handleSubmit, values, errors, isValid }) => (
+        {({ handleChange, handleBlur, handleSubmit, values, errors, isValid, dirty }) => (
           <View>
             <TextComponent text="Yeni şifrə təyin et" fontSize={false} />
             <Input
-              onChangeText={handleChange('sifre')}
-              value={values.sifre}
+              onChangeText={handleChange('oldPassword')}
+              value={values.oldPassword}
               placeholder="şifrə daxil edin"
-              label="Yeni şifrə"
+              label="Köhnə şifrə"
               type="text"
-              onBlur={handleBlur('sifre')}
+              onBlur={handleBlur('oldPassword')}
               iconShow={true}
               secureTextEntry={!showPassword} 
               handleShowPassword={togglePassword}
             />
-            {values.sifre && errors.sifre && (
-              <Text style={{ fontSize: 10, color: 'red' }}>{errors.sifre}</Text>
+            {values.oldPassword && errors.oldPassword && (
+              <Text style={{ fontSize: 10, color: 'red' }}>{errors.oldPassword}</Text>
             )}
             <Input
-              onChangeText={handleChange('yenisifre')}
-              value={values.yenisifre}
+              onChangeText={handleChange('newPassword')}
+              value={values.newPassword}
               placeholder="şifrə daxil edin"
               label="Yeni şifrəni təkrar et"
-              onBlur={handleBlur('yenisifre')}
+              onBlur={handleBlur('newPassword')}
               iconShow={true}
               secureTextEntry={!showPassword} 
               handleShowPassword={togglePassword}
             />
-            {values.yenisifre && errors.yenisifre && (
-              <Text style={{ fontSize: 10, color: 'red' }}>{errors.yenisifre}</Text>
+            {values.newPassword && errors.newPassword && (
+              <Text style={{ fontSize: 10, color: 'red' }}>{errors.newPassword}</Text>
             )}
             <View style={styles.bottom}>
               <CustomButton
@@ -58,7 +79,7 @@ const ResetPasswordScreen: FC = () => {
                 text="Davam et"
                 title="Submit"
                 type="submit"
-                disabled={!values.sifre && !values.yenisifre ? !isValid : isValid}
+                disabled={isValid && dirty}
               />
             </View>
           </View>

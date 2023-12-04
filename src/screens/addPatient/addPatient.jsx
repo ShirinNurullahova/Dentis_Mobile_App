@@ -11,7 +11,6 @@ import { addPatient } from '../../utils/validation';
 
 const AddPatient = () => {
   const [collapse, setCollapse] = useState(false);
-  const [currentValue, setCurrentValue] = useState('');
 
   const doctors = [
     { label: 'As', value: 'as' },
@@ -25,6 +24,7 @@ const AddPatient = () => {
     { label: 'John', value: 'John' },
     { label: 'John', value: 'John' },
   ];
+ 
 
   return (
     <View>
@@ -51,28 +51,28 @@ const AddPatient = () => {
             <View>
               <View style={styles.inputs}>
                 <Input
-                  onChangeText={handleChange('name')}
-                  onBlur={handleBlur('name')}
-                  value={values.name}
+                  onChangeText={handleChange('fullName')}
+                  onBlur={handleBlur('fullName')}
+                  value={values.fullName}
                   placeholder="Ad və soyad daxil edin"
                   label="Ad və soyad"
                   type="text"
                 />
-                {values.name && errors.name && (
-                  <Text style={{ fontSize: 10, color: 'red', marginTop: 10 }}>{errors.name}</Text>
+                {values.fullName && errors.fullName && (
+                  <Text style={{ fontSize: 10, color: 'red', marginTop: 10 }}>{errors.fullName}</Text>
                 )}
               </View>
               <View>
                 <Input
-                  onChangeText={handleChange('number')}
-                  onBlur={handleBlur('number')}
-                  value={values.number}
+                  onChangeText={handleChange('phone')}
+                  onBlur={handleBlur('phone')}
+                  value={values.phone}
                   placeholder="+994"
                   label="Mobil nömrə"
                   type="phone-pad"
                 />
-                {values.number && errors.number && (
-                  <Text style={{ fontSize: 10, color: 'red', marginTop: 10 }}>{errors.number}</Text>
+                {values.phone && errors.phone && (
+                  <Text style={{ fontSize: 10, color: 'red', marginTop: 10 }}>{errors.phone}</Text>
                 )}
               </View>
               <View style={styles.addDoctor}>
