@@ -12,6 +12,8 @@ import { globalStyles } from '../../constants/globalStyles';
 import { usePasswordToggle } from '../../utils/showPassword';
 import { signUpValidationSchema } from '../../utils/validation';
 import { postData } from '../../hooks/CustomHooks';
+import { navigateTo } from '../../utils/NavigateTo';
+import { useNavigation } from '@react-navigation/native';
 
 interface FormData {
   fullName: string;
@@ -28,6 +30,7 @@ const initialDataForm: FormData = {
   dataPrivacy: false,
 };
 const SignUpScreen: FC = () => {
+  const navigation=useNavigation()
   const [month, setMonth] = useState();
   const dates = useMemo(() => {
     return generateDateDropdownValues(month);
@@ -43,9 +46,17 @@ const SignUpScreen: FC = () => {
     dataForm.password = values.password;
     dataForm.dataPrivacy = values.dataPrivacy;
     try {
+      console.log('dkjfds');
+
       const response = await postData('auth/signup', dataForm);
+      console.log(response.status);
+      console.log('askjfnasjk');
+
       if (response.status === 'success') {
-        resetForm();
+        // resetForm();
+        console.log("ooef");
+        // navigateTo('OTPScreen');
+        navigation.navigate("LoginScreen")
       }
     } catch (error) {}
   };

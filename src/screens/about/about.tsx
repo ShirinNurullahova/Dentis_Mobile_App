@@ -37,7 +37,7 @@ const onSubmitHandler = async (values: FormData, resetForm: any) => {
   try {
     const response = await postData('api/v1/about', dataForm);
     console.log(response);
-    
+
     if (response.status === 'success') {
       resetForm();
     }
@@ -146,7 +146,6 @@ const About = () => {
                     </Text>
                   )}
                 </View>
-                {/* {console.log(errors)} */}
                 <View style={styles.button}>
                   <CustomButton
                     onPress={handleSubmit}
