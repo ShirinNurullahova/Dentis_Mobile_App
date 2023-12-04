@@ -13,6 +13,7 @@ import { usePasswordToggle } from '../../utils/showPassword';
 import { signUpValidationSchema } from '../../utils/validation';
 import { postData } from '../../hooks/CustomHooks';
 import { useNavigation } from '@react-navigation/native';
+import { toFormData } from 'axios';
 
 interface FormData {
   fullName: string;
@@ -29,7 +30,7 @@ const initialDataForm: FormData = {
   dataPrivacy: false,
 };
 const SignUpScreen: FC = () => {
-  const navigation=useNavigation()
+  const navigation = useNavigation();
   const [month, setMonth] = useState();
   const dates = useMemo(() => {
     return generateDateDropdownValues(month);
@@ -45,20 +46,17 @@ const SignUpScreen: FC = () => {
     dataForm.password = values.password;
     dataForm.dataPrivacy = values.dataPrivacy;
 
-  
-    
     try {
       console.log('dkjfds');
 
       const response = await postData('auth/signup', dataForm);
+      console.log(response);
 
-      
-      if (response.statusCode === 'success') {
-        navigation.navigate("LoginScreen");
+      if (response.status === 'success') {
+        navigation.navigate('LoginScreen');
       }
     } catch (error) {
       console.log(error);
-      
     }
   };
 
