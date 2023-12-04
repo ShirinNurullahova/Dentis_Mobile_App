@@ -2,9 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 import { postData } from '../hooks/CustomHooks';
 import { ENV_VAR } from '@env';
-import { useNavigation } from '@react-navigation/native';
-import { navigateTo } from '../utils/NavigateTo';
-// const navigation: any = useNavigation();
+import { navigateTo } from './navigateTo';
 
 const instance = axios.create({
   baseURL: `${ENV_VAR}`,
@@ -29,16 +27,11 @@ instance.interceptors.response.use(
           return instance(error.config);
         } catch (refreshError) {
           console.error('Error refreshing token:', refreshError);
-          // navigateTo('LoginScreen');
-          // navigation.navigate('LoginScreen');
-          navigateTo("LoginScreen")
+          navigateTo('LoginScreen')
         }
       } else {
         console.error('No refresh token found, redirecting to login screen');
-        // navigateTo('SignupScreen');
-        // navigation.navigate('SignupScreen');
-        navigateTo("SignupScreen")
-
+        navigateTo('SignupScreen')
       }
     }
     return Promise.reject(error);

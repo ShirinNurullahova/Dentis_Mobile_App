@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View,SafeAreaView, StyleSheet } from 'react-native';
 import OTPInput from '../../components/OTP/OTPInput';
 import CustomButton from '../../components/Button/Button';
@@ -17,6 +17,7 @@ const initialDataForm: FormData = {
 };
 
 const OTPScreen = () => {
+ 
   const navigation = useNavigation()
 
   const handleTextChange = (e: any, setFieldValue: any) => {
@@ -29,7 +30,6 @@ const OTPScreen = () => {
     try {
       const response = await postData('auth/twoFactor', dataForm);
       if (response.statusCode === 'success') {
-        console.log('first')
         await AsyncStorage.setItem('accessToken', response.accessToken);
         await AsyncStorage.setItem('refreshToken', response.refreshToken);
         navigation.navigate("UserHomePage");

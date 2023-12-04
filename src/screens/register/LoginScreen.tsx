@@ -1,5 +1,5 @@
 import { Formik } from 'formik';
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { postData } from '../../hooks/CustomHooks';
 import CustomButton from '../../components/Button/Button';
@@ -12,6 +12,7 @@ import { useNavigation } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
 import { setLoginBody } from '../../store/reducers/authSlice';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { navigateTo } from '../../utils/navigateTo';
 
 interface FormData {
   phone: number | string;
@@ -26,7 +27,9 @@ const LoginScreen: FC = () => {
 
   const [showPassword, togglePassword] = usePasswordToggle();
   const dispatch = useDispatch()
-
+  //  useEffect(()=>{
+  //   navigation.navigate("AddPatient");
+  // },[])
   const onSubmitHandler = async (values: FormData, resetForm:any) => {
     let dataForm: FormData = { ...initialDataForm }; // Use spread operator to clone initialDataForm
     dataForm.phone = values.phone;
